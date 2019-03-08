@@ -34,7 +34,7 @@ const homeController = require('./controllers/home');
 const userController = require('./controllers/user');
 const apiController = require('./controllers/api');
 const contactController = require('./controllers/contact');
-const redeemController = require('./controllers/redeem');
+const cardsController = require('./controllers/cards');
 
 /**
  * API keys and Passport configuration.
@@ -128,7 +128,7 @@ app.use('/webfonts', express.static(path.join(__dirname, 'node_modules/@fortawes
  */
 app.get('/', homeController.index);
 app.post('/sendCard', homeController.sendCard);
-app.get('/redeem', redeemController.getRedeem);
+app.get('/cards', cardsController.getCards);
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);
 app.get('/logout', userController.logout);
