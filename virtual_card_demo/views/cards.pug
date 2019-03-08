@@ -1,4 +1,24 @@
 extends layout
 
 block content
-  p.lead coming soon!
+    h1 Cards
+
+    table#my_table(style='width:100%')
+      tbody
+        tr
+            th Firstname
+            th Lastname
+            th Age
+        for user in users
+          
+            tr
+              td #{user.first_name}
+              td #{user.last_name}
+              td #{user.email}
+        else
+            tr
+              th Firstname
+              th Lastname
+              th Age
+        
+
