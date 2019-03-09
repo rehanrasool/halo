@@ -38,7 +38,7 @@ exports.sendCard = (req, res) => {
   };
 
   // -------------------------- CREATE USER ---------------------------- //
-  var userData = '{"parent_token":"'+parent+'","first_name":"'+firstname+'","last_name":"'+lastname+'","email":"'+email+'","birth_date":"'+birthdate+'","address1":"'+address+'","city":"'+city+'","state":"'+state+'","country":"US"}';
+  var userData = '{"parent_token":"'+parent+'","first_name":"'+firstname+'","last_name":"'+lastname+'","email":"'+email+'","birth_date":"'+birthdate+'","address1":"'+address+'","address2":"'+address+'","city":"'+city+'","state":"'+state+'","country":"US"}';
 
   var userOptions = {
       url: 'https://shared-sandbox-api.marqeta.com/v3/users/',
@@ -51,7 +51,7 @@ exports.sendCard = (req, res) => {
 
   var cardProductName = "halo-card-product-1";
   var cardProductStartDate = "2019-01-01";
-  var cardProductData = '{"name":"'+cardProductName+'","start_date":"'+cardProductStartDate+'"}';
+  var cardProductData = '{"name":"'+cardProductName+'","start_date":"'+cardProductStartDate+'","config":{"fulfillment":{"payment_instrument":"VIRTUAL_PAN"}}}';
 
   var cardProductOptions = {
       url: 'https://shared-sandbox-api.marqeta.com/v3/cardproducts/',
@@ -72,10 +72,35 @@ exports.sendCard = (req, res) => {
       // body: cardData
   };
 
+  // -------------------------- CREATE VELOCITY CONTROL ---------------------------- //
+
+  var velocityControlOptions = {
+      url: 'https://shared-sandbox-api.marqeta.com/v3/velocitycontrols/',
+      method: 'POST',
+      headers: headers,
+      // body: velocityControlData
+  };
+
+  function velocityControlCallback(error, response, body) {
+      if (!error && response.statusCode == 201) {
+        console.log("##### velocity control: success");
+        console.log(body);
+      } else {
+        console.log("##### velocity control: failure");
+        console.log(error);
+        console.log(response);
+      }
+  }
+
   function createCardCallback(error, response, body) {
       if (!error && response.statusCode == 201) {
         console.log("##### card: success");
         console.log(body);
+
+        // create velocity control for the card
+        var velocityControlData = '{"association":{"user_token":"'+cardUserToken+'"},"amount_limit":"'+amount+'","velocity_window":"LIFETIME","currency_code":"USD"}';
+        velocityControlOptions['body']=velocityControlData;
+        request(velocityControlOptions, velocityControlCallback);
       } else {
         console.log("##### card: failure");
         console.log(error);

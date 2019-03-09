@@ -19,7 +19,7 @@ var headers = {
 };
 
 var options = {
-  url: 'https://shared-sandbox-api.marqeta.com/v3/users/' + parent + '/children?count=10&start_index=0&sort_by=-lastModifiedTime',
+  url: 'https://shared-sandbox-api.marqeta.com/v3/users/' + parent + '/children?count=50&start_index=0&sort_by=-lastModifiedTime',
   headers: headers
 };
 users = []
