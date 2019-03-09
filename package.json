@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/rehanrasool/halo/issues"
   },
-  "homepage": "https://github.com/rehanrasool/halo#readme"
+  "homepage": "https://github.com/rehanrasool/halo#readme",
+  "dependencies": {
+    "express":"*"
+  }
 }
