@@ -2,7 +2,7 @@
   "name": "halo-ct",
   "version": "1.0.0",
   "description": "A gifting platform powered by virtual card technology that combines the flexibility of gift cards with the thoughtfulness of personalized gifts",
-  "main": "virtual_card_demo/app.js",
+  "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
