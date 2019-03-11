@@ -1,6 +1,7 @@
 var request = require('request');
 
-var parent="c2e632ad-ab41-42b8-9d9e-9091e170aa4d";
+// var parent="c2e632ad-ab41-42b8-9d9e-9091e170aa4d";
+var parent="e1187d4e-991d-4bb0-9339-9ab0425819e6";
 
 /**
  * GET /
@@ -11,7 +12,6 @@ exports.index = (req, res) => {
     title: 'Home'
   });
 };
-
 
 /**
  * POST /sendCard
@@ -51,7 +51,7 @@ exports.sendCard = (req, res) => {
 
   var cardProductName = "halo-card-product-1";
   var cardProductStartDate = "2019-01-01";
-  var cardProductData = '{"name":"'+cardProductName+'","start_date":"'+cardProductStartDate+'","config":{"fulfillment":{"payment_instrument":"VIRTUAL_PAN"}}}';
+  var cardProductData = '{"name":"'+cardProductName+'","start_date":"'+cardProductStartDate+'","config":{"fulfillment":{"payment_instrument":"VIRTUAL_PAN"},"card_life_cycle":{"activate_upon_issue" : true,"expiration_offset": {"unit": "YEARS","value": 51}}}}';
 
   var cardProductOptions = {
       url: 'https://shared-sandbox-api.marqeta.com/v3/cardproducts/',

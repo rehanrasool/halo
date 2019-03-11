@@ -19,13 +19,5 @@ block content
               td #{user.email}
               td #{user.card.pan_hidden}
               td #{user.card.cvv}
-              td #{user.card.expiration}
+              td #{user.card.expr}
               td $#{user.velocity_control.amount_limit}
-        else
-            tr
-              th Firstname
-              th Lastname
-              th Card Number
-              th CVC
-              th Expiration Date
-              th Balance
