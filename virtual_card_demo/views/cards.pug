@@ -6,19 +6,26 @@ block content
     table#my_table(style='width:100%')
       tbody
         tr
-            th Firstname
-            th Lastname
-            th Age
+            th Name
+            th Email
+            th Card Number
+            th CVC
+            th Expiration Date
+            th Balance
         for user in users
           
             tr
-              td #{user.first_name}
-              td #{user.last_name}
+              td #{user.first_name} #{user.last_name}
               td #{user.email}
+              td #{user.card.pan_hidden}
+              td #{user.card.cvv}
+              td #{user.card.expiration}
+              td $#{user.velocity_control.amount_limit}
         else
             tr
               th Firstname
               th Lastname
-              th Age
-        
-
+              th Card Number
+              th CVC
+              th Expiration Date
+              th Balance
