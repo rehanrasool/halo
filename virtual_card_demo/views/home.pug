@@ -24,32 +24,32 @@ block content
     .form-group.row
       label(class='col-md-1 col-form-label font-weight-bold', for='amount') Amount
       .col-md-9
-        input.form-control(type='number', min=1, step=0.01, name='amount', id='amount', autocomplete='amount')
+        input.form-control(type='number', min=1, step=0.01, name='amount', id='amount', autocomplete='amount', required)
     .form-group.row
       label(class='col-md-1 col-form-label font-weight-bold', for='firstname') First Name
       .col-md-4
-        input.form-control(type='text', name='firstname', id='firstname', autocomplete='firstname', autofocus=true)
+        input.form-control(type='text', name='firstname', id='firstname', autocomplete='firstname', autofocus=true, required)
       label(class='col-md-1 col-form-label font-weight-bold', for='lastname') Last Name
       .col-md-4
-        input.form-control(type='text', name='lastname', id='lastname', autocomplete='lastname')
+        input.form-control(type='text', name='lastname', id='lastname', autocomplete='lastname', required)
     .form-group.row
       label(class='col-md-1 col-form-label font-weight-bold', for='email') Email
       .col-md-4
-        input.form-control(type='email', name='email', id='email', autocomplete='email')
+        input.form-control(type='email', name='email', id='email', autocomplete='email', required)
       label(class='col-md-1 col-form-label font-weight-bold', for='birthdate') Birthdate
       .col-md-4
-        input.form-control(type='date', name='birthdate', id='birthdate', autocomplete='birthdate')
+        input.form-control(type='date', name='birthdate', id='birthdate', autocomplete='birthdate', required)
     .form-group.row
       label(class='col-md-1 col-form-label font-weight-bold', for='address') Address
       .col-md-9
-        input.form-control(type='text', name='address', id='address', autocomplete='address')
+        input.form-control(type='text', name='address', id='address', autocomplete='address', required)
     .form-group.row
       label(class='col-md-1 col-form-label font-weight-bold', for='city') City
       .col-md-4
-        input.form-control(type='text', name='city', id='city', autocomplete='city')
+        input.form-control(type='text', name='city', id='city', autocomplete='city', required)
       label(class='col-md-1 col-form-label font-weight-bold', for='state') State
       .col-md-4
-        input.form-control(type='text', name='state', id='state', autocomplete='state')
+        input.form-control(type='text', name='state', id='state', autocomplete='state', required)
     // .form-group.row
     //   label(class='col-md-1 col-form-label font-weight-bold', for='message') Please describe the issue or your suggestion
     //   .col-md-8
