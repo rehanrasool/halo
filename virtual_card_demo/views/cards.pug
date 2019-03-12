@@ -17,7 +17,15 @@ block content
             tr
               td #{user.first_name} #{user.last_name}
               td #{user.email}
-              td #{user.card.pan_hidden}
-              td #{user.card.cvv}
-              td #{user.card.expr}
-              td $#{user.velocity_control.amount_limit}
+              if user.card
+                td #{user.card.pan_hidden}
+                td #{user.card.cvv}
+                td #{user.card.expr}
+              else
+                td N/A
+                td N/A
+                td N/A
+              if user.velocity_control
+                td $#{user.velocity_control.amount_limit}
+              else
+                td N/A

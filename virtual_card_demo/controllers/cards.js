@@ -56,13 +56,13 @@ exports.getCards = (req, res) => {
     if (!error && response.statusCode == 200) {
       console.log("##### get velocity control: success");
       body = JSON.parse(body);
-      console.log(body);
+      // console.log(body);
       for (i = 0; i < users.length; i++) {
         if (users[i]['token'] == body.data[0]['association']['user_token']) {
           users[i]['velocity_control']=body.data[0];
         }
       }
-      console.log(users);
+      // console.log(users);
     } else {
       console.log("##### get velocity control: failure");
       console.log(error);
@@ -74,7 +74,7 @@ exports.getCards = (req, res) => {
     if (!error && response.statusCode == 200) {
       console.log("##### get cards: success");
       body = JSON.parse(body);
-      console.log(body);
+      // console.log(body);
       for (i = 0; i < users.length; i++) {
         if (users[i]['token'] == body.data[0]['user_token']) {
           users[i]['card']=body.data[0];
@@ -83,7 +83,7 @@ exports.getCards = (req, res) => {
           users[i]['card']['expr']=expiration_string(users[i]['card']['expiration']);
         }
       }
-      console.log(users);
+      // console.log(users);
     } else {
       console.log("##### get cards: failure");
       console.log(error);
@@ -107,7 +107,7 @@ exports.getCards = (req, res) => {
         getVelocityControlsOptions['url']='https://shared-sandbox-api.marqeta.com/v3/velocitycontrols?user='+body.data[i]['token'];
         request(getVelocityControlsOptions, getVelocityControlsCallback);
       }
-      console.log(body);
+      // console.log(body);
     } else {
       console.log("##### get users: failure");
       console.log(error);
