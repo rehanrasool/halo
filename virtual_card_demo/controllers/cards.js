@@ -51,7 +51,6 @@ exports.getCards = (req, res) => {
 
   users = []
 
-
   function getVelocityControlsCallback(error, response, body) {
     if (!error && response.statusCode == 200) {
       console.log("##### get velocity control: success");
@@ -65,8 +64,8 @@ exports.getCards = (req, res) => {
       // console.log(users);
     } else {
       console.log("##### get velocity control: failure");
-      console.log(error);
       console.log(response);
+      console.log(error);
     }
   }
 
@@ -86,8 +85,8 @@ exports.getCards = (req, res) => {
       // console.log(users);
     } else {
       console.log("##### get cards: failure");
-      console.log(error);
       console.log(response);
+      console.log(error);
     }
   }
 
@@ -110,8 +109,8 @@ exports.getCards = (req, res) => {
       // console.log(body);
     } else {
       console.log("##### get users: failure");
-      console.log(error);
       console.log(response);
+      console.log(error);
     }
   }
 

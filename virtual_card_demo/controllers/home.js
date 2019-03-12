@@ -18,8 +18,8 @@ exports.index = (req, res) => {
  * Send a contact form via Nodemailer.
  */
 exports.sendCard = (req, res) => {
-  console.log("send halo card!");
-  console.log(req.body);
+  console.log("##### send halo card!");
+  // console.log(req.body);
 
   // -------------------------- USER INPUT ---------------------------- //
   var amount = req.body.amount;
@@ -84,18 +84,18 @@ exports.sendCard = (req, res) => {
   function velocityControlCallback(error, response, body) {
       if (!error && response.statusCode == 201) {
         console.log("##### velocity control: success");
-        console.log(body);
+        // console.log(body);
       } else {
         console.log("##### velocity control: failure");
-        console.log(error);
         console.log(response);
+        console.log(error);
       }
   }
 
   function createCardCallback(error, response, body) {
       if (!error && response.statusCode == 201) {
         console.log("##### card: success");
-        console.log(body);
+        // console.log(body);
 
         // create velocity control for the card
         var velocityControlData = '{"association":{"user_token":"'+cardUserToken+'"},"amount_limit":"'+amount+'","velocity_window":"LIFETIME","currency_code":"USD"}';
@@ -103,15 +103,15 @@ exports.sendCard = (req, res) => {
         request(velocityControlOptions, velocityControlCallback);
       } else {
         console.log("##### card: failure");
-        console.log(error);
         console.log(response);
+        console.log(error);
       }
   }
 
   function createCardProductCallback(error, response, body) {
       if (!error && response.statusCode == 201) {
         console.log("##### card product: success");
-        console.log(body);
+        // console.log(body);
         data = JSON.parse(body);
         cardProductToken = data['token'];
 
@@ -121,14 +121,14 @@ exports.sendCard = (req, res) => {
         request(cardOptions, createCardCallback);
       } else {
         console.log("##### card product: failure");
-        console.log(error);
         console.log(response);
+        console.log(error);
       }
   }
 
   function createUserCallback(error, response, body) {
       if (!error && response.statusCode == 201) {
-        console.log(body);
+        // console.log(body);
         data = JSON.parse(body);
         cardUserToken = data['token'];
 
