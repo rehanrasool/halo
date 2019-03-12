@@ -19,7 +19,6 @@ exports.index = (req, res) => {
  * Send a contact form via Nodemailer.
  */
 exports.sendCard = (req, res) => {
-  console.log("##### send halo card!");
   // console.log(req.body);
 
   // -------------------------- USER INPUT ---------------------------- //
@@ -31,6 +30,8 @@ exports.sendCard = (req, res) => {
   var address = req.body.address;
   var city = req.body.city;
   var state = req.body.state;
+
+  console.log("\n\n\n##### send halo card to: "+firstname+" "+lastname+"\n");
 
   var headers = {
       'accept': 'application/json',
