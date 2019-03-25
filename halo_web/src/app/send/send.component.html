@@ -1,3 +1,53 @@
-<p>
-  send works!
-</p>
+Send a Halo Card with a Gift!
+
+<div>
+   <form #formdata = "ngForm" (ngSubmit) = "onClickSubmit(formdata.value)" >
+	   <br/>
+	   Email: <input type='text' name='email' id='email' required ngModel>
+	   <br/>
+	   <br/>
+
+	   Select: <select name="gift_type" value="Select..." ngModel (click) = "onToggleClick(formdata.value.gift_type)" required>
+		  <option disabled selected value></option>
+		  <option value="gift_card_only">Gift card only</option>
+		  <option value="gift_only">Gift only</option>
+		  <option value="gift_card_and_gift">Gift card + Gift</option>
+	 </select>
+
+	   <br/>
+	   <br/>
+
+	   <div [hidden]="!(formdata.value.gift_type=='gift_card_only')">
+	   Amount: <input type='number' min=1 step=0.01 name='gift_amount' id='gift_amount' ngModel>
+	   </div>
+
+	   <div [hidden]="!(formdata.value.gift_type=='gift_only')">
+	   URL: <input type='text' name='gift_url' id='gift_url' ngModel>
+	   </div>
+
+	   <div [hidden]="!(formdata.value.gift_type=='gift_card_and_gift')">
+	   Amount: <input type='number' min=1 step=0.01 name='gift_amount' id='gift_amount' ngModel>
+	   <br/>
+	   URL: <input type='text' name='gift_url' id='gift_url' ngModel>
+	   </div>
+
+	   <br/>
+	   <br/>
+
+	   <input type = "submit" [disabled] = "!formdata.valid" class = "forsubmit" 
+	         value = "submit">
+	</form>
+</div>
+
+<br/>
+<br/>
+
+<div [hidden]="!submitted">
+  <h5>You have gifted the following:</h5>
+  <p>
+   Email : {{email}}<br/>
+   Amount : {{gift_amount}}<br/>
+   URL : {{gift_url}}<br/>
+  </p>
+</div>
+

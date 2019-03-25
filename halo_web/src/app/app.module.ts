@@ -26,6 +26,8 @@ import { SendComponent } from './send/send.component';
 // IMPORTANT
 // Add your own project credentials to environments/*.ts
 
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [AppComponent, SendComponent],
   imports: [
@@ -41,6 +43,7 @@ import { SendComponent } from './send/send.component';
     AngularFireAuthModule,
     AngularFireStorageModule,
     AngularFireFunctionsModule,
+    FormsModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {
       enabled: environment.production
     })
