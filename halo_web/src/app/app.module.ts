@@ -21,12 +21,13 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
+import { SendComponent } from './send/send.component';
 
 // IMPORTANT
 // Add your own project credentials to environments/*.ts
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, SendComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserTransferStateModule,

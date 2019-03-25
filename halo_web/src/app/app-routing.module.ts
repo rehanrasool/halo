@@ -9,6 +9,7 @@ import { UploadPageComponent } from './uploads/upload-page/upload-page.component
 
 import { SsrPageComponent } from './ui/ssr-page/ssr-page.component';
 
+import { SendComponent } from './send/send.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -16,7 +17,9 @@ const routes: Routes = [
   { path: 'notes', component: NotesListComponent,  canActivate: [AuthGuard] },
   { path: 'uploads',  component: UploadPageComponent,  canActivate: [AuthGuard] },
 
-  { path: 'ssr', component: SsrPageComponent }
+  { path: 'ssr', component: SsrPageComponent },
+
+  { path: 'send', component: SendComponent }
 ];
 
 @NgModule({
