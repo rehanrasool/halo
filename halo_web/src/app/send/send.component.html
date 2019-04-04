@@ -9,26 +9,20 @@ Send a gift through Halo!
 
 	   Select: <select name="gift_type" value="Select..." ngModel (click) = "onToggleClick(formdata.value.gift_type)" required>
 		  <option disabled selected value></option>
-		  <option value="gift_card_only">Gift card only</option>
-		  <option value="gift_only">Gift only</option>
-		  <option value="gift_card_and_gift">Gift card + Gift</option>
+		  <option value="gift">Gift</option>
+		  <option value="gift_card">Halo Card</option>
 	 </select>
 
 	   <br/>
 	   <br/>
 
-	   <div [hidden]="!(formdata.value.gift_type=='gift_card_only')">
+	   <div [hidden]="!(formdata.value.gift_type=='gift_card')">
 	   Amount: <input type='number' min=1 step=0.01 name='gift_amount' id='gift_amount' ngModel>
 	   </div>
 
-	   <div [hidden]="!(formdata.value.gift_type=='gift_only')">
-	   URL: <input type='text' name='gift_url' id='gift_url' ngModel>
-	   </div>
-
-	   <div [hidden]="!(formdata.value.gift_type=='gift_card_and_gift')">
+	   <div [hidden]="!(formdata.value.gift_type=='gift')">
+	   URL: <input type='text' name='gift_url' id='gift_url' ngModel><br/>
 	   Amount: <input type='number' min=1 step=0.01 name='gift_amount' id='gift_amount' ngModel>
-	   <br/>
-	   URL: <input type='text' name='gift_url' id='gift_url' ngModel>
 	   </div>
 
 	   <br/>
