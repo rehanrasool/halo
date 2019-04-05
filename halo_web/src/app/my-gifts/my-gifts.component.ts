@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { GiftsService } from 'src/app/gifts.service';
+import { Gifts } from 'src/app/gifts.model';
+
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'my-gifts',
@@ -7,9 +13,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyGiftsComponent implements OnInit {
 
-  constructor() { }
+  user;
+  giftsCollection: AngularFirestoreCollection<any>;
+  gifts: Observable<any[]>;
+
+  constructor(private giftsService: GiftsService) {
+  	this.user=JSON.parse(localStorage.getItem('user'));
+    this.giftsCollection=this.giftsService.getGiftsByRecipient(this.user.email);
+  }
 
   ngOnInit() {
+  	this.gifts=this.getGifts();
+  }
+
+  getGifts(): Observable<any[]> {
+    return this.giftsCollection.snapshotChanges().pipe(
+      map((actions) => {
+        return actions.map((a) => {
+          const data = a.payload.doc.data();
+          data.timestamp=data.timestamp.toDate(); // convert from firebase format
+          return { id: a.payload.doc.id, ...data };
+        });
+      })
+    );
   }
 
 }
