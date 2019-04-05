@@ -10,6 +10,7 @@ import { Gifts } from 'src/app/gifts.model';
 })
 export class SendComponent implements OnInit {
   componentproperty;
+  user;
   email;
   gift_amount;
   gift_url;
@@ -35,6 +36,8 @@ export class SendComponent implements OnInit {
         } as Gifts;
       })
     });
+
+    this.user = JSON.parse(localStorage.getItem('user'));
   }
 
   create(gifts: Gifts){
@@ -51,11 +54,10 @@ export class SendComponent implements OnInit {
     this.gift_type = data.gift_type;
 
     let gifts: Gifts = new Gifts();
-    gifts.timestamp=new Date();
-    gifts.sender="Rehan";
-    gifts.recipient="Jackie";
-    gifts.amount=100;
-    gifts.url="gift_url";
+    gifts.sender=this.user.uid;
+    gifts.recipient=this.email;
+    gifts.amount=this.gift_amount;
+    gifts.url=this.gift_url;
 
     console.log(this.gifts);
     this.create(gifts);
