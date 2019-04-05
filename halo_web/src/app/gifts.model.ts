@@ -1,7 +1,9 @@
 export class Gifts {
   timestamp: any;
-  sender: string;
-  recipient: string;
+  senderUid: string;
+  senderEmail: string;
+  recipientUid: string;
+  recipientEmail: string;
   amount: number;
   url: string;
 }

@@ -13,13 +13,13 @@
   <table style="width:100%">
     <tr>
       <th>Timestamp</th>
-      <th>Recipient</th>
+      <th>Recipient Email</th>
       <th>Amount</th>
       <th>URL</th>
     </tr>
     <tr *ngFor="let gift of gifts | async">
        <td>{{gift.timestamp}}</td>
-       <td>{{gift.recipient}}</td>
+       <td>{{gift.recipientEmail}}</td>
        <td>{{gift.amount}}</td>
        <td>{{gift.url}}</td>
     </tr>

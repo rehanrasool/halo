@@ -21,7 +21,7 @@ export class AccountComponent implements OnInit {
   constructor(private afs: AngularFirestore, private giftsService: GiftsService) {
     this.user=JSON.parse(localStorage.getItem('user'));
     // this.giftsCollection = this.afs.collection('gifts', (ref) => ref.where("sender", '==', this.user.uid));
-    this.giftsCollection=this.giftsService.getGiftsByUid(this.user.uid);
+    this.giftsCollection=this.giftsService.getGiftsBySender(this.user.uid);
   }
 
   ngOnInit() {
@@ -39,5 +39,4 @@ export class AccountComponent implements OnInit {
       })
     );
   }
-
 }

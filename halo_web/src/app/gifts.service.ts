@@ -14,8 +14,12 @@ export class GiftsService {
     return this.firestore.collection('gifts').snapshotChanges();
   }
 
-  getGiftsByUid(uid) {
-    return this.firestore.collection('gifts', (ref) => ref.where("sender", '==', uid));
+  getGiftsBySender(uid) {
+    return this.firestore.collection('gifts', (ref) => ref.where("senderUid", '==', uid));
+  }
+
+  getGiftsByRecipient(email) {
+    return this.firestore.collection('gifts', (ref) => ref.where("recipientEmail", '==', email));
   }
 
   createGifts(gifts: Gifts){

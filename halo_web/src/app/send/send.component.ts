@@ -54,8 +54,10 @@ export class SendComponent implements OnInit {
     this.gift_type = data.gift_type;
 
     let gifts: Gifts = new Gifts();
-    gifts.sender=this.user.uid;
-    gifts.recipient=this.email;
+    gifts.senderUid=this.user.uid;
+    gifts.senderEmail=this.user.email;
+    // gifts.recipientUid; get if user already exists
+    gifts.recipientEmail=this.email;
     gifts.amount=this.gift_amount;
     gifts.url=this.gift_url;
 
