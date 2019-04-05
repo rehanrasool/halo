@@ -33,6 +33,7 @@ export class AccountComponent implements OnInit {
       map((actions) => {
         return actions.map((a) => {
           const data = a.payload.doc.data();
+          data.timestamp=data.timestamp.toDate(); // convert from firebase format
           return { id: a.payload.doc.id, ...data };
         });
       })
