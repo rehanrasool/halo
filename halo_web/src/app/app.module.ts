@@ -27,9 +27,11 @@ import { SendComponent } from './send/send.component';
 // Add your own project credentials to environments/*.ts
 
 import { FormsModule } from '@angular/forms';
+import { MyGiftsComponent } from './my-gifts/my-gifts.component';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
-  declarations: [AppComponent, SendComponent],
+  declarations: [AppComponent, SendComponent, MyGiftsComponent, AccountComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserTransferStateModule,

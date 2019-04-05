@@ -10,6 +10,8 @@ import { UploadPageComponent } from './uploads/upload-page/upload-page.component
 import { SsrPageComponent } from './ui/ssr-page/ssr-page.component';
 
 import { SendComponent } from './send/send.component';
+import { MyGiftsComponent } from './my-gifts/my-gifts.component';
+import { AccountComponent } from './account/account.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -19,7 +21,9 @@ const routes: Routes = [
 
   { path: 'ssr', component: SsrPageComponent },
 
-  { path: 'send', component: SendComponent }
+  { path: 'send', component: SendComponent },
+  { path: 'my-gifts', component: MyGiftsComponent },
+  { path: 'account', component: AccountComponent }
 ];
 
 @NgModule({
