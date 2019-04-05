@@ -14,10 +14,14 @@ export class GiftsService {
     return this.firestore.collection('gifts').snapshotChanges();
   }
 
+  getGiftsByUid(uid) {
+    return this.firestore.collection('gifts', (ref) => ref.where("sender", '==', uid));
+  }
+
   createGifts(gifts: Gifts){
     const time = firebase.firestore.FieldValue.serverTimestamp();
     gifts.timestamp=time;
-    return this.firestore.collection('gifts').add({gifts});
+    return this.firestore.collection('gifts').add(gifts);
   }
 
   updateGifts(gifts: Gifts, giftsId: string){

@@ -1,3 +1,27 @@
-<p>
-  account works!
-</p>
+<div>
+  <h1>Account</h1>
+  User: {{user.displayName}}<br/>
+  Email: {{user.email}}<br/>
+  User ID: {{user.uid}}<br/>
+  Photo:<br/><img class="card-img-top" [src]="user.photoURL || 'https://api.adorable.io/avatars/109/fire.png'" width=50px>
+</div>
+
+<br/>
+
+<div>
+  <h1>History</h1>
+  <table style="width:100%">
+    <tr>
+      <th>Timestamp</th>
+      <th>Recipient</th>
+      <th>Amount</th>
+      <th>URL</th>
+    </tr>
+    <tr *ngFor="let gift of gifts | async">
+       <td>{{gift.timestamp}}</td>
+       <td>{{gift.recipient}}</td>
+       <td>{{gift.amount}}</td>
+       <td>{{gift.url}}</td>
+    </tr>
+  </table>
+</div>
