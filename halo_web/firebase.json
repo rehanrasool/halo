@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/firestarter",
+    "public": "dist/halo-ct",
     "ignore": [
       "firebase.json",
       "**/.*",

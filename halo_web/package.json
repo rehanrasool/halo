@@ -1,5 +1,5 @@
 {
-  "name": "firestarter",
+  "name": "halo-ct",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -8,10 +8,10 @@
     "test": "ng test --watch false",
     "lint": "ng lint",
     "e2e": "cypress open",
-    "build:all": "ng build --prod && ng run firestarter:server && npm run webpack:prerender && npm run prerender",
-    "serve:prerender": "http-server dist/firestarter -c-1",
+    "build:all": "ng build --prod && ng run halo-ct:server && npm run webpack:prerender && npm run prerender",
+    "serve:prerender": "http-server dist/halo-ct -c-1",
     "webpack:prerender": "webpack --config webpack.prerender.config.js",
-    "prerender": "node dist/firestarter/prerender.js"
+    "prerender": "node dist/halo-ct/prerender.js"
   },
   "private": true,
   "dependencies": {
@@ -31,6 +31,8 @@
     "@nguniversal/module-map-ngfactory-loader": "^6.0.0",
     "core-js": "^2.5.4",
     "firebase": "^5.5.6",
+    "firebase-admin": "^7.2.0",
+    "firebase-functions": "0.7.0",
     "rxjs": "~6.3.3",
     "zone.js": "^0.8.26"
   },
