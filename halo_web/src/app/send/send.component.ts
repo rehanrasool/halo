@@ -71,8 +71,7 @@ export class SendComponent implements OnInit {
     gifts.amount=this.gift_amount;
     gifts.url=this.gift_url;
 
-    console.log(this.gifts);
-
+    // console.log(this.gifts);
     this.create(gifts);
     this.sendEmail();
   }
@@ -82,8 +81,8 @@ export class SendComponent implements OnInit {
   }
 
   sendEmail() {
-      console.log("sendEmail");
-      let url = 'https://us-central1-halo-ct.cloudfunctions.net/httpEmail';
+
+      let url = 'https://us-central1-halo-ct.cloudfunctions.net/httpEmail'
       let params: URLSearchParams = new URLSearchParams();
       // let headers = new Headers({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
 
