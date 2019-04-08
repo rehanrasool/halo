@@ -82,8 +82,8 @@ export class SendComponent implements OnInit {
   }
 
   sendEmail() {
-
-      let url = 'https://us-central1-halo-ct.cloudfunctions.net/httpEmail'
+      console.log("sendEmail");
+      let url = 'https://us-central1-halo-ct.cloudfunctions.net/httpEmail';
       let params: URLSearchParams = new URLSearchParams();
       // let headers = new Headers({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
 
