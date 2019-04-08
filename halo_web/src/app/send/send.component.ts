@@ -1,5 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+
+import { Http, Headers, Response, URLSearchParams } from '@angular/http';
+
+import { HttpClient } from '@angular/common/http';
+
+
+// import { Http, Response, URLSearchParams } from '@angular/http';
+// import { HttpClient, HttpHeaders } from "@angular/common/http";
+import {Observable} from 'rxjs';
+
 import { GiftsService } from 'src/app/gifts.service';
 import { Gifts } from 'src/app/gifts.model';
 
@@ -19,7 +29,7 @@ export class SendComponent implements OnInit {
   formdata;
 
   gifts: Gifts[];
-  constructor(private giftsService: GiftsService) { }
+  constructor(private giftsService: GiftsService, private http: Http) { }
 
   ngOnInit() {
     this.formdata = new FormGroup({
@@ -62,11 +72,36 @@ export class SendComponent implements OnInit {
     gifts.url=this.gift_url;
 
     console.log(this.gifts);
-    this.create(gifts);
 
+    this.create(gifts);
+    this.sendEmail();
   }
 
   onToggleClick(data) {
       this.gift_type=data;
   }
+
+  sendEmail() {
+
+      let url = 'https://us-central1-halo-ct.cloudfunctions.net/httpEmail'
+      let params: URLSearchParams = new URLSearchParams();
+      // let headers = new Headers({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+
+      params.set('to', this.email);
+      params.set('from', "noreply@halo-ct.firebaseapp.com");
+      params.set('subject', "Halo! You got a gift from " + this.user.displayName);
+      params.set('content', `Wow! You've just received a gift from ` + this.user.displayName
+                            + `!\n\n<Add details>\n\nSign up at halo-ct.firebaseapp.com to redeem!`);
+
+      return this.http.post(url, params)
+                      .toPromise()
+                      .then( res => {
+                        console.log(res)
+                      })
+                      .catch(err => {
+                        console.log(err)
+                      })
+
+    }
+
 }

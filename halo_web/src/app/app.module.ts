@@ -30,6 +30,8 @@ import { FormsModule } from '@angular/forms';
 import { MyGiftsComponent } from './my-gifts/my-gifts.component';
 import { AccountComponent } from './account/account.component';
 
+import { HttpModule } from '@angular/http';
+
 @NgModule({
   declarations: [AppComponent, SendComponent, MyGiftsComponent, AccountComponent],
   imports: [
@@ -45,6 +47,7 @@ import { AccountComponent } from './account/account.component';
     AngularFireAuthModule,
     AngularFireStorageModule,
     AngularFireFunctionsModule,
+    HttpModule,
     FormsModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {
       enabled: environment.production
