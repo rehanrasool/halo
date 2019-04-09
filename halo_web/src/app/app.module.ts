@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
-// Firestarter App Modules
+// Halo App Modules
 import { CoreModule } from './core/core.module';
 import { UploadsModule } from './uploads/uploads.module';
 import { UiModule } from './ui/ui.module';
@@ -42,7 +42,7 @@ import { HttpModule } from '@angular/http';
     UiModule,
     NotesModule,
     UploadsModule,
-    AngularFireModule.initializeApp(environment.firebase, 'firestarter'),
+    AngularFireModule.initializeApp(environment.firebase, 'halo-ct'),
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
