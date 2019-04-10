@@ -9,10 +9,10 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main.119e90d1ff931c2ca251.js",
+        "/main.eacffa6f2327a6ddbfb2.js",
         "/polyfills.7fb637d055581aa28d51.js",
         "/runtime.a66f828dca56eeb90e02.js",
-        "/styles.ab0b3c6d308dc5afa25e.css"
+        "/styles.29df1d90c1f237dbc9a9.css"
       ],
       "patterns": []
     },
@@ -30,6 +30,7 @@
         "/assets/icons/icon-72x72.png",
         "/assets/icons/icon-96x96.png",
         "/assets/images/angularfirebase.png",
+        "/assets/images/halo_logo.png",
         "/assets/images/icons/icon-128x128.png",
         "/assets/images/icons/icon-144x144.png",
         "/assets/images/icons/icon-152x152.png",
@@ -53,6 +54,7 @@
     "/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
     "/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
     "/assets/images/angularfirebase.png": "7de2d644d53677bd8bf004ce528c06ae0e8d104f",
+    "/assets/images/halo_logo.png": "6f8abc7722b3b99e7450ebf719e43d808410a882",
     "/assets/images/icons/icon-128x128.png": "1699b8b196b7c8570b02b3d1b17a22fb91282a8e",
     "/assets/images/icons/icon-144x144.png": "e2ef43854dbc592cc43c73c79e0e0be70e07fbd2",
     "/assets/images/icons/icon-152x152.png": "e00ad5664c24f64c365d00e52c19af696c037d22",
@@ -62,11 +64,11 @@
     "/assets/images/icons/icon-72x72.png": "07c79fb78313551e9da225292fd4b0038663e942",
     "/assets/images/icons/icon-96x96.png": "0250397474e629af71ba9aea2ea69556813abd82",
     "/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
-    "/index.html": "8a7bd541d88ca8ec54f06021cced67e7342e0ab7",
-    "/main.119e90d1ff931c2ca251.js": "8327b34f76526c4cd39fcc842f8f736d80b8be32",
+    "/index.html": "7c8bde565a674975b905b303007362d4f9922353",
+    "/main.eacffa6f2327a6ddbfb2.js": "2da23465d6b3f5ee56224f6a99bbc19b48704d26",
     "/polyfills.7fb637d055581aa28d51.js": "ef2035f0504b4f77eac510c33595c81a5d09e33f",
     "/runtime.a66f828dca56eeb90e02.js": "078e320cc6fdaf355836c3b1c52b059cdd33fc7e",
-    "/styles.ab0b3c6d308dc5afa25e.css": "e290edbf3a80a1d41a19f3f1aa33fef483b7931d"
+    "/styles.29df1d90c1f237dbc9a9.css": "281dd6501e306e717e0069df277814d82c9a018e"
   },
   "navigationUrls": [
     {
