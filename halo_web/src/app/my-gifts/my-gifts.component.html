@@ -1,19 +1,27 @@
 <div>
   <h1>My Gifts</h1>
+  <h3>Card Number: <strong>1234</strong> <br/>Value: <strong>$100</strong></h3>
+  <h3></h3>
+
+  <h3>Gift history</h3>
   <table style="width:100%">
     <tr>
       <th>Timestamp</th>
-      <th>Recipient</th>
-      <th>Sender</th>
-      <th>Amount</th>
-      <th>URL</th>
+      <th>Sender Name</th>
+      <th>Sender Email</th>
+      <th>Recipient Email</th>
+      <th>Value</th>
+      <th>Gift URL</th>
+      <th>Details</th>
     </tr>
     <tr *ngFor="let gift of gifts | async">
        <td>{{gift.timestamp}}</td>
-       <td>{{gift.recipientEmail}}</td>
+       <td>{{gift.senderName}}</td>
        <td>{{gift.senderEmail}}</td>
+       <td>{{gift.recipientEmail}}</td>
        <td>{{gift.amount}}</td>
-       <td><a href="{{gift.url}}" target="_blank">Gift URL</a></td>
+       <td><a href="{{gift.url}}" target="_blank">View Gift</a></td>
+       <td><a href="/my-gifts">View Details</a></td>
     </tr>
   </table>
 </div>

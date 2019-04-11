@@ -63,6 +63,7 @@ export class SendComponent implements OnInit {
 
     let gifts: Gifts = new Gifts();
     gifts.senderUid=this.user.uid;
+    gifts.senderName=this.user.displayName;
     gifts.senderEmail=this.user.email;
     // gifts.recipientUid; get if user already exists
     gifts.recipientEmail=this.email;
@@ -71,7 +72,7 @@ export class SendComponent implements OnInit {
 
     // console.log(this.gifts);
     this.create(gifts);
-    this.sendEmail();
+    // this.sendEmail();
   }
 
   sendEmail() {
