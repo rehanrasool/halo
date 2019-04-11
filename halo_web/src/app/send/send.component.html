@@ -1,52 +1,39 @@
-Send a gift through Halo!
+<h1>Send a gift through Halo!</h1>
+<br/>
 
 <div>
    <form #formdata = "ngForm" (ngSubmit) = "onClickSubmit(formdata.value)" >
-	   <br/>
-	   Email: <input type='text' name='email' id='email' required ngModel>
-	   <br/>
-	   <br/>
+    <h4>Step 1: Enter the recipient’s email</h4>
+     Email: <input type='text' name='email' id='email' required ngModel>
+     <br/><br/><br/>
 
-	   Select: <select name="gift_type" value="Select..." ngModel (click) = "onToggleClick(formdata.value.gift_type)" required>
-		  <option disabled selected value></option>
-		  <option value="gift">Gift</option>
-		  <option value="gift_card">Halo Card</option>
-	 </select>
+     <h4>Step 2: Select Gift</h4>
+     URL: <input type='text' name='gift_url' id='gift_url' ngModel><br/>
+     Amount: <input type='number' min=1 step=0.01 name='gift_amount' id='gift_amount' ngModel>
+     <br/><br/><br/>
 
-	   <br/>
-	   <br/>
+     <h4>Step 3: Customization: Add video and text</h4>
+     //TODO
+     <br/><br/><br/>
 
-	   <div [hidden]="!(formdata.value.gift_type=='gift_card')">
-	   Amount: <input type='number' min=1 step=0.01 name='gift_amount' id='gift_amount' ngModel>
-	   </div>
+    <h4>Step 4: Review your gift</h4>
+    <div [hidden]="!(formdata.value.gift_amount>0)">
+      <p>
+       Recipient: <strong>{{formdata.value.email}}</strong><br/>
+       URL: <strong><a href="{{formdata.value.gift_url}}" target="_blank">Gift</a></strong><br/>
+       Total: <strong>${{formdata.value.gift_amount}}</strong><br/>
+      </p>
+    </div>
+    <br/><br/>
 
-	   <div [hidden]="!(formdata.value.gift_type=='gift')">
-	   URL: <input type='text' name='gift_url' id='gift_url' ngModel><br/>
-	   Amount: <input type='number' min=1 step=0.01 name='gift_amount' id='gift_amount' ngModel>
-	   </div>
-
-	   <br/>
-		<div [hidden]="!(formdata.value.gift_amount>0)">
-		  <p>
-		   Total: <strong>${{formdata.value.gift_amount}}</strong>
-		  </p>
-		</div>
-	   <br/>
-
-	   <input type = "submit" [disabled] = "!formdata.valid" class = "forsubmit" 
-	         value = "send">
-	</form>
+     <input type = "submit" [disabled] = "!formdata.valid" class = "button forsubmit" value = "send">
+  </form>
 </div>
 
 <br/>
 <br/>
 
 <div [hidden]="!submitted">
-  <h5>You have gifted the following:</h5>
-  <p>
-   Email : {{email}}<br/>
-   Amount : {{gift_amount}}<br/>
-   URL : {{gift_url}}<br/>
-  </p>
+  <strong><h4>Gift Sent!</h4></strong>
 </div>
 

@@ -24,7 +24,6 @@ export class SendComponent implements OnInit {
   email;
   gift_amount;
   gift_url;
-  gift_type;
   submitted;
   formdata;
 
@@ -61,7 +60,6 @@ export class SendComponent implements OnInit {
     this.email = data.email;
     this.gift_amount = data.gift_amount;
     this.gift_url = data.gift_url;
-    this.gift_type = data.gift_type;
 
     let gifts: Gifts = new Gifts();
     gifts.senderUid=this.user.uid;
@@ -74,10 +72,6 @@ export class SendComponent implements OnInit {
     // console.log(this.gifts);
     this.create(gifts);
     this.sendEmail();
-  }
-
-  onToggleClick(data) {
-      this.gift_type=data;
   }
 
   sendEmail() {
