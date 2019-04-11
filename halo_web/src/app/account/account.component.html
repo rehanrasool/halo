@@ -1,27 +1,29 @@
 <div>
   <h1>Account</h1>
-  User: {{user.displayName}}<br/>
-  Email: {{user.email}}<br/>
-  User ID: {{user.uid}}<br/>
-  Photo:<br/><img class="card-img-top" [src]="user.photoURL || 'https://api.adorable.io/avatars/109/fire.png'" width=50px>
+  <h3>Card Number: <strong>{{user.cardNumber}}</strong> <br/>Value: <strong>${{user.cardValue}}</strong></h3>
+  <h3></h3>
 </div>
 
 <br/>
 
 <div>
-  <h1>History</h1>
+  <h1>Your Gifting History</h1>
   <table style="width:100%">
     <tr>
       <th>Timestamp</th>
+      <th>Recipient Name</th>
       <th>Recipient Email</th>
-      <th>Amount</th>
-      <th>URL</th>
+      <th>Value</th>
+      <th>Gift URL</th>
+      <th>Details</th>
     </tr>
     <tr *ngFor="let gift of gifts | async">
        <td>{{gift.timestamp}}</td>
+       <td>{{gift.recipientName}}</td>
        <td>{{gift.recipientEmail}}</td>
        <td>{{gift.amount}}</td>
-       <td><a href="{{gift.url}}" target="_blank">Gift URL</a></td>
+      <td><a href="{{gift.url}}" target="_blank">View Gift</a></td>
+       <td><a href="/account">View Details</a></td>
     </tr>
   </table>
 </div>

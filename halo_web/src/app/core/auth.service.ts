@@ -18,6 +18,10 @@ interface User {
   email?: string | null;
   photoURL?: string;
   displayName?: string;
+  cardNumber?: string;
+  cardCvc?: string;
+  cardExpiration?: string;
+  cardValue?: number;
 }
 
 @Injectable()
@@ -133,6 +137,20 @@ export class AuthService {
     this.notify.update(error.message, 'error');
   }
 
+  private generateCardNumber() {
+    var min = 4400000000000000;
+    var max = 5500000000000000;
+    var num = Math.floor(Math.random() * (max - min + 1)) + min;
+    return num.toString();
+  }
+
+  private generateCvc() {
+    var min = 100;
+    var max = 999;
+    var num = Math.floor(Math.random() * (max - min + 1)) + min;
+    return num.toString();
+  }
+
   // Sets user data to firestore after succesful login
   private updateUserData(user: User) {
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(
@@ -143,6 +161,10 @@ export class AuthService {
       uid: user.uid,
       email: user.email || null,
       displayName: user.displayName || 'nameless user',
+      cardNumber: this.generateCardNumber(),
+      cardCvc: this.generateCvc(),
+      cardExpiration: null,
+      cardValue: 0,
       photoURL: user.photoURL || 'https://goo.gl/Fz9nrQ'
     };
     return userRef.set(data);
