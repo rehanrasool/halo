@@ -6,4 +6,6 @@ export class Gifts {
   recipientEmail: string;
   amount: number;
   url: string;
+  video: any;
+  message: string;
 }
