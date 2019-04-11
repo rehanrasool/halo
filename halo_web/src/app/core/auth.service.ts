@@ -69,7 +69,7 @@ export class AuthService {
     return this.afAuth.auth
       .signInWithPopup(provider)
       .then(credential => {
-        this.notify.update('Signed in successfully!', 'success');
+        // this.notify.update('Signed in successfully!', 'success');
         return this.updateUserData(credential.user);
       })
       .catch(error => this.handleError(error));
@@ -81,7 +81,7 @@ export class AuthService {
     return this.afAuth.auth
       .signInAnonymously()
       .then(credential => {
-        this.notify.update('Signed in successfully!', 'success');
+        // this.notify.update('Signed in successfully!', 'success');
         return this.updateUserData(credential.user); // if using firestore
       })
       .catch(error => {
