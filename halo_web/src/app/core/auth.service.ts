@@ -13,6 +13,8 @@ import { NotifyService } from './notify.service';
 import { Observable, of } from 'rxjs';
 import { switchMap, startWith, tap, filter } from 'rxjs/operators';
 
+import { GiftsService } from 'src/app/gifts.service';
+
 interface User {
   uid: string;
   email?: string | null;
@@ -28,11 +30,15 @@ interface User {
 export class AuthService {
   user: Observable<User | null>;
 
+  pending_transfers;
+  pending_value=0;
+
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
     private router: Router,
-    private notify: NotifyService
+    private notify: NotifyService,
+    private giftsService: GiftsService
   ) {
     this.user = this.afAuth.authState.pipe(
       switchMap(user => {
@@ -45,6 +51,15 @@ export class AuthService {
       tap(user => localStorage.setItem('user', JSON.stringify(user)))
       // startWith(JSON.parse(localStorage.getItem('user')))
     );
+
+    this.giftsService.getPendingTransfers().subscribe(data => {
+      this.pending_transfers = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          ...e.payload.doc.data()
+        }
+      })
+    });
   }
 
   ////// OAuth Methods /////
@@ -69,11 +84,20 @@ export class AuthService {
     return this.oAuthLogin(provider);
   }
 
+  private reviewPendingTransfers(user_email) {
+    var i;
+    for (i=0; i<this.pending_transfers.length; i++) {
+      this.pending_value+=parseFloat(this.pending_transfers[i]['amount']);
+      this.giftsService.deletePendingTransfer(this.pending_transfers[i]['id']);
+    }
+  }
+
   private oAuthLogin(provider: any) {
     return this.afAuth.auth
       .signInWithPopup(provider)
       .then(credential => {
         // this.notify.update('Signed in successfully!', 'success');
+        this.reviewPendingTransfers(credential.user.email);
         return this.updateUserData(credential.user);
       })
       .catch(error => this.handleError(error));
@@ -157,6 +181,9 @@ export class AuthService {
       `users/${user.uid}`
     );
 
+    console.log(this.pending_value);
+    console.log(this.pending_value + 250);
+
     const data: User = {
       uid: user.uid,
       email: user.email || null,
@@ -164,7 +191,7 @@ export class AuthService {
       cardNumber: this.generateCardNumber(),
       cardCvc: this.generateCvc(),
       cardExpiration: null,
-      cardValue: 250,
+      cardValue: this.pending_value + 250,
       photoURL: user.photoURL || 'https://goo.gl/Fz9nrQ'
     };
     return userRef.set(data);
