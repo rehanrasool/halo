@@ -20,7 +20,7 @@ export class GiftsService {
   }
 
   getGiftsBySender(uid) {
-    return this.firestore.collection('gifts', (ref) => ref.where("senderUid", '==', uid).orderBy("timestamp", "desc"));
+    return this.firestore.collection('gifts', (ref) => ref.where("senderUid", '==', uid));
   }
 
   getGiftById(id) {
@@ -30,7 +30,7 @@ export class GiftsService {
   }
 
   getGiftsByRecipient(email) {
-    return this.firestore.collection('gifts', (ref) => ref.where("recipientEmail", '==', email).orderBy("timestamp", "desc"));
+    return this.firestore.collection('gifts', (ref) => ref.where("recipientEmail", '==', email));
   }
 
   createGifts(gifts: Gifts){
