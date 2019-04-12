@@ -20,12 +20,16 @@ import { Gifts } from 'src/app/gifts.model';
 })
 export class SendComponent implements OnInit {
   componentproperty;
+
   user;
-  email;
+  recipientEmail;
   gift_amount;
   gift_url;
+
   submitted;
   formdata;
+
+  all_users;
 
   gifts: Gifts[];
   constructor(private giftsService: GiftsService, private http: Http) { }
@@ -46,6 +50,14 @@ export class SendComponent implements OnInit {
       })
     });
 
+    this.giftsService.getUsers().subscribe(data => {
+      this.all_users = data.map(e => {
+        return {
+          ...e.payload.doc.data()
+        }
+      })
+    });
+
     this.user = JSON.parse(localStorage.getItem('user'));
   }
 
@@ -55,23 +67,56 @@ export class SendComponent implements OnInit {
      this.giftsService.createGifts(data);
   }
 
+  getUser(email) {
+    var i;
+    for (i=0; i<this.all_users.length; i++) {
+      if (this.all_users[i]['email'] == email) {
+        return this.all_users[i];
+      }
+    }
+    return null;
+  }
+
+  transferValue() {
+    var sender=this.getUser(this.user.email);
+    var recipient=this.getUser(this.recipientEmail);
+
+    // deduct from sender
+    var newSenderVal=sender['cardValue']-this.gift_amount;
+    this.giftsService.updateUserValue(sender['uid'], newSenderVal);
+
+    if (recipient != null) { // add value to recipient
+      var newRecipientVal=recipient['cardValue']+this.gift_amount;
+      this.giftsService.updateUserValue(recipient['uid'], newRecipientVal);
+    } else { // add to pending (added when user signs up)
+      var tx = {};
+      tx['from']=this.user.email;
+      tx['to']=this.recipientEmail;
+      tx['amount']=this.gift_amount;
+
+      this.giftsService.createPendingTransfer(tx);
+    }
+  }
+
   onClickSubmit(data) {
     this.submitted = true;
-    this.email = data.email;
+    this.recipientEmail = data.email;
     this.gift_amount = data.gift_amount;
     this.gift_url = data.gift_url;
 
-    let gifts: Gifts = new Gifts();
-    gifts.senderUid=this.user.uid;
-    gifts.senderName=this.user.displayName;
-    gifts.senderEmail=this.user.email;
-    // gifts.recipientUid; get if user already exists
-    gifts.recipientEmail=this.email;
-    gifts.amount=this.gift_amount;
-    gifts.url=this.gift_url;
+    let gift: Gifts = new Gifts();
+    gift.senderUid=this.user.uid;
+    gift.senderName=this.user.displayName;
+    gift.senderEmail=this.user.email;
+    // gift.recipientUid; get if user already exists
+    gift.recipientEmail=this.recipientEmail;
+    gift.amount=this.gift_amount;
+    gift.url=this.gift_url;
 
     // console.log(this.gifts);
-    this.create(gifts);
+
+    // this.create(gift);
+    this.transferValue();
     // this.sendEmail();
   }
 
@@ -81,7 +126,7 @@ export class SendComponent implements OnInit {
       let params: URLSearchParams = new URLSearchParams();
       // let headers = new Headers({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
 
-      params.set('to', this.email);
+      params.set('to', this.recipientEmail);
       params.set('from', "noreply@halo-ct.firebaseapp.com");
       params.set('subject', "Halo! You got a gift from " + this.user.displayName);
       params.set('content', `Wow! You've just received a gift from ` + this.user.displayName

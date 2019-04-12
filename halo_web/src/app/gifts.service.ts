@@ -10,6 +10,7 @@ export class GiftsService {
 
   constructor(private firestore: AngularFirestore) { }
 
+  // --------------------------------- Gifts --------------------------------- //
   getGifts() {
     return this.firestore.collection('gifts').snapshotChanges();
   }
@@ -36,4 +37,28 @@ export class GiftsService {
   deleteGifts(giftsId: string){
     this.firestore.doc('gifts/' + giftsId).delete();
   }
+
+  // --------------------------------- Users --------------------------------- //
+  getUsers() {
+    return this.firestore.collection('users').snapshotChanges();
+  }
+
+  updateUserValue(uid: string, value: number, ){
+    console.log("update user val: " + uid);
+    this.firestore.doc('users/' + uid).update({"cardValue": value});
+  }
+
+  // ---------------------------- Pending Transfers ---------------------------- //
+  getPendingTransfers() {
+    return this.firestore.collection('pending_transfers').snapshotChanges();
+  }
+
+  createPendingTransfer(tx){
+    return this.firestore.collection('pending_transfers').add(tx);
+  }
+
+  deletePendingTransfer(txId: string){
+    this.firestore.doc('pending_transfers/' + txId).delete();
+  }
+
 }
