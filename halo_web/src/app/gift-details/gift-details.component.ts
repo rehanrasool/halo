@@ -15,7 +15,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 })
 export class GiftDetailsComponent implements OnInit {
 	giftCollection: Observable<any>;
-	gift: Observable<any[]>;
+	gift: any;
 	constructor(
 		private route: ActivatedRoute,
 		private router: Router,
@@ -28,6 +28,7 @@ export class GiftDetailsComponent implements OnInit {
 		
 		let id = this.route.snapshot.paramMap.get('id');
    		this.giftCollection=this.giftsService.getGiftById(id);
+
         this.giftCollection.subscribe(val => this.gift = val.data());
 
     	// Create a reference to the file we want to download

@@ -1,17 +1,29 @@
-<p>
-  gift-details works!
-</p>
+<h1>Gift by {{gift.senderName}} ({{gift.senderEmail}})</h1>
+<!-- <h3>sent on {{gift.timestamp}}</h3> -->
 <video autoplay="" title="Video player" alt="Click me to apply CSS Filters"></video>
 
 <!-- {{gift | json}} -->
-<!-- <p [innerHTML]="gift.message.replace('\\', '')"> </p> -->
+<!--  -->
+
+<br/><br/>
 
 <div class="container">
-  <h2>Basic Panel</h2>
+  <h2>Message:</h2>
   <div class="panel panel-default">
-    <div class="panel-body">A Basic Panel</div>
+    <div class="panel-body" [innerHTML]="gift.message.replace('\\', '')"></div>
   </div>
+
+  <h2>Details:</h2>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <p>Amount: ${{gift.amount}}</p>
+      <p>Gift: <a href="{{gift.url}}" target="_blank">URL</a></p>
+    </div>
+  </div>
+
 </div>
+
+<!-- {{}} -->
 <!-- <div [innerHTML]="replaceBackslash(gift.message)"></div> -->
 <!-- 
  <table style="width:100%">

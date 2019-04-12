@@ -38,9 +38,9 @@
       <!-- <video controls autoplay></video> -->
      <h2>Add a video to your gift
         &nbsp;
-      <button  class="btn btn-primary capture-button"> <span class="glyphicon glyphicon-play-circle"></span></button>
+      <button  type ="button" class="btn btn-primary capture-button"> <span class="glyphicon glyphicon-play-circle"></span></button>
         &nbsp;
-      <button class="btn btn-primary" id="stop-button"><span  class="glyphicon glyphicon-stop"></span></button>
+      <button type ="button" class="btn btn-primary" id="stop-button"><span  class="glyphicon glyphicon-stop"></span></button>
      
       
 
@@ -60,19 +60,11 @@
        Total: <strong>${{formdata.value.gift_amount}}</strong><br/>
      </p>
     </div>
-
-      <br/>
-      <div [hidden]="!(formdata.value.gift_amount>0)">
-        <p>
-         Total: <strong>${{formdata.value.gift_amount}}</strong>
-       </p>
-     </div>
+     <br/>
      <br/>
 
      <input type = "submit" [disabled] = "!formdata.valid" class = "forsubmit" 
      value = "send">
-
-
   <br/><br/>
   <br/>
   <br/>
