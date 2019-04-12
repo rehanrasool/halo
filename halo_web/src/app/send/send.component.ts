@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 
 import { HttpClient } from '@angular/common/http';
-
 
 // import { Http, Response, URLSearchParams } from '@angular/http';
 // import { HttpClient, HttpHeaders } from "@angular/common/http";
@@ -14,12 +13,18 @@ import { GiftsService } from 'src/app/gifts.service';
 import { Gifts } from 'src/app/gifts.model';
 import * as firebase from "firebase";
 import * as  RecordRTC from 'recordrtc';
+
+declare var CodeMirror: any;
+declare var Firepad: any;
+declare var self: any;
+
 @Component({
   selector: 'send',
   templateUrl: './send.component.html',
   styleUrls: ['./send.component.scss']
 })
-export class SendComponent implements OnInit, AfterContentInit() {
+
+export class SendComponent implements OnInit, AfterContentInit {
   componentproperty;
 
   user;
@@ -34,6 +39,7 @@ export class SendComponent implements OnInit, AfterContentInit() {
   all_users;
   sender_card_value;
 
+  message;
   video;
   firepad;
   self: this;
@@ -55,8 +61,9 @@ export class SendComponent implements OnInit, AfterContentInit() {
     // var captureVideoButton =
     // document.querySelector('.capture-button');
     let captureVideoButton: HTMLElement = document.getElementsByClassName('capture-button')[0] as HTMLElement;
-    var stopButton = document.querySelector('#stop-button');
-    var video = document.querySelector('#cssfilters video');
+    var stopButton: HTMLElement = document.querySelector('#stop-button') as HTMLElement;
+    var video: HTMLElement = document.querySelector('#cssfilters video') as HTMLElement;
+    var videoElement: HTMLMediaElement = video as HTMLMediaElement;
 
     // let video: HTMLElement = document.querySelector('#cssfilters video')[0] as HTMLElement;
     var watermark = document.querySelector('a.powered-by-firepad');
@@ -95,11 +102,11 @@ export class SendComponent implements OnInit, AfterContentInit() {
       recorder.stopRecording(function(){
         var blob = recorder.blob;
         var url = URL.createObjectURL(blob);
-        video.srcObject = null;
-        video.loop = true;
+        videoElement.srcObject = null;
+        videoElement.loop = true;
 
-        video.src = url;
-        video.muted = false;
+        videoElement.src = url;
+        videoElement.muted = false;
         self.video = blob;
       });
     }
@@ -108,7 +115,7 @@ export class SendComponent implements OnInit, AfterContentInit() {
       recorder = RecordRTC(stream, {type:'video'})
       recorder.startRecording();
       var video = document.querySelector('#cssfilters video');
-      video.srcObject = stream;
+      videoElement.srcObject = stream;
     }
 
     function handleError(error) {
@@ -124,7 +131,7 @@ export class SendComponent implements OnInit, AfterContentInit() {
     var codeMirror = CodeMirror(document.getElementById('firepad-container'), { lineWrapping: true });
 
     // Create Firepad (with rich text toolbar and shortcuts enabled).
-    self.firepad = Firepad.fromCodeMirror(firepadRef, codeMirror,
+    this.firepad = Firepad.fromCodeMirror(firepadRef, codeMirror,
       { richTextShortcuts: true, richTextToolbar: true, defaultText: 'Hello, World!' });
 
     this.giftsService.getUsers().subscribe(data => {
@@ -206,7 +213,7 @@ export class SendComponent implements OnInit, AfterContentInit() {
     this.recipientEmail = data.email;
     this.gift_amount = data.gift_amount;
     this.gift_url = data.gift_url;
-    this.message = self.firepad.getHtml();
+    this.message = this.firepad.getHtml();
 
     let gift: Gifts = new Gifts();
     gift.senderUid=this.user.uid;
@@ -217,7 +224,7 @@ export class SendComponent implements OnInit, AfterContentInit() {
     gift.amount=this.gift_amount;
     gift.url=this.gift_url;
     gift.video = self.video;
-    gift.message = self.firepad.getHtml(); 
+    gift.message = this.firepad.getHtml();
 
     // console.log(this.gifts);
 
