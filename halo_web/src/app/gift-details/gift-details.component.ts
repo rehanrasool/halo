@@ -34,12 +34,6 @@ export class GiftDetailsComponent implements OnInit {
 
         this.giftCollection.subscribe(val => this.gift = val.data());
 
-        // firebase.initializeApp({
-        //   apiKey: 'AIzaSyB0AMMGGH2ImlwapyrgpKAs1szsNtWE3tE',
-        //   databaseURL: 'https://halo-ct.firebaseio.com',
-        //   storageBucket: 'gs://halo-ct.appspot.com'
-        // });
-
     	// Create a reference to the file we want to download
         var storageRef = firebase.storage().ref();
         // var storageRef = firebase.storage().refFromURL("gs://halo-ct.appspot.com/"+id);

@@ -42,20 +42,12 @@ export class SendComponent implements OnInit {
   constructor(private giftsService: GiftsService, private http: Http) { }
 
   ngOnInit() {
-    // var self = this;
     this.formdata = new FormGroup({
      email: new FormControl("", Validators.compose([
       Validators.required,
       Validators.pattern("[^ @]*@[^ @]*")
       ]))
    });
-
-    firebase.initializeApp({
-      apiKey: 'AIzaSyB0AMMGGH2ImlwapyrgpKAs1szsNtWE3tE',
-      databaseURL: 'https://halo-ct.firebaseio.com',
-      storageBucket: 'gs://halo-ct.appspot.com'
-    });
-
 
     // var captureVideoButton =
     // document.querySelector('.capture-button');
@@ -120,7 +112,6 @@ export class SendComponent implements OnInit {
       console.error('Error: ', error);
     }
 
-      
     // Get Firebase Database reference.
     var firepadRef = firebase.database().ref();
 
