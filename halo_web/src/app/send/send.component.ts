@@ -111,18 +111,10 @@ export class SendComponent implements OnInit, AfterContentInit() {
     function handleError(error) {
       console.error('Error: ', error);
     }
-
-<<<<<<< HEAD
-    // Get Firebase Database reference.
-=======
-      
-   
   }
 
   ngAfterContentInit() {
-    console.log("s");
      // Get Firebase Database reference.
->>>>>>> 69a8fe3e599837abf430c8cb98ac0b5c17b54a24
     var firepadRef = firebase.database().ref();
 
     // Create CodeMirror (with lineWrapping on).
