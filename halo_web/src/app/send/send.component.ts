@@ -146,7 +146,9 @@ export class SendComponent implements OnInit {
         create(gifts: Gifts){
          var data = JSON.parse(JSON.stringify(gifts));
          this.giftsService.createGifts(data).then(function(data){
-          var storageRef = firebase.storage().ref("videos/" + gifts.senderEmail + "/" + gifts.recipientEmail + "/" + data.id + ".webm");
+          var storageRef = firebase.storage().ref(data.id + ".webm");
+
+          // var storageRef = firebase.storage().ref("videos/" + gifts.senderEmail + "/" + gifts.recipientEmail + "/" + data.id + ".webm");
           var file = new File([self.video], data.id + ".webm", {
             type: 'video/webm'
           });
@@ -170,7 +172,8 @@ export class SendComponent implements OnInit {
         gifts.amount=this.gift_amount;
         gifts.url=this.gift_url;
         gifts.video = self.video;
-
+        gifts.message = self.firepad.getHtml(); 
+        console.log(gifts);
           this.create(gifts);
         }
 

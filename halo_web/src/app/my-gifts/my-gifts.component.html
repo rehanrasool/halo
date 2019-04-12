@@ -8,8 +8,8 @@
       <th>Amount</th>
       <th>URL</th>
     </tr>
-    <tr *ngFor="let gift of gifts | async">
-       <td>{{gift.timestamp}}</td>
+    <tr *ngFor="let gift of gifts | async"  [routerLink]="['/gift-details', gift.id]">
+       <td>{{gift.timestamp}} </td>
        <td>{{gift.recipientEmail}}</td>
        <td>{{gift.senderEmail}}</td>
        <td>{{gift.amount}}</td>
