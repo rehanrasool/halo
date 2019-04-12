@@ -115,9 +115,9 @@ export class SendComponent implements OnInit {
 
     // console.log(this.gifts);
 
-    // this.create(gift);
+    this.create(gift);
     this.transferValue();
-    // this.sendEmail();
+    this.sendEmail();
   }
 
   sendEmail() {
