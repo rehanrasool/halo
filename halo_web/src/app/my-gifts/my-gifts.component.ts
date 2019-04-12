@@ -27,7 +27,8 @@ export class MyGiftsComponent implements OnInit {
   	this.gifts=this.getGifts();
   }
   goToDetails(gift) {
-    AppRoutingModule().navigateByUrl('/gift-details', gift);
+    console.log(AppRoutingModule);
+    AppRoutingModule.navigateByUrl('/gift-details', gift);
   }
   getGifts(): Observable<any[]> {
     return this.giftsCollection.snapshotChanges().pipe(

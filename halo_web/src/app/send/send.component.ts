@@ -19,7 +19,7 @@ import * as  RecordRTC from 'recordrtc';
   templateUrl: './send.component.html',
   styleUrls: ['./send.component.scss']
 })
-export class SendComponent implements OnInit {
+export class SendComponent implements OnInit, AfterContentInit() {
   componentproperty;
 
   user;
@@ -50,11 +50,6 @@ export class SendComponent implements OnInit {
       ]))
    });
 
-    firebase.initializeApp({
-      apiKey: 'AIzaSyB0AMMGGH2ImlwapyrgpKAs1szsNtWE3tE',
-      databaseURL: 'https://halo-ct.firebaseio.com',
-      storageBucket: 'gs://halo-ct.appspot.com'
-    });
 
 
     // var captureVideoButton =
@@ -71,17 +66,17 @@ export class SendComponent implements OnInit {
 
     let filterIndex = 0;
     const filters = [
-    'grayscale',
-    'sepia',
-    'blur',
-    'brightness',
-    'contrast',
-    'hue-rotate',
-    'hue-rotate2',
-    'hue-rotate3',
-    'saturate',
-    'invert',
-    ''
+      'grayscale',
+      'sepia',
+      'blur',
+      'brightness',
+      'contrast',
+      'hue-rotate',
+      'hue-rotate2',
+      'hue-rotate3',
+      'saturate',
+      'invert',
+      ''
     ];
 
     captureVideoButton.onclick = function() {
@@ -121,7 +116,12 @@ export class SendComponent implements OnInit {
     }
 
       
-    // Get Firebase Database reference.
+   
+  }
+
+  ngAfterContentInit() {
+    console.log("s");
+     // Get Firebase Database reference.
     var firepadRef = firebase.database().ref();
 
     // Create CodeMirror (with lineWrapping on).

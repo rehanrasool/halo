@@ -22,31 +22,18 @@ export class GiftDetailsComponent implements OnInit {
 		private giftsService: GiftsService
 		) {
 			// this.giftCollection=this.giftsService.getGiftById();
-
 	}
 
 	ngOnInit() {
 		
 		let id = this.route.snapshot.paramMap.get('id');
    		this.giftCollection=this.giftsService.getGiftById(id);
-        // console.log(giftCollection);
-   		// this.giftCollection.subscribe(val => this.gift = val );
-
         this.giftCollection.subscribe(val => this.gift = val.data());
-
-        // firebase.initializeApp({
-        //   apiKey: 'AIzaSyB0AMMGGH2ImlwapyrgpKAs1szsNtWE3tE',
-        //   databaseURL: 'https://halo-ct.firebaseio.com',
-        //   storageBucket: 'gs://halo-ct.appspot.com'
-        // });
 
     	// Create a reference to the file we want to download
         var storageRef = firebase.storage().ref();
-        // var storageRef = firebase.storage().refFromURL("gs://halo-ct.appspot.com/"+id);
-        console.log(storageRef);
         storageRef.child(id + '.webm').getDownloadURL().then(function(url) {
         // `url` is the download URL for 'images/stars.jpg'
-            console.log(url);
             var video = document.querySelector('video');
             video.src = url;
             video.loop = true;
