@@ -27,9 +27,11 @@ export class SendComponent implements OnInit {
   gift_url;
 
   submitted;
+  failed;
   formdata;
 
   all_users;
+  sender_card_value;
 
   gifts: Gifts[];
   constructor(private giftsService: GiftsService, private http: Http) { }
@@ -82,7 +84,11 @@ export class SendComponent implements OnInit {
     var recipient=this.getUser(this.recipientEmail);
 
     // deduct from sender
-    var newSenderVal=sender['cardValue']-this.gift_amount;
+    this.sender_card_value=sender['cardValue'];
+    var newSenderVal=this.sender_card_value-this.gift_amount;
+    if (newSenderVal < 0) {
+      return false;
+    }
     this.giftsService.updateUserValue(sender['uid'], newSenderVal);
 
     if (recipient != null) { // add value to recipient
@@ -96,10 +102,11 @@ export class SendComponent implements OnInit {
 
       this.giftsService.createPendingTransfer(tx);
     }
+
+    return true;
   }
 
   onClickSubmit(data) {
-    this.submitted = true;
     this.recipientEmail = data.email;
     this.gift_amount = data.gift_amount;
     this.gift_url = data.gift_url;
@@ -115,9 +122,15 @@ export class SendComponent implements OnInit {
 
     // console.log(this.gifts);
 
-    this.create(gift);
-    this.transferValue();
-    this.sendEmail();
+    if (this.transferValue()) {
+      this.create(gift);
+      this.sendEmail();
+      this.submitted=true;
+      this.failed=false;
+    } else {
+      this.submitted=false;
+      this.failed=true;
+    }
   }
 
   sendEmail() {

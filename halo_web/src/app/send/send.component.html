@@ -37,3 +37,7 @@
   <strong><h4>Gift Sent!</h4></strong>
 </div>
 
+<div [hidden]="!failed">
+  <strong><h4>Gift Failed: Not enough funds in account.</h4></strong>
+  Account balance: ${{sender_card_value}}
+</div>
