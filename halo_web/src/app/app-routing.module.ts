@@ -11,6 +11,7 @@ import { SsrPageComponent } from './ui/ssr-page/ssr-page.component';
 
 import { SendComponent } from './send/send.component';
 import { MyGiftsComponent } from './my-gifts/my-gifts.component';
+import { GiftDetailsComponent } from './gift-details/gift-details.component';
 import { AccountComponent } from './account/account.component';
 
 const routes: Routes = [
@@ -23,7 +24,8 @@ const routes: Routes = [
 
   { path: 'send', component: SendComponent },
   { path: 'my-gifts', component: MyGiftsComponent },
-  { path: 'account', component: AccountComponent }
+  { path: 'account', component: AccountComponent },
+  { path: 'gift-details/:id', component: GiftDetailsComponent },
 ];
 
 @NgModule({

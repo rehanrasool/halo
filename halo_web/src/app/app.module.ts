@@ -29,11 +29,12 @@ import { SendComponent } from './send/send.component';
 import { FormsModule } from '@angular/forms';
 import { MyGiftsComponent } from './my-gifts/my-gifts.component';
 import { AccountComponent } from './account/account.component';
+import { GiftDetailsComponent } from './gift-details/gift-details.component';
 
 import { HttpModule } from '@angular/http';
 
 @NgModule({
-  declarations: [AppComponent, SendComponent, MyGiftsComponent, AccountComponent],
+  declarations: [AppComponent, SendComponent, MyGiftsComponent, AccountComponent, GiftDetailsComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserTransferStateModule,

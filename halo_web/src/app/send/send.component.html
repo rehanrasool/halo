@@ -2,34 +2,60 @@
 <br/>
 
 <div>
-   <form #formdata = "ngForm" (ngSubmit) = "onClickSubmit(formdata.value)" >
-    <h4>Step 1: Enter the recipient’s email</h4>
-     Email: <input type='text' name='email' id='email' required ngModel>
-     <br/><br/><br/>
+  <form #formdata = "ngForm" (ngSubmit) = "onClickSubmit(formdata.value)" >
+   <br/>
+   <h4>Step 1: Enter the recipient’s email</h4>
+   Email: <input type='text' name='email' id='email' required ngModel>
+   <br/><br/><br/>
 
-     <h4>Step 2: Select Gift</h4>
-     URL: <input type='text' name='gift_url' id='gift_url' ngModel><br/>
-     Amount: <input type='number' min=1 step=0.01 name='gift_amount' id='gift_amount' ngModel>
-     <br/><br/><br/>
+   <h4>Step 2: Select Gift</h4>
+   URL: <input type='text' name='gift_url' id='gift_url' ngModel><br/>
+   Amount: <input type='number' min=1 step=0.01 name='gift_amount' id='gift_amount' ngModel>
+   <br/><br/><br/>
 
-     <h4>Step 3: Customization: Add video and text</h4>
-     //TODO
-     <br/><br/><br/>
+   <h4>Step 3: Customization: Add video and text</h4>
+   <div style="height: 300px">
+    <div id="firepad-container" style="width: 100%;
+    height: 100%;">
+    </div>
+  </div>
+  <br>
+  <br>
+  Add a video to your gift!
+  <br>
+  <br>
+  <div id="cssfilters" class="container">
+    <!-- <video controls autoplay></video> -->
+    <video autoplay="" title="Video player" alt="Click me to apply CSS Filters"></video>
+    <p><button class="capture-button">Play</button>
+      <p><button id="stop-button">Stop</button>
+        <p><button id="cssfilters-apply">Apply filters</button></p>
+  </div>
+      <br/><br/><br/>
 
-    <h4>Step 4: Review your gift</h4>
+   <h4>Step 4: Review your gift</h4>
+   <div [hidden]="!(formdata.value.gift_amount>0)">
+    <p>
+     Recipient: <strong>{{formdata.value.email}}</strong><br/>
+     URL: <strong><a href="{{formdata.value.gift_url}}" target="_blank">Gift</a></strong><br/>
+     Total: <strong>${{formdata.value.gift_amount}}</strong><br/>
+   </p>
+  </div>
+
+    <br/>
     <div [hidden]="!(formdata.value.gift_amount>0)">
       <p>
-       Recipient: <strong>{{formdata.value.email}}</strong><br/>
-       URL: <strong><a href="{{formdata.value.gift_url}}" target="_blank">Gift</a></strong><br/>
-       Total: <strong>${{formdata.value.gift_amount}}</strong><br/>
-      </p>
-    </div>
-    <br/><br/>
+       Total: <strong>${{formdata.value.gift_amount}}</strong>
+     </p>
+   </div>
+   <br/>
 
-     <input type = "submit" [disabled] = "!formdata.valid" class = "button forsubmit" value = "send">
-  </form>
-</div>
+   <input type = "submit" [disabled] = "!formdata.valid" class = "forsubmit" 
+   value = "send">
 
+ </form>
+
+<br/><br/>
 <br/>
 <br/>
 

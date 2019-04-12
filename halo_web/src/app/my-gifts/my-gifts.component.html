@@ -14,7 +14,7 @@
       <th>Gift URL</th>
       <th>Details</th>
     </tr>
-    <tr *ngFor="let gift of gifts | async">
+    <tr *ngFor="let gift of gifts | async" [routerLink]="['/gift-details', gift.id]">
        <td>{{gift.timestamp}}</td>
        <td>{{gift.senderName}}</td>
        <td>{{gift.senderEmail}}</td>

@@ -12,7 +12,8 @@ import {Observable} from 'rxjs';
 
 import { GiftsService } from 'src/app/gifts.service';
 import { Gifts } from 'src/app/gifts.model';
-
+import * as firebase from "firebase";
+import * as  RecordRTC from 'recordrtc';
 @Component({
   selector: 'send',
   templateUrl: './send.component.html',
@@ -33,24 +34,102 @@ export class SendComponent implements OnInit {
   all_users;
   sender_card_value;
 
+  video;
+  firepad;
+  self: this;
+
   gifts: Gifts[];
   constructor(private giftsService: GiftsService, private http: Http) { }
 
   ngOnInit() {
+    // var self = this;
     this.formdata = new FormGroup({
-         email: new FormControl("", Validators.compose([
-            Validators.required,
-            Validators.pattern("[^ @]*@[^ @]*")
-         ]))
-      });
+     email: new FormControl("", Validators.compose([
+      Validators.required,
+      Validators.pattern("[^ @]*@[^ @]*")
+      ]))
+   });
 
-    this.giftsService.getGifts().subscribe(data => {
-      this.gifts = data.map(e => {
-        return {
-          ...e.payload.doc.data()
-        } as Gifts;
-      })
+    firebase.initializeApp({
+      apiKey: 'AIzaSyB0AMMGGH2ImlwapyrgpKAs1szsNtWE3tE',
+      databaseURL: 'https://halo-ct.firebaseio.com',
+      storageBucket: 'gs://halo-ct.appspot.com'
     });
+
+
+    // var captureVideoButton =
+    // document.querySelector('.capture-button');
+    let captureVideoButton: HTMLElement = document.getElementsByClassName('capture-button')[0] as HTMLElement;
+    var stopButton = document.querySelector('#stop-button');
+    var video = document.querySelector('#cssfilters video');
+
+    // let video: HTMLElement = document.querySelector('#cssfilters video')[0] as HTMLElement;
+    var watermark = document.querySelector('a.powered-by-firepad');
+    var recorder;
+
+    // watermark.className = 'notVisible'
+
+    let filterIndex = 0;
+    const filters = [
+    'grayscale',
+    'sepia',
+    'blur',
+    'brightness',
+    'contrast',
+    'hue-rotate',
+    'hue-rotate2',
+    'hue-rotate3',
+    'saturate',
+    'invert',
+    ''
+    ];
+
+    captureVideoButton.onclick = function() {
+      const constraints = {
+        video: {width: {min: 1280}, height: {min: 720}}
+      };
+      navigator.mediaDevices.getUserMedia(constraints).
+      then(handleSuccess).catch(handleError);
+    };
+
+    video.onclick = function() {
+      video.className = filters[filterIndex++ % filters.length];
+    };
+
+    stopButton.onclick = function() {
+      recorder.stopRecording(function(){
+        var blob = recorder.blob;
+        var url = URL.createObjectURL(blob);
+        video.srcObject = null;
+        video.loop = true;
+
+        video.src = url;
+        video.muted = false;
+        self.video = blob;
+      });
+    }
+
+    function handleSuccess(stream) {
+      recorder = RecordRTC(stream, {type:'video'})
+      recorder.startRecording();
+      var video = document.querySelector('#cssfilters video');
+      video.srcObject = stream;
+    }
+
+    function handleError(error) {
+      console.error('Error: ', error);
+    }
+
+      
+    // Get Firebase Database reference.
+    var firepadRef = firebase.database().ref();
+
+    // Create CodeMirror (with lineWrapping on).
+    var codeMirror = CodeMirror(document.getElementById('firepad-container'), { lineWrapping: true });
+
+    // Create Firepad (with rich text toolbar and shortcuts enabled).
+    self.firepad = Firepad.fromCodeMirror(firepadRef, codeMirror,
+      { richTextShortcuts: true, richTextToolbar: true, defaultText: 'Hello, World!' });
 
     this.giftsService.getUsers().subscribe(data => {
       this.all_users = data.map(e => {
@@ -60,13 +139,34 @@ export class SendComponent implements OnInit {
       })
     });
 
+    this.giftsService.getGifts().subscribe(data => {
+      this.gifts = data.map(e => {
+        return {
+          ...e.payload.doc.data()
+        } as Gifts;
+      })
+    });
+
     this.user = JSON.parse(localStorage.getItem('user'));
   }
 
+  // create(gifts: Gifts){
+  //    console.log(gifts);
+  //    var data = JSON.parse(JSON.stringify(gifts));
+  //    this.giftsService.createGifts(data);
+  // }
+
   create(gifts: Gifts){
-     console.log(gifts);
-     var data = JSON.parse(JSON.stringify(gifts));
-     this.giftsService.createGifts(data);
+    var data = JSON.parse(JSON.stringify(gifts));
+    this.giftsService.createGifts(data).then(function(data){
+    var storageRef = firebase.storage().ref(data.id + ".webm");
+
+    // var storageRef = firebase.storage().ref("videos/" + gifts.senderEmail + "/" + gifts.recipientEmail + "/" + data.id + ".webm");
+    var file = new File([self.video], data.id + ".webm", {
+      type: 'video/webm'
+    });
+    var uploadTask = storageRef.put(file);
+    });
   }
 
   getUser(email) {
@@ -110,6 +210,7 @@ export class SendComponent implements OnInit {
     this.recipientEmail = data.email;
     this.gift_amount = data.gift_amount;
     this.gift_url = data.gift_url;
+    this.message = self.firepad.getHtml();
 
     let gift: Gifts = new Gifts();
     gift.senderUid=this.user.uid;
@@ -119,6 +220,8 @@ export class SendComponent implements OnInit {
     gift.recipientEmail=this.recipientEmail;
     gift.amount=this.gift_amount;
     gift.url=this.gift_url;
+    gift.video = self.video;
+    gift.message = self.firepad.getHtml(); 
 
     // console.log(this.gifts);
 

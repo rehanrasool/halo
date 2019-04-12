@@ -20,7 +20,13 @@ export class GiftsService {
   }
 
   getGiftsBySender(uid) {
-    return this.firestore.collection('gifts', (ref) => ref.where("senderUid", '==', uid));
+    return this.firestore.collection('gifts', (ref) => ref.where("uid", '==', uid));
+  }
+
+  getGiftById(id) {
+    console.log(this.firestore.doc('gifts/' + id).get());
+    return this.firestore.doc('gifts/' + id).get();
+    // return this.firestore.collection('gifts', (ref) => ref.where("senderEmail", '==', 'mv456@cornell.edu'));
   }
 
   getGiftsByRecipient(email) {

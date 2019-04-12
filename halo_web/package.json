@@ -33,11 +33,12 @@
     "firebase": "^5.5.6",
     "firebase-admin": "^7.2.0",
     "firebase-functions": "0.7.0",
+    "recordrtc": "^5.5.4",
     "rxjs": "~6.3.3",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.6.1",
+    "@angular-devkit/build-angular": "^0.6.8",
     "@angular/cli": "~7.0.3",
     "@angular/compiler-cli": "^7.0.2",
     "@angular/language-service": "^7.0.2",

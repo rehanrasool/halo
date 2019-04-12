@@ -5,7 +5,8 @@ import { Gifts } from 'src/app/gifts.model';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
+import { AppRoutingModule } from 'src/app/app-routing.module';
+import { RouterModule, Routes }  from '@angular/router';
 @Component({
   selector: 'my-gifts',
   templateUrl: './my-gifts.component.html',
@@ -25,7 +26,9 @@ export class MyGiftsComponent implements OnInit {
   ngOnInit() {
   	this.gifts=this.getGifts();
   }
-
+  goToDetails(gift) {
+    AppRoutingModule().navigateByUrl('/gift-details', gift);
+  }
   getGifts(): Observable<any[]> {
     return this.giftsCollection.snapshotChanges().pipe(
       map((actions) => {
