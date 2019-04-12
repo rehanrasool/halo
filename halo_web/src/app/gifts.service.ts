@@ -20,7 +20,7 @@ export class GiftsService {
   }
 
   getGiftsBySender(uid) {
-    return this.firestore.collection('gifts', (ref) => ref.where("uid", '==', uid));
+    return this.firestore.collection('gifts', (ref) => ref.where("senderUid", '==', uid));
   }
 
   getGiftById(id) {
