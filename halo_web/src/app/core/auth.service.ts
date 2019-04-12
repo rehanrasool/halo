@@ -181,9 +181,6 @@ export class AuthService {
       `users/${user.uid}`
     );
 
-    console.log(this.pending_value);
-    console.log(this.pending_value + 250);
-
     const data: User = {
       uid: user.uid,
       email: user.email || null,
@@ -191,7 +188,7 @@ export class AuthService {
       cardNumber: this.generateCardNumber(),
       cardCvc: this.generateCvc(),
       cardExpiration: null,
-      cardValue: this.pending_value + 250,
+      cardValue: this.pending_value + 200,
       photoURL: user.photoURL || 'https://goo.gl/Fz9nrQ'
     };
     return userRef.set(data);
