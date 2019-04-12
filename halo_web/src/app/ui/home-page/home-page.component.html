@@ -9,3 +9,16 @@
 <h5>To see the gifts you have sent, <a href="/account">click here</a></h5>
 
 <h5>To see the gifts you have received, <a href="/my-gifts">click here</a></h5>
+
+<div *ngIf="!(auth.user | async); else alreadyLoggedIn">
+	Login to see Feed.
+</div>
+
+<ng-template #alreadyLoggedIn>
+  <h3>Feed</h3>
+
+	<div *ngFor="let gift of gifts | async">
+	   <strong>{{gift.senderName}}</strong> sent a <strong>${{gift.amount}}</strong> gift to <strong>{{gift.recipientEmail}}</strong><br/><br/>
+    </div>
+
+</ng-template>

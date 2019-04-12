@@ -15,6 +15,10 @@ export class GiftsService {
     return this.firestore.collection('gifts').snapshotChanges();
   }
 
+  getGiftsCollection(entries) {
+    return this.firestore.collection('gifts', (ref) => ref.orderBy("timestamp", "desc").limit(entries));
+  }
+
   getGiftsBySender(uid) {
     return this.firestore.collection('gifts', (ref) => ref.where("senderUid", '==', uid));
   }
