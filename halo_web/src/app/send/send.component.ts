@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { Http, Headers, Response, URLSearchParams } from '@angular/http';
@@ -19,7 +19,7 @@ import * as  RecordRTC from 'recordrtc';
   templateUrl: './send.component.html',
   styleUrls: ['./send.component.scss']
 })
-export class SendComponent implements OnInit, AfterContentInit() {
+export class SendComponent implements OnInit, AfterContentInit {
   componentproperty;
 
   user;
