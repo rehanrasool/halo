@@ -19,7 +19,7 @@ import * as  RecordRTC from 'recordrtc';
   templateUrl: './send.component.html',
   styleUrls: ['./send.component.scss']
 })
-export class SendComponent implements OnInit {
+export class SendComponent implements OnInit, AfterContentInit() {
   componentproperty;
 
   user;
@@ -63,17 +63,17 @@ export class SendComponent implements OnInit {
 
     let filterIndex = 0;
     const filters = [
-    'grayscale',
-    'sepia',
-    'blur',
-    'brightness',
-    'contrast',
-    'hue-rotate',
-    'hue-rotate2',
-    'hue-rotate3',
-    'saturate',
-    'invert',
-    ''
+      'grayscale',
+      'sepia',
+      'blur',
+      'brightness',
+      'contrast',
+      'hue-rotate',
+      'hue-rotate2',
+      'hue-rotate3',
+      'saturate',
+      'invert',
+      ''
     ];
 
     captureVideoButton.onclick = function() {
@@ -112,7 +112,17 @@ export class SendComponent implements OnInit {
       console.error('Error: ', error);
     }
 
+<<<<<<< HEAD
     // Get Firebase Database reference.
+=======
+      
+   
+  }
+
+  ngAfterContentInit() {
+    console.log("s");
+     // Get Firebase Database reference.
+>>>>>>> 69a8fe3e599837abf430c8cb98ac0b5c17b54a24
     var firepadRef = firebase.database().ref();
 
     // Create CodeMirror (with lineWrapping on).
