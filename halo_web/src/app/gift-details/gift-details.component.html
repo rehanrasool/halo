@@ -1,15 +1,13 @@
-<p>
-  gift-details works!
-</p>
+<h1>Gift by {{gift.senderName}}</h1>
 <video autoplay="" title="Video player" alt="Click me to apply CSS Filters"></video>
 
 <!-- {{gift | json}} -->
-<!-- <p [innerHTML]="gift.message.replace('\\', '')"> </p> -->
+<!--  -->
 
 <div class="container">
-  <h2>Basic Panel</h2>
+  <h2>Message:</h2>
   <div class="panel panel-default">
-    <div class="panel-body">A Basic Panel</div>
+    <div class="panel-body" [innerHTML]="gift.message.replace('\\', '')"></div>
   </div>
 </div>
 <!-- <div [innerHTML]="replaceBackslash(gift.message)"></div> -->

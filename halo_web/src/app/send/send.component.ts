@@ -42,6 +42,9 @@ export class SendComponent implements OnInit, AfterContentInit() {
   constructor(private giftsService: GiftsService, private http: Http) { }
 
   ngOnInit() {
+    this.submitted=false;
+    this.failed=false;
+
     this.formdata = new FormGroup({
      email: new FormControl("", Validators.compose([
       Validators.required,
