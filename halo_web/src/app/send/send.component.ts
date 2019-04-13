@@ -192,6 +192,10 @@ export class SendComponent implements OnInit, AfterContentInit {
     if (newSenderVal < 0) {
       return false;
     }
+
+    if (sender===recipient)
+      return true;
+
     this.giftsService.updateUserValue(sender['uid'], newSenderVal);
 
     if (recipient != null) { // add value to recipient
@@ -230,7 +234,7 @@ export class SendComponent implements OnInit, AfterContentInit {
 
     if (this.transferValue()) {
       this.create(gift);
-      this.sendEmail();
+      // this.sendEmail();
       this.submitted=true;
       this.failed=false;
     } else {
