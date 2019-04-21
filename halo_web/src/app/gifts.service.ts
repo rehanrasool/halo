@@ -58,6 +58,15 @@ export class GiftsService {
     this.firestore.doc('users/' + uid).update({"cardValue": value});
   }
 
+  // ------------------------------ Users Search ------------------------------ //
+  getUsersSearch() {
+    return this.firestore.collection('users_search').snapshotChanges();
+  }
+
+  createUsersSearch(users){
+    return this.firestore.collection('users_search').add(users);
+  }
+
   // ---------------------------- Pending Transfers ---------------------------- //
   getPendingTransfers() {
     return this.firestore.collection('pending_transfers').snapshotChanges();

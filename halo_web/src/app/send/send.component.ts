@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 // import { Http, Response, URLSearchParams } from '@angular/http';
 // import { HttpClient, HttpHeaders } from "@angular/common/http";
 import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 import { GiftsService } from 'src/app/gifts.service';
 import { Gifts } from 'src/app/gifts.model';
@@ -25,6 +26,10 @@ declare var self: any;
 })
 
 export class SendComponent implements OnInit, AfterContentInit {
+  myControl = new FormControl();
+  options : string[];
+  filteredOptions: Observable<string[]>;
+
   componentproperty;
 
   user;
@@ -34,6 +39,7 @@ export class SendComponent implements OnInit, AfterContentInit {
 
   submitted;
   failed;
+  refreshed_options;
   formdata;
 
   all_users;
@@ -45,11 +51,15 @@ export class SendComponent implements OnInit, AfterContentInit {
   self: this;
 
   gifts: Gifts[];
-  constructor(private giftsService: GiftsService, private http: Http) { }
+  users_search;
+  constructor(private giftsService: GiftsService, private http: Http) {
+  }
 
   ngOnInit() {
+
     this.submitted=false;
     this.failed=false;
+    this.refreshed_options=false;
 
     this.formdata = new FormGroup({
      email: new FormControl("", Validators.compose([
@@ -121,6 +131,53 @@ export class SendComponent implements OnInit, AfterContentInit {
     function handleError(error) {
       console.error('Error: ', error);
     }
+
+    let email_input = document.getElementById("email");
+    email_input.addEventListener("click", (e:Event) => this.updateOptions());
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
+  updateOptions(){
+    console.log("update user search");
+
+    // temporary code used to insert users_search data
+    // let json_data=[
+    //   ["Rehan","Rasool","rr756@cornell.edu"  ],
+    // ];
+
+    // var i;
+    // for (i=0; i<json_data.length; i++) {
+    //   console.log(json_data[i]);
+    //   var user_data='{"first_name": "'+json_data[i][0]+'","last_name": "'+json_data[i][1]+'","email": "'+json_data[i][2]+'"}';
+    //   this.giftsService.createUsersSearch(JSON.parse(user_data));
+    // }
+
+    if (this.refreshed_options)
+      return;
+
+    // console.log(this.users_search);
+
+    this.options = [];
+
+    var j;
+    var option;
+    for (j=0; j<this.users_search.length; j++) {
+      option=this.users_search[j]['first_name'] + " " + this.users_search[j]['last_name'] + " <" + this.users_search[j]['email'] + ">";
+      this.options.push(option);
+    }
+
+    this.filteredOptions = this.myControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
+
+    this.refreshed_options=true;
   }
 
   ngAfterContentInit() {
@@ -147,6 +204,14 @@ export class SendComponent implements OnInit, AfterContentInit {
         return {
           ...e.payload.doc.data()
         } as Gifts;
+      })
+    });
+
+    this.giftsService.getUsersSearch().subscribe(data => {
+      this.users_search = data.map(e => {
+        return {
+          ...e.payload.doc.data()
+        }
       })
     });
 
@@ -214,7 +279,8 @@ export class SendComponent implements OnInit, AfterContentInit {
   }
 
   onClickSubmit(data) {
-    this.recipientEmail = data.email;
+    // this.recipientEmail = data.email;
+    this.recipientEmail = this.myControl.value.substring(this.myControl.value.search("<")+1,this.myControl.value.search(">"));
     this.gift_amount = data.gift_amount;
     this.gift_url = data.gift_url;
     this.message = this.firepad.getHtml();

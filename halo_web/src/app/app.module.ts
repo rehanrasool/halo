@@ -26,12 +26,17 @@ import { SendComponent } from './send/send.component';
 // IMPORTANT
 // Add your own project credentials to environments/*.ts
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MyGiftsComponent } from './my-gifts/my-gifts.component';
 import { AccountComponent } from './account/account.component';
 import { GiftDetailsComponent } from './gift-details/gift-details.component';
 
 import { HttpModule } from '@angular/http';
+
+import { MatNativeDateModule } from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+import {DemoMaterialModule} from './material-module';
 
 @NgModule({
   declarations: [AppComponent, SendComponent, MyGiftsComponent, AccountComponent, GiftDetailsComponent],
@@ -50,6 +55,10 @@ import { HttpModule } from '@angular/http';
     AngularFireFunctionsModule,
     HttpModule,
     FormsModule,
+    MatNativeDateModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    DemoMaterialModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {
       enabled: environment.production
     })
