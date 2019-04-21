@@ -133,7 +133,7 @@ export class SendComponent implements OnInit, AfterContentInit {
     }
 
     let email_input = document.getElementById("email");
-    email_input.addEventListener("click", (e:Event) => this.updateOptions());
+    email_input.addEventListener("focus", (e:Event) => this.updateOptions());
   }
 
   private _filter(value: string): string[] {
