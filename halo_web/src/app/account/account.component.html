@@ -18,6 +18,7 @@
     </tr>
     <tr *ngFor="let gift of gifts | async">
        <td>{{gift.timestamp}}</td>
+       <td>{{gift.recipientName}}</td>
        <td>{{gift.recipientEmail}}</td>
        <td>${{gift.amount}}</td>
       <td><a href="{{gift.url}}" target="_blank">View Gift</a></td>

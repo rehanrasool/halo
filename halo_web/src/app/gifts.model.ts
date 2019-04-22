@@ -4,6 +4,7 @@ export class Gifts {
   senderName: string;
   senderEmail: string;
   recipientUid: string;
+  recipientName: string;
   recipientEmail: string;
   amount: number;
   url: string;

@@ -34,6 +34,7 @@ export class SendComponent implements OnInit, AfterContentInit {
 
   user;
   recipientEmail;
+  recipientName;
   gift_amount;
   gift_url;
 
@@ -281,6 +282,7 @@ export class SendComponent implements OnInit, AfterContentInit {
   onClickSubmit(data) {
     // this.recipientEmail = data.email;
     this.recipientEmail = this.myControl.value.substring(this.myControl.value.search("<")+1,this.myControl.value.search(">"));
+    this.recipientName = this.myControl.value.substring(0,this.myControl.value.search("<")-1);
     this.gift_amount = data.gift_amount;
     this.gift_url = data.gift_url;
     this.message = this.firepad.getHtml();
@@ -290,6 +292,7 @@ export class SendComponent implements OnInit, AfterContentInit {
     gift.senderName=this.user.displayName;
     gift.senderEmail=this.user.email;
     // gift.recipientUid; get if user already exists
+    gift.recipientName=this.recipientName;
     gift.recipientEmail=this.recipientEmail;
     gift.amount=this.gift_amount;
     gift.url=this.gift_url;
