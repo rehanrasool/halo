@@ -31,7 +31,7 @@ export class SendComponent implements OnInit, AfterContentInit {
   filteredOptions: Observable<string[]>;
 
   componentproperty;
-
+  notPreview;
   user;
   recipientEmail;
   recipientName;
@@ -57,7 +57,7 @@ export class SendComponent implements OnInit, AfterContentInit {
   }
 
   ngOnInit() {
-
+    this.notPreview = true;
     this.submitted=false;
     this.failed=false;
     this.refreshed_options=false;
@@ -184,13 +184,12 @@ export class SendComponent implements OnInit, AfterContentInit {
   ngAfterContentInit() {
      // Get Firebase Database reference.
     var firepadRef = firebase.database().ref();
-
     // Create CodeMirror (with lineWrapping on).
     var codeMirror = CodeMirror(document.getElementById('firepad-container'), { lineWrapping: true });
 
     // Create Firepad (with rich text toolbar and shortcuts enabled).
-    this.firepad = Firepad.fromCodeMirror(firepadRef, codeMirror,
-      { richTextShortcuts: true, richTextToolbar: true, defaultText: 'Hello, World!' });
+    this.firepad = Firepad.fromCodeMirror(firebase.database().ref(), codeMirror,
+      { richTextShortcuts: true, richTextToolbar: true, defaultText: 'Type a message for the recipient here' });
 
     this.giftsService.getUsers().subscribe(data => {
       this.all_users = data.map(e => {
@@ -284,6 +283,7 @@ export class SendComponent implements OnInit, AfterContentInit {
     this.recipientEmail = this.myControl.value.substring(this.myControl.value.search("<")+1,this.myControl.value.search(">"));
     this.recipientName = this.myControl.value.substring(0,this.myControl.value.search("<")-1);
     this.gift_amount = data.gift_amount;
+    this.message = data.message;
     this.gift_url = data.gift_url;
     this.message = this.firepad.getHtml();
 
@@ -295,6 +295,7 @@ export class SendComponent implements OnInit, AfterContentInit {
     gift.recipientName=this.recipientName;
     gift.recipientEmail=this.recipientEmail;
     gift.amount=this.gift_amount;
+    gift.message=this.message;
     gift.url=this.gift_url;
     gift.video = self.video;
     gift.message = this.firepad.getHtml();
