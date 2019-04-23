@@ -9,10 +9,10 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main.79ca129044c60a5ec4c0.js",
+        "/main.93e19a0f4c690397d517.js",
         "/polyfills.7fb637d055581aa28d51.js",
         "/runtime.a66f828dca56eeb90e02.js",
-        "/styles.a245b7cdfcd589091dfa.css"
+        "/styles.32211eaa053b80424ba8.css"
       ],
       "patterns": []
     },
@@ -30,6 +30,9 @@
         "/assets/icons/icon-72x72.png",
         "/assets/icons/icon-96x96.png",
         "/assets/images/angularfirebase.png",
+        "/assets/images/apple-pay.png",
+        "/assets/images/chrome-pay.png",
+        "/assets/images/google-pay.png",
         "/assets/images/halo_card.png",
         "/assets/images/halo_logo.png",
         "/assets/images/icons/icon-128x128.png",
@@ -55,6 +58,9 @@
     "/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
     "/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
     "/assets/images/angularfirebase.png": "7de2d644d53677bd8bf004ce528c06ae0e8d104f",
+    "/assets/images/apple-pay.png": "25e7980357425b1de6716f51bbae4b9017183613",
+    "/assets/images/chrome-pay.png": "45b58c508e4f9e3a5c66be684f6e5b821208757c",
+    "/assets/images/google-pay.png": "356032db63f2b2ba333d57eec1051a338c161444",
     "/assets/images/halo_card.png": "efbafe209aef91922693923a0bec79c1ba12e846",
     "/assets/images/halo_logo.png": "6f8abc7722b3b99e7450ebf719e43d808410a882",
     "/assets/images/icons/icon-128x128.png": "1699b8b196b7c8570b02b3d1b17a22fb91282a8e",
@@ -66,11 +72,11 @@
     "/assets/images/icons/icon-72x72.png": "07c79fb78313551e9da225292fd4b0038663e942",
     "/assets/images/icons/icon-96x96.png": "0250397474e629af71ba9aea2ea69556813abd82",
     "/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
-    "/index.html": "45f1e4c4f6578c0f7eac4c9731a02844500efce6",
-    "/main.79ca129044c60a5ec4c0.js": "4f5bf89149b1355d8a0e89237e33cf6449f9f730",
+    "/index.html": "274aa2c12591f36f51613fec253dccc801c8423d",
+    "/main.93e19a0f4c690397d517.js": "f66092e0418994f055abfd7d348aa2305bb7406a",
     "/polyfills.7fb637d055581aa28d51.js": "ef2035f0504b4f77eac510c33595c81a5d09e33f",
     "/runtime.a66f828dca56eeb90e02.js": "078e320cc6fdaf355836c3b1c52b059cdd33fc7e",
-    "/styles.a245b7cdfcd589091dfa.css": "7a6cbdf791b28dbc82a0ee5dd3f55dbeaec39061"
+    "/styles.32211eaa053b80424ba8.css": "2ec83dc87ac153c130a58d4c87637966912e522d"
   },
   "navigationUrls": [
     {
