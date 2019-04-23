@@ -1,95 +1,94 @@
 <div class="box "style="width:70%">
-  <div class="panel-body">
+  <div  class="panel-body">
+    <div [hidden]="submitted">
     <h1>Send a gift through Halo!</h1>
-    <div [hidden]="!notPreview">
-    <br>
-    <form #formdata = "ngForm" (ngSubmit) = "onClickSubmit(formdata.value)" >
-      <div class="row justify-content-md-center">
-      <div class="col-md-6">
-
-        <h3>Enter the recipient’s name or email</h3>
-          <label for="exampleFormControlInput1">Name / Email: </label>
-          <!-- <form class="example-form"> -->
-            <mat-form-field class="example-full-width" style="width:100%">
-              <input  type="email" name='email' id='email' placeholder="netid@cornell.edu" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto" required ngModel>
-              <mat-autocomplete #auto="matAutocomplete">
-                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                  {{option}}
-                </mat-option>
-              </mat-autocomplete>
-            </mat-form-field>
-            <!-- </form> -->
-            <!--       <input type="email" class="form-control" name='email' id='email' required ngModel placeholder="netid@cornell.edu"> -->
-          </div>
-          </div>
-          <h3>Select Gift</h3>
+      <br>
+      <form #formdata = "ngForm" (ngSubmit) = "onClickSubmit(formdata.value)" >
         <div class="row justify-content-md-center">
-
           <div class="col-md-6">
 
-            <div class="form-group">
-              <label for="exampleFormControlInput1">URL:</label>
-              <input type="text" class="form-control" placeholder="Paste product or experience URL here
-" name='gift_url' id='gift_url' ngModel>
+            <h3>Enter the recipient’s name or email</h3>
+            <label for="exampleFormControlInput1">Name / Email: </label>
+            <!-- <form class="example-form"> -->
+              <mat-form-field class="example-full-width" style="width:100%">
+                <input  type="email" name='email' id='email' placeholder="netid@cornell.edu" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto" required ngModel>
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                    {{option}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+              <!-- </form> -->
+              <!--       <input type="email" class="form-control" name='email' id='email' required ngModel placeholder="netid@cornell.edu"> -->
             </div>
           </div>
-          <div class="col-md-6">
-           <div class="form-group">
-            <label for="exampleFormControlInput1">Gift value:</label>
-            <input type="number" min=1 step=0.01 class="form-control" name='gift_amount' id='gift_amount'  ngModel>
+          <h3>Select Gift</h3>
+          <div class="row justify-content-md-center">
+
+            <div class="col-md-6">
+
+              <div class="form-group">
+                <label for="exampleFormControlInput1">URL:</label>
+                <input type="text" class="form-control" placeholder="Paste product or experience URL here
+                " name='gift_url' id='gift_url' ngModel>
+              </div>
+            </div>
+            <div class="col-md-6">
+             <div class="form-group">
+              <label for="exampleFormControlInput1">Gift value:</label>
+              <input type="number" min=1 step=0.01 class="form-control" name='gift_amount' id='gift_amount'  ngModel>
+            </div>
+          </div>
+        </div>
+
+        <!-- URL: <input type='text' name='gift_url' id='gift_url' ngModel><br/> -->
+        <!-- Amount: <input type='number' min=1 step=0.01 name='gift_amount' id='gift_amount' ngModel> -->
+
+        <h3>Add a message to your gift!</h3>
+        <div class="row justify-content-md-center">
+          <div style="height: 300px">
+            <div id="firepad-container" style="width: 100%;
+            height: 100%;">
+
           </div>
         </div>
       </div>
+      <br>
+      <br>
 
-      <!-- URL: <input type='text' name='gift_url' id='gift_url' ngModel><br/> -->
-      <!-- Amount: <input type='number' min=1 step=0.01 name='gift_amount' id='gift_amount' ngModel> -->
+      <div id="cssfilters" >
+        <!-- <video controls autoplay></video> -->
+        <h3>Add a video to your gift
 
-      <h3>Add a message to your gift!</h3>
-      <div class="row justify-content-md-center">
-      <div style="height: 300px">
-        <div id="firepad-container" style="width: 100%;
-        height: 100%;">
+        </h3>
+        <div >
+          <video style="width: 100%;z-index:0;" autoplay="" title="Video player" alt="Click me to apply CSS Filters">
+            <div style="position:absolute;
+            top:0;
+            left:0;z-index:1;">Press Record button to start recording video message</div>
 
-      </div>
-      </div>
-    </div>
-    <br>
-    <br>
-
-    <div id="cssfilters" >
-      <!-- <video controls autoplay></video> -->
-      <h3>Add a video to your gift
-       
-      </h3>
-      <div class="rounded-circle" >
-      <video style="width: 100%;z-index:0;" autoplay="" title="Video player" alt="Click me to apply CSS Filters">
-        <div style="position:absolute;
-    top:0;
-    left:0;z-index:1;">Press Record button to start recording video message</div>
-        
-      </video>
-      </div>
-           <button  style="margin-right:7px" type ="button" class="btn btn-primary capture-button"> <i style="margin-right:7px" class="fa fa-video-camera"></i>Record</button>
+          </video>
+        </div>
+        <button  style="margin-right:7px" type ="button" class="btn btn-primary capture-button"> <i style="margin-right:7px" class="fa fa-video-camera"></i>Record</button>
         <button type ="button" class="btn btn-primary" id="stop-button"><i style="margin-right:7px" class="fa fa-stop-circle"></i>Stop</button>
         <br>
 
-      <!-- <p><button  class="btn btn-primary" id="cssfilters-apply">Apply filters</button></p> -->
-    </div>
-    <br/><br/><br/>
+        <!-- <p><button  class="btn btn-primary" id="cssfilters-apply">Apply filters</button></p> -->
+      </div>
+      <br/><br/><br/>
 
-    <h2>Review your gift</h2>
-    <div [hidden]="!(formdata.value.gift_amount>0)">
-
+      <div [hidden]="!(formdata.value.gift_amount>0)">
+      <h2>Review your gift</h2>
         <div class="panel panel-default">
-    <div class="panel-body">
-       <p>
-        Recipient: <strong>{{myControl.value}}</strong><br/>
-        URL: <strong><a href="{{formdata.value.gift_url}}" target="_blank">Gift</a></strong><br/>
-        Total: <strong>${{formdata.value.gift_amount}}</strong><br/>
+          <div class="panel-body">
+           <p>
+            Recipient: <strong>{{myControl.value}}</strong><br/>
+            URL: <strong><a href="{{formdata.value.gift_url}}" target="_blank">Gift</a></strong><br/>
+            Total: <strong>${{formdata.value.gift_amount}}</strong><br/>
 
-      </p>
-    </div>
-  </div>
+          </p>
+        </div>
+      </div>
     </div>
     <br/>
     <br/>
@@ -106,6 +105,40 @@
       <h2>Gift Sent!</h2>
     </strong>
   </div>
+</div>
+
+  <div style="width: 70%" [hidden]="!submitted">
+    <!-- <div style="width:70%"><h1>Gift by {{gift.senderName}} ({{gift.senderEmail}})</h1> -->
+      <!-- <h3>sent on {{gift.timestamp}}</h3> -->
+      <div >
+        <video style="width: 100%;z-index:0;" autoplay="" title="Video player" alt="Click me to apply CSS Filters">
+          <div style="position:absolute;
+          top:0;
+          left:0;z-index:1;">Press Record button to start recording video message</div>
+        </video>
+      </div>
+
+      <!-- {{gift | json}} -->
+      <!--  -->
+
+      <br/><br/>
+        <div class="row justify-content-md-center">
+          <div style="height: 300px">
+            <div id="firepad-container" style="width: 100%;
+            height: 100%;">
+
+          </div>
+        </div>
+        <h2>Details:</h2>
+        <div class="box">
+            <p>Amount: <strong>${{formdata.value.gift_amount}}</strong></p>
+            <strong><a href="{{formdata.value.gift_url}}" target="_blank">Gift</a></strong>
+        </div>
+
+    </div>
+  </div>
+
+
 
   <div [hidden]="!failed">
     <strong>
@@ -114,5 +147,4 @@
     Account balance: ${{sender_card_value}}
   </div>
 </div>
-    </div>
 </div>
