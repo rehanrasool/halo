@@ -186,9 +186,39 @@ html {
     background-size: 100%;
     width: 300px;
     height: 100%;
-    min-height: 200px;
+    min-height: 180px;
     color: white;
     font-weight: bold;
     font-size: 25px;
     padding-top: 22px;
+}
+
+.google-pay-button {
+    background-image:url("assets/images/google-pay.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    width: 150px;
+    height: 100%;
+    min-height: 60px;
+}
+
+.apple-pay-button {
+    background-image:url("assets/images/apple-pay.png");
+    background-repeat: no-repeat;
+    background-size: 65%;
+    background-position: center;
+    width: 150px;
+    height: 100%;
+    min-height: 60px;
+}
+
+.chrome-pay-button {
+    background-image:url("assets/images/chrome-pay.png");
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-position: center;
+    width: 150px;
+    height: 100%;
+    min-height: 60px;
 }
