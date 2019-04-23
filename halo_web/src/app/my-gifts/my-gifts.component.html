@@ -4,8 +4,8 @@
   <h3></h3> -->
 
   <!-- <h3>Received Gifts</h3> -->
-  <table style="width:100%">
-    <tr>
+  <table style="width:100%; border:none;">
+<!--     <tr>
       <th>Timestamp</th>
       <th>Sender Name</th>
       <th>Sender Email</th>
@@ -14,8 +14,8 @@
       <th>Value</th>
       <th>Gift URL</th>
       <th>Details</th>
-    </tr>
-    <tr *ngFor="let gift of gifts | async" [routerLink]="['/gift-details', gift.id]">
+    </tr> -->
+<!--     <tr *ngFor="let gift of gifts | async" [routerLink]="['/gift-details', gift.id]">
        <td>{{gift.timestamp}}</td>
        <td>{{gift.senderName}}</td>
        <td>{{gift.senderEmail}}</td>
@@ -24,6 +24,13 @@
        <td>${{gift.amount}}</td>
        <td><a href="{{gift.url}}" target="_blank">View Gift</a></td>
        <td><a href="/my-gifts">View Details</a></td>
+    </tr> -->
+    <tr *ngFor="let gift of gifts | async">
+       <td>{{gift.timestamp}}</td>
+       <td><img style="border-radius:50%" class="card-img-top" [src]="'https://api.adorable.io/avatars/109/fire.png'" width=30px>&nbsp;&nbsp;{{gift.senderName}} ({{gift.senderEmail}})
+       <td>💸${{gift.amount}}</td>
+       <td>🎁<a href="{{gift.url}}" target="_blank">Gift</a></td>
+       <td>📜<a [routerLink]="['/gift-details', gift.id]">Details</a></td>
     </tr>
   </table>
 </div>

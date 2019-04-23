@@ -21,24 +21,37 @@
 
 <br/>
 
+<!--     <table style="width:100%; border:none;">
+    <tr *ngFor="let gift of gifts | async">
+      <td><img style="border-radius:50%" class="card-img-top" [src]="'https://api.adorable.io/avatars/109/fire.png'" width=30px>
+       &nbsp;
+       <strong>{{gift.senderName}}</strong>
+       &nbsp;&nbsp; ➡️ &nbsp;&nbsp;
+       <img style="border-radius:50%" class="card-img-top" [src]="'https://api.adorable.io/avatars/109/fire.png'" width=30px>
+      <strong>{{gift.recipientName}}</strong> ({{gift.recipientEmail}})</td>
+      <td><strong>${{gift.amount}}</strong></td>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⌛ {{gift.timestamp}}</td>
+       <br/><br/>
+    </table> -->
+
+
 <div class="box" >
   <h3>Sent Gifts</h3>
-  <table style="width:100%">
-    <tr>
+  <table style="width:100%; border:none;">
+<!--     <tr>
       <th>Timestamp</th>
       <th>Recipient Name</th>
       <th>Recipient Email</th>
       <th>Value</th>
       <th>Gift URL</th>
       <th>Details</th>
-    </tr>
+    </tr> -->
     <tr *ngFor="let gift of gifts | async">
        <td>{{gift.timestamp}}</td>
-       <td>{{gift.recipientName}}</td>
-       <td>{{gift.recipientEmail}}</td>
-       <td>${{gift.amount}}</td>
-      <td><a href="{{gift.url}}" target="_blank">View Gift</a></td>
-       <td><a href="/account">View Details</a></td>
+       <td><img style="border-radius:50%" class="card-img-top" [src]="'https://api.adorable.io/avatars/109/fire.png'" width=30px>&nbsp;&nbsp;{{gift.recipientName}} ({{gift.recipientEmail}})
+       <td>💸${{gift.amount}}</td>
+       <td>🎁<a href="{{gift.url}}" target="_blank">Gift</a></td>
+       <td>📜<a [routerLink]="['/gift-details', gift.id]">Details</a></td>
     </tr>
   </table>
 </div>
