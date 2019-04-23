@@ -14,9 +14,13 @@
 <!-- User logged in -->
 <ng-template #authenticated>
   <div *ngIf="auth.user | async as user">
-    <h3>Hello, {{ user.displayName }} <img style="margin-left:8px" class="card-img-top" [src]="user.photoURL || 'https://api.adorable.io/avatars/109/fire.png'" width=30px> </h3>
+    <h3>Hello, {{ user.displayName }}</h3>
+      <img style="margin-left:8px; border-radius:50%;" class="card-img-top" [src]="user.photoURL || 'https://api.adorable.io/avatars/109/fire.png'" width=30px>
+      <br/><br/>
+      <button class="button" (click)="logout()">Logout</button>
     <!-- <p class="text-truncate">UID: {{ user.uid }}</p> -->
-    <div><button style="margin-top:5px;margin-left:80px;" class="button" (click)="logout()">Logout</button></div> 
+
+    <!-- <div><button style="margin-top:5px;margin-left:80px;" class="button" (click)="logout()">Logout</button></div>  -->
   </div>
 </ng-template>
 
