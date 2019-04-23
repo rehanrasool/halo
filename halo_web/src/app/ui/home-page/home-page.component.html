@@ -20,9 +20,18 @@
   <ng-template #alreadyLoggedIn>
     <h3>Feed</h3>
 
-    <div *ngFor="let gift of gifts | async">
-       <strong>{{gift.senderName}}</strong> sent a <strong>${{gift.amount}}</strong> gift to <strong>{{gift.recipientEmail}}</strong><br/><br/>
-      </div>
+    <table style="width:100%; border:none;">
+    <tr *ngFor="let gift of gifts | async">
+      <td><img style="border-radius:50%" class="card-img-top" [src]="'https://api.adorable.io/avatars/109/fire.png'" width=30px>
+       &nbsp;
+       <strong>{{gift.senderName}}</strong>
+       &nbsp;&nbsp; ➡️ &nbsp;&nbsp;
+       <img style="border-radius:50%" class="card-img-top" [src]="'https://api.adorable.io/avatars/109/fire.png'" width=30px>
+      <strong>{{gift.recipientName}}</strong> ({{gift.recipientEmail}})</td>
+      <td>💸<strong>${{gift.amount}}</strong></td>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⌛ {{gift.timestamp}}</td>
+       <br/><br/>
+    </table>
 
   </ng-template>
 </div>
