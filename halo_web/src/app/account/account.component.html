@@ -5,9 +5,27 @@
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp;${{user.cardValue}}
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span style="font-size: 25px;">${{user.cardValue}}</span>
+
     <br/><br/>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{user.cardNumber}}
+
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span style="font-size: 22px; font-family: Courier;">{{user.cardNumberFormatted}}</span>
+
+    <br/>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span style="font-size: 12px; font-style: italic; font-family: Courier;">CVC: {{user.cardCvc}}
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exp: 02/21
+    </span>
+
+    <br/>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span style="font-size: 16px;">{{user.displayName}}</span>
   </div>
 
 <br/>
@@ -48,7 +66,7 @@
     </tr> -->
     <tr *ngFor="let gift of gifts | async">
        <td>{{gift.timestamp}}</td>
-       <td><img style="border-radius:50%" class="card-img-top" [src]="'https://api.adorable.io/avatars/109/fire.png'" width=30px>&nbsp;&nbsp;{{gift.recipientName}} ({{gift.recipientEmail}})
+       <td><img style="border-radius:50%" class="card-img-top" [src]="'https://www.kwsme.com/wp-content/uploads/2016/06/login-user-icon.png'" width=30px>&nbsp;&nbsp;{{gift.recipientName}} ({{gift.recipientEmail}})
        <td>💸${{gift.amount}}</td>
        <td>🎁<a href="{{gift.url}}" target="_blank">Gift</a></td>
        <td>📜<a [routerLink]="['/gift-details', gift.id]">Details</a></td>

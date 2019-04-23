@@ -22,11 +22,11 @@
 
     <table style="width:100%; border:none;">
     <tr *ngFor="let gift of gifts | async">
-      <td><img style="border-radius:50%" class="card-img-top" [src]="'https://api.adorable.io/avatars/109/fire.png'" width=30px>
+      <td><img style="border-radius:50%" class="card-img-top" [src]="'https://www.kwsme.com/wp-content/uploads/2016/06/login-user-icon.png'" width=30px>
        &nbsp;
        <strong>{{gift.senderName}}</strong>
        &nbsp;&nbsp; ➡️ &nbsp;&nbsp;
-       <img style="border-radius:50%" class="card-img-top" [src]="'https://api.adorable.io/avatars/109/fire.png'" width=30px>&nbsp;&nbsp;
+       <img style="border-radius:50%" class="card-img-top" [src]="'https://www.kwsme.com/wp-content/uploads/2016/06/login-user-icon.png'" width=30px>&nbsp;&nbsp;
       <strong>{{gift.recipientName}}</strong> ({{gift.recipientEmail}})</td>
 
       <td>💸<strong>${{gift.amount}}</strong></td>

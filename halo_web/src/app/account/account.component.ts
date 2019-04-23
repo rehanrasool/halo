@@ -20,6 +20,12 @@ export class AccountComponent implements OnInit {
 
   constructor(private afs: AngularFirestore, private giftsService: GiftsService) {
     this.user=JSON.parse(localStorage.getItem('user'));
+    var formattedCard=this.user['cardNumber'];
+    formattedCard=insert(formattedCard,4," ");
+    formattedCard=insert(formattedCard,9," ");
+    formattedCard=insert(formattedCard,14," ");
+    this.user['cardNumberFormatted']=formattedCard;
+    // console.log(this.user['cardNumber']);
     // this.giftsCollection = this.afs.collection('gifts', (ref) => ref.where("sender", '==', this.user.uid));
     this.giftsCollection=this.giftsService.getGiftsBySender(this.user.uid);
   }
@@ -39,6 +45,10 @@ export class AccountComponent implements OnInit {
       })
     );
   }
+}
+
+function insert(str, index, value) {
+    return str.substr(0, index) + value + str.substr(index);
 }
 
 function timeSince(date) {
