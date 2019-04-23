@@ -1,6 +1,7 @@
 <div class="box "style="width:70%">
   <div  class="panel-body">
-    <div [hidden]="submitted">
+    <div>
+    <!-- <div [hidden]="submitted"> -->
     <h1>Send a gift through Halo!</h1>
       <br>
       <form #formdata = "ngForm" (ngSubmit) = "onClickSubmit(formdata.value)" >
@@ -107,9 +108,7 @@
   </div>
 </div>
 
-  <div style="width: 70%" [hidden]="!submitted">
-    <!-- <div style="width:70%"><h1>Gift by {{gift.senderName}} ({{gift.senderEmail}})</h1> -->
-      <!-- <h3>sent on {{gift.timestamp}}</h3> -->
+<!--   <div style="width: 70%" [hidden]="!submitted">
       <div >
         <video style="width: 100%;z-index:0;" autoplay="" title="Video player" alt="Click me to apply CSS Filters">
           <div style="position:absolute;
@@ -118,8 +117,7 @@
         </video>
       </div>
 
-      <!-- {{gift | json}} -->
-      <!--  -->
+      {{gift | json}}
 
       <br/><br/>
         <div class="row justify-content-md-center">
@@ -136,7 +134,7 @@
         </div>
 
     </div>
-  </div>
+  </div> -->
 
 
 
