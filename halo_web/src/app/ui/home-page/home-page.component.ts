@@ -60,5 +60,10 @@ function timeSince(date) {
   if (interval > 1) {
     return interval + " minutes ago";
   }
-  return Math.floor(seconds) + " seconds ago";
+
+  if (seconds < 0) {
+    return "0 seconds ago";
+  } else {
+    return Math.floor(seconds) + " seconds ago";
+  }
 }
