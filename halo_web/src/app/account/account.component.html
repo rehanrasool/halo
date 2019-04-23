@@ -1,5 +1,11 @@
 <div class="box" >
   <h1>Account</h1>
+
+  <span style="font-style: italic;">Note: These are simulated card numbers, generated in a sandbox environment.</span>
+
+  <br/>
+  <br/>
+
   <div class="halo_card">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -35,6 +41,7 @@
   <input type="button" name="google-pay-button" class="google-pay-button" width=300px/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <input type="button" name="apple-pay-button" class="apple-pay-button" width=300px/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <input type="button" name="chrome-pay-button" class="chrome-pay-button" width=300px/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 </div>
 
 <br/>
@@ -69,7 +76,7 @@
        <td><img style="border-radius:50%" class="card-img-top" [src]="'https://www.kwsme.com/wp-content/uploads/2016/06/login-user-icon.png'" width=30px>&nbsp;&nbsp;{{gift.recipientName}} ({{gift.recipientEmail}})
        <td>💸${{gift.amount}}</td>
        <td>🎁<a href="{{gift.url}}" target="_blank">Gift</a></td>
-       <td>📜<a [routerLink]="['/gift-details', gift.id]">Details</a></td>
+       <td>📜<a [routerLink]="['/gift-details', gift.id]">Message</a></td>
     </tr>
   </table>
 </div>

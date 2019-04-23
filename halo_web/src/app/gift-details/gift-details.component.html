@@ -1,25 +1,37 @@
 <div style="width:70%">
-  <h1>Gift by {{gift.senderName}} ({{gift.senderEmail}})</h1>
+  <div class="box">
+    <h1>🎁 Gift by {{gift.senderName}} ({{gift.senderEmail}})</h1>
+  </div>
 <!-- <h3>sent on {{gift.timestamp}}</h3> -->
-<video autoplay="" title="Video player" alt="Click me to apply CSS Filters"></video>
-
 <!-- {{gift | json}} -->
 <!--  -->
 
-<br/><br/>
-
-  <h2>Message:</h2>
-  <div class="panel panel-default">
-    <div class="panel-body" [innerHTML]="gift.message.replace('\\', '')"></div>
-  </div>
-
-  <h2>Details:</h2>
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <p>Gift value: ${{gift.amount}}</p>
-      <p>Gift: <a href="{{gift.url}}" target="_blank">URL</a></p>
+  <div class="box">
+    <h2>✉️ Message</h2>
+    <div class="panel panel-default">
+      <div class="panel-body" [innerHTML]="gift.message.replace('\\', '')"></div>
     </div>
   </div>
+
+  <div class="box">
+    <h2>📹 Video</h2>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <video autoplay="" title="Video player" alt="Click me to apply CSS Filters"></video>
+      </div>
+    </div>
+  </div>
+
+  <div class="box">
+    <h2>📁 Details</h2>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <p>Gift value: ${{gift.amount}}</p>
+        <p>Gift: <a href="{{gift.url}}" target="_blank">URL</a></p>
+      </div>
+    </div>
+  </div>
+
 
 </div>
 <!-- {{}} -->
