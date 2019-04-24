@@ -34,7 +34,7 @@
     "core-js": "^2.5.4",
     "firebase": "^5.5.6",
     "firebase-admin": "^7.2.0",
-    "firebase-functions": "0.7.0",
+    "firebase-functions": "^2.3.0",
     "recordrtc": "^5.5.4",
     "rxjs": "~6.3.3",
     "zone.js": "^0.8.26"
