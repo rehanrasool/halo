@@ -3,13 +3,13 @@
     <h1>🎁 Gift by {{gift.senderName}} ({{gift.senderEmail}})</h1>
   </div>
 <!-- <h3>sent on {{gift.timestamp}}</h3> -->
-<!-- {{gift | json}} -->
+
 <!--  -->
 
   <div class="box">
     <h2>✉️ Message</h2>
     <div class="panel panel-default">
-      <div class="panel-body" [innerHTML]="gift.message.replace('\\', '')"></div>
+      <div class="panel-body" [innerHTML]="gift.message"></div>
     </div>
   </div>
 

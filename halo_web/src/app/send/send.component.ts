@@ -120,25 +120,42 @@ export class SendComponent implements OnInit, AfterContentInit {
     video.onclick = function() {
       video.className = filters[filterIndex++ % filters.length];
     };
+    var qq;
+    var cc;
     stopButton.onclick = function() {
       recorder.stopRecording(function(){
         var blob = recorder.blob;
         var url = URL.createObjectURL(blob);
+        qq = videoElement.srcObject;
+        cc = url;
         videoElement.srcObject = null;
-        videoElement.loop = true;
         videoElement.src = url;
         self.video = blob;
       });
     }
 
     disableLoop.onclick = function() {
+<<<<<<< HEAD
+       var loopLabel:  HTMLElement = document.querySelector('#loop-label') as HTMLElement;
+       videoElement.loop = !videoElement.loop;
+        console.log(qq);
+        console.log(videoElement.loop);
+=======
        var loopLabel : HTMLElement = document.querySelector('#loop-label') as HTMLElement;
        videoElement.loop = !videoElement.loop;
 
+>>>>>>> d607a9fe5815ef7c8d9d5621df437d146de90a67
         if(videoElement.loop) {
-          loopLabel.innerText = "ON"
+          loopLabel.innerText = "Turn OFF"
+          // videoElement.srcObject = qq;
+          // videoElement.src = cc;
+          videoElement.src = cc;
+          videoElement.loop = true;
+
         } else{
-          loopLabel.innerText = "OFF"
+          loopLabel.innerText = "Turn ON"
+          videoElement.loop = false;
+
         }
     }
 
@@ -315,7 +332,6 @@ export class SendComponent implements OnInit, AfterContentInit {
     this.message = data.message;
     this.gift_url = data.gift_url;
     this.message = this.firepad.getHtml();
-
     let gift: Gifts = new Gifts();
     gift.senderUid=this.user.uid;
     gift.senderName=this.user.displayName;
@@ -333,7 +349,7 @@ export class SendComponent implements OnInit, AfterContentInit {
 
     if (this.transferValue()) {
       this.create(gift);
-      // this.sendEmail();
+      this.sendEmail();
       this.submitted=true;
       this.failed=false;
     } else {
