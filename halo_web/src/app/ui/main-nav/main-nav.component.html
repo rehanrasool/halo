@@ -11,36 +11,34 @@
         </a>
     </div>
 
-    <div class="navbar-menu" [ngClass]="{'is-active': show}">
+    <div class="navbar-menu" [ngClass]="{'is-active': show}" *ngIf="!(auth.user | async); else alreadyLoggedIn">
         <div class="navbar-end">
-<!--         <a class="navbar-item" routerLink="/login">
-          Login
+<!--         <a class="navbar-item" routerLink="/">
+          Hello
         </a> -->
-        <a class="navbar-item" routerLink="/">
-          Home
-        </a>
-        <a class="navbar-item" routerLink="/send">
-          Send a Gift
-        </a>
-        <a class="navbar-item" routerLink="/my-gifts">
-          Received Gifts
-        </a>
-        <a class="navbar-item" routerLink="/leaderboard">
-          Leaderboard
-        </a>
-        <a class="navbar-item" routerLink="/account">
-          Account
-        </a>
-
-<!--             <a class="navbar-item" routerLink="/ssr">
-        SSR
-      </a>
-            <a class="navbar-item" routerLink="/notes">
-        Notes
-      </a>
-            <a class="navbar-item" routerLink="/uploads">
-        Uploads
-      </a> -->
         </div>
     </div>
+
+    <ng-template #alreadyLoggedIn>
+      <div class="navbar-menu" [ngClass]="{'is-active': show}">
+          <div class="navbar-end">
+          <a class="navbar-item" routerLink="/">
+            Home
+          </a>
+          <a class="navbar-item" routerLink="/send">
+            Send a Gift
+          </a>
+          <a class="navbar-item" routerLink="/my-gifts">
+            Received Gifts
+          </a>
+          <a class="navbar-item" routerLink="/leaderboard">
+            Leaderboard
+          </a>
+          <a class="navbar-item" routerLink="/account">
+            Account
+          </a>
+          </div>
+      </div>
+    </ng-template>
+
 </nav>
