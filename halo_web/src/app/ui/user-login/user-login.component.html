@@ -2,7 +2,7 @@
 
 <div *ngIf="!(auth.user | async); else alreadyLoggedIn">
 
-  <h4>Connect with your <strong>@cornell.edu</strong> email:</h4>
+  <h4>If you are a Cornell student, connect with your <strong>@cornell.edu</strong> email:</h4>
 
     <button (click)="signInWithGoogle()" class="button btn-social btn-google">
       <i class="fa fa-google fa-lg"></i> Connect

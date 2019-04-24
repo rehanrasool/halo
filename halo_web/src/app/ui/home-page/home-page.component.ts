@@ -19,7 +19,7 @@ export class HomePageComponent implements OnInit {
   gifts: Observable<any[]>;
 
   constructor(private giftsService: GiftsService, public auth: AuthService) {
-    this.giftsCollection=this.giftsService.getGiftsCollection(10);
+    this.giftsCollection=this.giftsService.getGiftsCollection(20);
   }
 
   ngOnInit() {
@@ -60,5 +60,10 @@ function timeSince(date) {
   if (interval > 1) {
     return interval + " minutes ago";
   }
-  return Math.floor(seconds) + " seconds ago";
+
+  if (seconds < 0) {
+    return "0 seconds ago";
+  } else {
+    return Math.floor(seconds) + " seconds ago";
+  }
 }

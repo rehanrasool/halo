@@ -1,123 +1,137 @@
-<div class="box "style="width:70%">
-  <div  class="panel-body">
-    <!-- <div [hidden]="submitted"> -->
-    <div >
-    <h1>Send a gift through Halo!</h1>
-      <br>
-      <form #formdata = "ngForm" (ngSubmit) = "onClickSubmit(formdata.value)" >
-        <div class="row justify-content-md-center">
-          <div class="col-md-6">
+<div [hidden]="submitted">
+  <div class="box" style="width:70%" >
+    <div  class="panel-body">
+      <!-- <div [hidden]="submitted"> -->
+      <h1>Send a gift through Halo!</h1>
+        <form #formdata = "ngForm" (ngSubmit) = "onClickSubmit(formdata.value)" >
 
-            <h3>Enter the recipient’s name or email</h3>
-            <label for="exampleFormControlInput1">Name / Email: </label>
-            <!-- <form class="example-form"> -->
-              <mat-form-field class="example-full-width" style="width:100%">
-                <input  type="email" name='email' id='email' placeholder="netid@cornell.edu" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto" required ngModel>
-                <mat-autocomplete #auto="matAutocomplete">
-                  <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                    {{option}}
-                  </mat-option>
-                </mat-autocomplete>
-              </mat-form-field>
-              <!-- </form> -->
-              <!--       <input type="email" class="form-control" name='email' id='email' required ngModel placeholder="netid@cornell.edu"> -->
-            </div>
+          <div class="box">
+            <div class="row justify-content-md-center">
+
+              <div class="col-md-12">
+              <h3>😇 Enter recipient details</h3>
+              <span style="font-style: italic;">For Cornell, enter name or email. For others, enter email.</span>
+
+              </div>
+
+              <div class="col-md-6">
+                <!-- <label for="exampleFormControlInput1">Name / Email: </label> -->
+                <!-- <form class="example-form"> -->
+                  <mat-form-field class="example-full-width" style="width:100%">
+                    <input  type="email" name='email' id='email' placeholder="Name / netid@cornell.edu" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto" required ngModel>
+                    <mat-autocomplete #auto="matAutocomplete">
+                      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                        {{option}}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
+                  <!-- </form> -->
+                  <!--       <input type="email" class="form-control" name='email' id='email' required ngModel placeholder="netid@cornell.edu"> -->
+                </div>
+              </div>
           </div>
-          <h3>Select Gift</h3>
-          <div class="row justify-content-md-center">
 
-            <div class="col-md-6">
+          <div class="box">
+            <h3>🎁 Select Gift</h3>
+            <div class="row justify-content-md-center">
 
-              <div class="form-group">
-                <label for="exampleFormControlInput1">URL:</label>
-                <input type="text" class="form-control" placeholder="Paste product or experience URL here
-                " name='gift_url' id='gift_url' ngModel>
+              <div class="col-md-6">
+
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Paste gift URL:</label>
+                  <input type="text" class="form-control" placeholder="Paste product or experience URL here
+                  " name='gift_url' id='gift_url' ngModel>
+                </div>
+              </div>
+              <div class="col-md-6">
+               <div class="form-group">
+                <label for="exampleFormControlInput1">Type in gift value:</label>
+                <input type="number" min=1 step=0.01 class="form-control" name='gift_amount' id='gift_amount'  ngModel>
+                </div>
               </div>
             </div>
-            <div class="col-md-6">
-             <div class="form-group">
-              <label for="exampleFormControlInput1">Gift value:</label>
-              <input type="number" min=1 step=0.01 class="form-control" name='gift_amount' id='gift_amount'  ngModel>
+          </div>
+
+          <!-- URL: <input type='text' name='gift_url' id='gift_url' ngModel><br/> -->
+          <!-- Amount: <input type='number' min=1 step=0.01 name='gift_amount' id='gift_amount' ngModel> -->
+
+          <div class="box">
+            <h3>✉️ Add a message to your gift!</h3>
+            <div class="row justify-content-md-center">
+              <div style="height: 300px">
+                <div id="firepad-container" style="width: 100%;
+                height: 100%;">
+
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- URL: <input type='text' name='gift_url' id='gift_url' ngModel><br/> -->
-        <!-- Amount: <input type='number' min=1 step=0.01 name='gift_amount' id='gift_amount' ngModel> -->
+          <div class="box">
+            <div id="cssfilters" >
+              <!-- <video controls autoplay></video> -->
+              <h3>📹 Add a video to your gift</h3>
 
-        <h3>Add a message to your gift!</h3>
-        <div class="row justify-content-md-center">
-          <div style="height: 300px">
-            <div id="firepad-container" style="width: 100%;
-            height: 100%;">
+              <div >
+                <video style="width: 100%;z-index:0;" autoplay="" title="Video player" alt="Click me to apply CSS Filters">
+                  <div>Press Record button to start recording video message</div>
 
+                </video>
+              </div>
+              <button  style="margin-right:7px" type ="button" class="btn btn-primary capture-button"> <i style="margin-right:7px" class="fa fa-video-camera"></i>Record</button>
+              <button type ="button" class="btn btn-primary" id="stop-button"><i style="margin-right:7px" class="fa fa-stop-circle"></i>Stop</button>
+              <button type ="button" value="ON" class="btn btn-primary" id="loop-button"><i style="margin-right:7px" class="fa fa-repeat"></i><div id="loop-label" style="display:inline">ON</div></button>
+              <br>
+
+              <!-- <p><button  class="btn btn-primary" id="cssfilters-apply">Apply filters</button></p> -->
+            </div>
           </div>
-        </div>
-      </div>
-      <br>
-      <br>
 
-      <div id="cssfilters" >
-        <!-- <video controls autoplay></video> -->
-        <h3>Add a video to your gift
+          <div [hidden]="!(formdata.value.gift_amount>0)">
+            <div class="box">
+            <h2>📁 Review your gift</h2>
+  <!--             <div class="panel panel-default">
+                <div class="panel-body"> -->
+                 <p>
+                  Recipient: <strong>{{myControl.value}}</strong><br/>
+                  URL: <strong><a href="{{formdata.value.gift_url}}" target="_blank">Gift</a></strong><br/>
+                  Total: <strong>${{formdata.value.gift_amount}}</strong><br/>
 
-        </h3>
-        <div >
-          <video style="width: 100%;z-index:0;" autoplay="" muted="true" title="Video player" alt="Click me to apply CSS Filters">
-            <div style="position:absolute;
-            top:0;
-            left:0;z-index:1;">Press Record button to start recording video message</div>
+                </p>
+  <!--               </div>
+              </div> -->
+            </div>
+          </div>
+      <br/><br/>
 
-          </video>
-        </div>
-        <button  style="margin-right:7px" type ="button" class="btn btn-primary capture-button"> <i style="margin-right:7px" class="fa fa-video-camera"></i>Record</button>
-        <button type ="button" class="btn btn-primary" id="stop-button"><i style="margin-right:7px" class="fa fa-stop-circle"></i>Stop</button>
-        <button type ="button" value="ON" class="btn btn-primary" id="loop-button"><i style="margin-right:7px" class="fa fa-repeat"></i><div id="loop-label" style="display:inline">ON</div></button>
-        <br>
-
-        <!-- <p><button  class="btn btn-primary" id="cssfilters-apply">Apply filters</button></p> -->
-      </div>
-      <br/><br/><br/>
-
-      <div [hidden]="!(formdata.value.gift_amount>0)">
-      <h2>Review your gift</h2>
-        <div class="panel panel-default">
-          <div class="panel-body">
-           <p>
-            Recipient: <strong>{{myControl.value}}</strong><br/>
-            URL: <strong><a href="{{formdata.value.gift_url}}" target="_blank">Gift</a></strong><br/>
-            Total: <strong>${{formdata.value.gift_amount}}</strong><br/>
-
-          </p>
-        </div>
-      </div>
+      <input  type = "submit" [disabled] = "!formdata.valid" class = "forsubmit btn btn-primary"
+      value = "Send">
+      <br/><br/>
+    </form>
     </div>
-    <br/>
-    <br/>
-
-    <input  type = "submit" [disabled] = "!formdata.valid" class = "forsubmit btn btn-primary"
-    value = "Send">
-    <br/><br/>
-    <br/>
-    <br/>
-  </form>
-
-  <div [hidden]="!submitted">
-    <strong>
-      <h2>Gift Sent!</h2>
-    </strong>
   </div>
 </div>
 
-  
 
 
 
-  <div [hidden]="!failed">
-    <strong>
-      <h2>Gift Failed: Not enough funds in account.</h2>
-    </strong>
-    Account balance: ${{sender_card_value}}
+
+
+<div [hidden]="!submitted">
+  <div class="box" style="width:70%">
+  <strong>
+    <h3>🎁 Gift Sent successfully!</h3>
+  </strong>
   </div>
 </div>
+
+<div [hidden]="!failed">
+  <div class="box" style="width:70%">
+  <strong>
+    <h3>🚫 Gift Failed: Not enough funds in account.</h3>
+  </strong>
+  Account balance: <strong>${{sender_card_value}}</strong>
+  </div>
 </div>
+
+<!-- <div class="box" style="width:70%"> -->
