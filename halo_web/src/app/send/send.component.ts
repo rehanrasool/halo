@@ -40,6 +40,7 @@ export class SendComponent implements OnInit, AfterContentInit {
 
   submitted;
   failed;
+  email_incorrect;
   refreshed_options;
   formdata;
 
@@ -60,6 +61,7 @@ export class SendComponent implements OnInit, AfterContentInit {
     this.notPreview = true;
     this.submitted=false;
     this.failed=false;
+    this.email_incorrect=false;
     this.refreshed_options=false;
 
     this.formdata = new FormGroup({
@@ -319,8 +321,21 @@ export class SendComponent implements OnInit, AfterContentInit {
 
   onClickSubmit(data) {
     // this.recipientEmail = data.email;
-    this.recipientEmail = this.myControl.value.substring(this.myControl.value.search("<")+1,this.myControl.value.search(">"));
-    this.recipientName = this.myControl.value.substring(0,this.myControl.value.search("<")-1);
+    if (this.myControl.value.search("<")!=-1 && this.myControl.value.search(">")!=-1) {
+      this.recipientEmail = this.myControl.value.substring(this.myControl.value.search("<")+1,this.myControl.value.search(">"));
+      this.recipientName = this.myControl.value.substring(0,this.myControl.value.search("<")-1);
+    } else {
+      this.recipientEmail = this.myControl.value;
+      this.recipientName = "";
+    }
+
+    if (!validateEmail(this.recipientEmail)) {
+      this.email_incorrect=true;
+      return;
+    }
+
+    this.email_incorrect=false;
+
     this.gift_amount = data.gift_amount;
     this.message = data.message;
     this.gift_url = data.gift_url;
@@ -409,4 +424,9 @@ export class SendComponent implements OnInit, AfterContentInit {
 
     }
 
+}
+
+function validateEmail(email) {
+  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
 }
