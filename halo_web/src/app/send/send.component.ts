@@ -135,16 +135,9 @@ export class SendComponent implements OnInit, AfterContentInit {
     }
 
     disableLoop.onclick = function() {
-<<<<<<< HEAD
-       var loopLabel:  HTMLElement = document.querySelector('#loop-label') as HTMLElement;
-       videoElement.loop = !videoElement.loop;
-        console.log(qq);
-        console.log(videoElement.loop);
-=======
        var loopLabel : HTMLElement = document.querySelector('#loop-label') as HTMLElement;
        videoElement.loop = !videoElement.loop;
 
->>>>>>> d607a9fe5815ef7c8d9d5621df437d146de90a67
         if(videoElement.loop) {
           loopLabel.innerText = "Turn OFF"
           // videoElement.srcObject = qq;
