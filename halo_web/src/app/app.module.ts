@@ -37,9 +37,10 @@ import { MatNativeDateModule } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {DemoMaterialModule} from './material-module';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 
 @NgModule({
-  declarations: [AppComponent, SendComponent, MyGiftsComponent, AccountComponent, GiftDetailsComponent],
+  declarations: [AppComponent, SendComponent, MyGiftsComponent, AccountComponent, GiftDetailsComponent, LeaderboardComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserTransferStateModule,

@@ -13,6 +13,7 @@ import { SendComponent } from './send/send.component';
 import { MyGiftsComponent } from './my-gifts/my-gifts.component';
 import { GiftDetailsComponent } from './gift-details/gift-details.component';
 import { AccountComponent } from './account/account.component';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'send', component: SendComponent },
   { path: 'my-gifts', component: MyGiftsComponent },
   { path: 'account', component: AccountComponent },
+  { path: 'leaderboard', component: LeaderboardComponent },
   { path: 'gift-details/:id', component: GiftDetailsComponent },
 ];
 
