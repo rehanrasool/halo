@@ -342,7 +342,7 @@ export class SendComponent implements OnInit, AfterContentInit {
 
     if (this.transferValue()) {
       this.create(gift);
-      this.sendEmail();
+      // this.sendEmail();
       this.submitted=true;
       this.failed=false;
     } else {
