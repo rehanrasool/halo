@@ -1,6 +1,7 @@
 <div class="box "style="width:70%">
   <div  class="panel-body">
-    <div [hidden]="submitted">
+    <!-- <div [hidden]="submitted"> -->
+    <div >
     <h1>Send a gift through Halo!</h1>
       <br>
       <form #formdata = "ngForm" (ngSubmit) = "onClickSubmit(formdata.value)" >
@@ -62,7 +63,7 @@
 
         </h3>
         <div >
-          <video style="width: 100%;z-index:0;" autoplay="" title="Video player" alt="Click me to apply CSS Filters">
+          <video style="width: 100%;z-index:0;" autoplay="" muted="true" title="Video player" alt="Click me to apply CSS Filters">
             <div style="position:absolute;
             top:0;
             left:0;z-index:1;">Press Record button to start recording video message</div>
@@ -71,6 +72,7 @@
         </div>
         <button  style="margin-right:7px" type ="button" class="btn btn-primary capture-button"> <i style="margin-right:7px" class="fa fa-video-camera"></i>Record</button>
         <button type ="button" class="btn btn-primary" id="stop-button"><i style="margin-right:7px" class="fa fa-stop-circle"></i>Stop</button>
+        <button type ="button" value="ON" class="btn btn-primary" id="loop-button"><i style="margin-right:7px" class="fa fa-repeat"></i><div id="loop-label" style="display:inline">ON</div></button>
         <br>
 
         <!-- <p><button  class="btn btn-primary" id="cssfilters-apply">Apply filters</button></p> -->
@@ -107,36 +109,7 @@
   </div>
 </div>
 
-  <div style="width: 70%" [hidden]="!submitted">
-    <!-- <div style="width:70%"><h1>Gift by {{gift.senderName}} ({{gift.senderEmail}})</h1> -->
-      <!-- <h3>sent on {{gift.timestamp}}</h3> -->
-      <div >
-        <video style="width: 100%;z-index:0;" autoplay="" title="Video player" alt="Click me to apply CSS Filters">
-          <div style="position:absolute;
-          top:0;
-          left:0;z-index:1;">Press Record button to start recording video message</div>
-        </video>
-      </div>
-
-      <!-- {{gift | json}} -->
-      <!--  -->
-
-      <br/><br/>
-        <div class="row justify-content-md-center">
-          <div style="height: 300px">
-            <div id="firepad-container" style="width: 100%;
-            height: 100%;">
-
-          </div>
-        </div>
-        <h2>Details:</h2>
-        <div class="box">
-            <p>Amount: <strong>${{formdata.value.gift_amount}}</strong></p>
-            <strong><a href="{{formdata.value.gift_url}}" target="_blank">Gift</a></strong>
-        </div>
-
-    </div>
-  </div>
+  
 
 
 

@@ -73,8 +73,10 @@ export class SendComponent implements OnInit, AfterContentInit {
     // document.querySelector('.capture-button');
     let captureVideoButton: HTMLElement = document.getElementsByClassName('capture-button')[0] as HTMLElement;
     var stopButton: HTMLElement = document.querySelector('#stop-button') as HTMLElement;
+    var disableLoop: HTMLElement = document.querySelector('#loop-button') as HTMLElement;
     var video: HTMLElement = document.querySelector('#cssfilters video') as HTMLElement;
     var videoElement: HTMLMediaElement = video as HTMLMediaElement;
+    videoElement.muted = true;
 
     // let video: HTMLElement = document.querySelector('#cssfilters video')[0] as HTMLElement;
     var watermark = document.querySelector('a.powered-by-firepad');
@@ -98,28 +100,47 @@ export class SendComponent implements OnInit, AfterContentInit {
     ];
 
     captureVideoButton.onclick = function() {
+
       const constraints = {
+        audio: true,
         video: {width: {min: 1280}, height: {min: 720}}
+
       };
       navigator.mediaDevices.getUserMedia(constraints).
       then(handleSuccess).catch(handleError);
+
+      // constraints = {
+      //    audio: true
+
+      // };
+      // navigator.mediaDevices.getUserMedia(constraints).
+      // then(handleSuccess).catch(handleError);
     };
 
     video.onclick = function() {
       video.className = filters[filterIndex++ % filters.length];
     };
-
     stopButton.onclick = function() {
       recorder.stopRecording(function(){
         var blob = recorder.blob;
         var url = URL.createObjectURL(blob);
         videoElement.srcObject = null;
         videoElement.loop = true;
-
         videoElement.src = url;
-        videoElement.muted = false;
         self.video = blob;
       });
+    }
+
+    disableLoop.onclick = function() {
+       var loopLabel = document.querySelector('#loop-label');
+       videoElement.loop = !videoElement.loop;
+       console.log(qq);
+       videoElement.srcObject = qq;
+        if(videoElement.loop) {
+          loopLabel.innerText = "ON"
+        } else{
+          loopLabel.innerText = "OFF"
+        }
     }
 
     function handleSuccess(stream) {
@@ -183,14 +204,15 @@ export class SendComponent implements OnInit, AfterContentInit {
 
   ngAfterContentInit() {
      // Get Firebase Database reference.
-    var firepadRef = firebase.database().ref();
+    var r = Math.random().toString(36).substring(7);
+    var firepadRef = firebase.database().ref(r);
     // Create CodeMirror (with lineWrapping on).
     var codeMirror = CodeMirror(document.getElementById('firepad-container'), { lineWrapping: true });
 
     // Create Firepad (with rich text toolbar and shortcuts enabled).
-    this.firepad = Firepad.fromCodeMirror(firebase.database().ref(), codeMirror,
+    this.firepad = Firepad.fromCodeMirror(firepadRef, codeMirror,
       { richTextShortcuts: true, richTextToolbar: true, defaultText: 'Type a message for the recipient here' });
-
+    console.log(this.firepad);
     this.giftsService.getUsers().subscribe(data => {
       this.all_users = data.map(e => {
         return {
