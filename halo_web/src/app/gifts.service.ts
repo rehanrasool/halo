@@ -53,9 +53,18 @@ export class GiftsService {
     return this.firestore.collection('users').snapshotChanges();
   }
 
-  updateUserValue(uid: string, value: number, ){
+  getUsersOrderBy(orderby, entries=10) {
+    return this.firestore.collection('users', (ref) => ref.orderBy(orderby, "desc").limit(entries)).snapshotChanges();
+  }
+
+  updateUserValue(uid: string, value: number){
     console.log("update user val: " + uid);
     this.firestore.doc('users/' + uid).update({"cardValue": value});
+  }
+
+  updateUser(uid: string, value_map: any){
+    console.log("update user val: " + uid);
+    this.firestore.doc('users/' + uid).update(value_map);
   }
 
   // ------------------------------ Users Search ------------------------------ //

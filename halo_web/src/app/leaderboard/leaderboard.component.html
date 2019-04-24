@@ -1,3 +1,75 @@
-<p>
-  leaderboard works!
-</p>
+<div class="box" >
+  <h1>🏆 Leaderboard</h1>
+
+  <h4>Users: <strong>12</strong></h4>
+  <h4>Gifts Sent: <strong>23</strong></h4>
+</div>
+
+<div class="row justify-content-md-center">
+
+	<div class="col-md-6">
+		<div class="box">
+		  <h3>Most Gifts Sent</h3>
+		  <table style="width:100%; border:none;">
+		    <tr *ngFor="let user of users_order_gifts_sent ; let idx = index">
+		       <td>{{idx+1}}&nbsp;&nbsp;<img style="border-radius:50%" class="card-img-top" [src]="'https://www.kwsme.com/wp-content/uploads/2016/06/login-user-icon.png'" width=30px>&nbsp;&nbsp;{{user.displayName}}
+		       <td>{{user.giftsSent}}</td>
+		    </tr>
+		  </table>
+		</div>
+	</div>
+
+	<div class="col-md-6">
+		<div class="box">
+		  <h3>Most Gifts Received</h3>
+		  <table style="width:100%; border:none;">
+		    <tr *ngFor="let user of users_order_gifts_received ; let idx = index">
+		       <td>{{idx+1}}&nbsp;&nbsp;<img style="border-radius:50%" class="card-img-top" [src]="'https://www.kwsme.com/wp-content/uploads/2016/06/login-user-icon.png'" width=30px>&nbsp;&nbsp;{{user.displayName}}
+		       <td>{{user.giftsReceived}}</td>
+		    </tr>
+		  </table>
+		</div>
+	</div>
+
+</div>
+
+<br/>
+
+<div class="row justify-content-md-center">
+
+	<div class="col-md-6">
+		<div class="box">
+		  <h3>Most Value Sent</h3>
+		  <table style="width:100%; border:none;">
+		    <tr *ngFor="let user of users_order_value_sent ; let idx = index">
+		       <td>{{idx+1}}&nbsp;&nbsp;<img style="border-radius:50%" class="card-img-top" [src]="'https://www.kwsme.com/wp-content/uploads/2016/06/login-user-icon.png'" width=30px>&nbsp;&nbsp;{{user.displayName}}
+		       <td>${{user.valueSent}}</td>
+		    </tr>
+		  </table>
+		</div>
+	</div>
+
+	<div class="col-md-6">
+		<div class="box">
+		  <h3>Most Value Received</h3>
+		  <table style="width:100%; border:none;">
+		    <tr *ngFor="let user of users_order_value_received ; let idx = index">
+		       <td>{{idx+1}}&nbsp;&nbsp;<img style="border-radius:50%" class="card-img-top" [src]="'https://www.kwsme.com/wp-content/uploads/2016/06/login-user-icon.png'" width=30px>&nbsp;&nbsp;{{user.displayName}}
+		       <td>${{user.valueReceived}}</td>
+		    </tr>
+		  </table>
+		</div>
+	</div>
+
+</div>
+
+<!-- <div class="box md-6">
+  <h3>Most Gifts Sent</h3>
+  <table style="width:100%; border:none;">
+    <tr *ngFor="let user of all_users">
+       <td><img style="border-radius:50%" class="card-img-top" [src]="'https://www.kwsme.com/wp-content/uploads/2016/06/login-user-icon.png'" width=30px>&nbsp;&nbsp;{{user.displayName}}
+       <td>${{user.giftsSent}}</td>
+    </tr>
+  </table>
+
+</div> -->

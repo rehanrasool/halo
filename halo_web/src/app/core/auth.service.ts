@@ -24,6 +24,11 @@ interface User {
   cardCvc?: string;
   cardExpiration?: string;
   cardValue?: number;
+  giftsSent?: number;
+  giftsAccepted?: number;
+  valueSent?: number;
+  giftsReceived?: number;
+  valueReceived?: number;
 }
 
 @Injectable()
@@ -189,7 +194,12 @@ export class AuthService {
       cardCvc: this.generateCvc(),
       cardExpiration: null,
       cardValue: this.pending_value + 200,
-      photoURL: user.photoURL || 'https://goo.gl/Fz9nrQ'
+      photoURL: user.photoURL || 'https://goo.gl/Fz9nrQ',
+      giftsSent: 0,
+      giftsAccepted: 0,
+      valueSent: 0,
+      giftsReceived: 0,
+      valueReceived: 0
     };
     return userRef.set(data);
   }

@@ -282,11 +282,9 @@ export class SendComponent implements OnInit, AfterContentInit {
     if (sender===recipient)
       return true;
 
-    this.giftsService.updateUserValue(sender['uid'], newSenderVal);
-
     if (recipient != null) { // add value to recipient
       var newRecipientVal=recipient['cardValue']+this.gift_amount;
-      this.giftsService.updateUserValue(recipient['uid'], newRecipientVal);
+      this.giftsService.updateUser(recipient['uid'], {"cardValue":newRecipientVal});
     } else { // add to pending (added when user signs up)
       var tx = {};
       tx['from']=this.user.email;
@@ -295,6 +293,16 @@ export class SendComponent implements OnInit, AfterContentInit {
 
       this.giftsService.createPendingTransfer(tx);
     }
+
+    // update stats
+    var sender_gifts_sent=(sender['giftsSent']==null ? 1 : sender['giftsSent']) + 1;
+    var recipient_gifts_received=(recipient['giftsReceived']==null ? 1 : recipient['giftsReceived']) + 1;
+
+    var sender_value_sent=(sender['valueSent']==null ? this.gift_amount : sender['valueSent']) + this.gift_amount;
+    var recipient_value_received=(recipient['valueReceived']==null ? this.gift_amount : recipient['valueReceived']) + this.gift_amount;
+
+    this.giftsService.updateUser(sender['uid'], {"cardValue":newSenderVal, "giftsSent":sender_gifts_sent, "valueSent":sender_value_sent});
+    this.giftsService.updateUser(recipient['uid'], {"giftsReceived":recipient_gifts_received, "valueReceived":recipient_value_received});
 
     return true;
   }
