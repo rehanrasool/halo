@@ -120,26 +120,36 @@ export class SendComponent implements OnInit, AfterContentInit {
     video.onclick = function() {
       video.className = filters[filterIndex++ % filters.length];
     };
+    var qq;
+    var cc;
     stopButton.onclick = function() {
       recorder.stopRecording(function(){
         var blob = recorder.blob;
         var url = URL.createObjectURL(blob);
+        qq = videoElement.srcObject;
+        cc = url;
         videoElement.srcObject = null;
-        videoElement.loop = true;
         videoElement.src = url;
         self.video = blob;
       });
     }
 
     disableLoop.onclick = function() {
-       var loopLabel = document.querySelector('#loop-label');
+       var loopLabel:  HTMLElement = document.querySelector('#loop-label') as HTMLElement;
        videoElement.loop = !videoElement.loop;
-       console.log(qq);
-       videoElement.srcObject = qq;
+        console.log(qq);
+        console.log(videoElement.loop);
         if(videoElement.loop) {
-          loopLabel.innerText = "ON"
+          loopLabel.innerText = "Turn OFF"
+          // videoElement.srcObject = qq;
+          // videoElement.src = cc;
+          videoElement.src = cc;
+          videoElement.loop = true;
+
         } else{
-          loopLabel.innerText = "OFF"
+          loopLabel.innerText = "Turn ON"
+          videoElement.loop = false;
+
         }
     }
 
@@ -308,7 +318,7 @@ export class SendComponent implements OnInit, AfterContentInit {
     this.message = data.message;
     this.gift_url = data.gift_url;
     this.message = this.firepad.getHtml();
-
+    console.log(this.message);
     let gift: Gifts = new Gifts();
     gift.senderUid=this.user.uid;
     gift.senderName=this.user.displayName;
