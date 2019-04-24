@@ -37,6 +37,7 @@ export class AuthService {
 
   pending_transfers;
   pending_value=0;
+  pending_gifts=0;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -93,6 +94,7 @@ export class AuthService {
     var i;
     for (i=0; i<this.pending_transfers.length; i++) {
       this.pending_value+=parseFloat(this.pending_transfers[i]['amount']);
+      this.pending_gifts+=1;
       this.giftsService.deletePendingTransfer(this.pending_transfers[i]['id']);
     }
   }
@@ -198,8 +200,8 @@ export class AuthService {
       giftsSent: 0,
       giftsAccepted: 0,
       valueSent: 0,
-      giftsReceived: 0,
-      valueReceived: 0
+      giftsReceived: this.pending_gifts,
+      valueReceived: this.pending_value
     };
     return userRef.set(data);
   }

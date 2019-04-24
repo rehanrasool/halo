@@ -190,6 +190,7 @@ export class SendComponent implements OnInit, AfterContentInit {
     //   this.giftsService.createUsersSearch(JSON.parse(user_data));
     // }
 
+    // if (this.refreshed_options || !this.user.email.endsWith("@cornell.edu")) // external people shouldn't be able to see Cornell emails
     if (this.refreshed_options)
       return;
 
@@ -294,9 +295,12 @@ export class SendComponent implements OnInit, AfterContentInit {
     if (sender===recipient)
       return true;
 
-    if (recipient != null) { // add value to recipient
+    if (recipient != null) { // add value to recipient and update stats
       var newRecipientVal=recipient['cardValue']+this.gift_amount;
-      this.giftsService.updateUser(recipient['uid'], {"cardValue":newRecipientVal});
+      var recipient_gifts_received=(recipient['giftsReceived']==null ? 1 : recipient['giftsReceived']) + 1;
+      var recipient_value_received=(recipient['valueReceived']==null ? this.gift_amount : recipient['valueReceived']) + this.gift_amount;
+      this.giftsService.updateUser(recipient['uid'], {"cardValue":newRecipientVal, "giftsReceived":recipient_gifts_received, "valueReceived":recipient_value_received});
+      // this.giftsService.updateUser(recipient['uid'], {});
     } else { // add to pending (added when user signs up)
       var tx = {};
       tx['from']=this.user.email;
@@ -306,15 +310,10 @@ export class SendComponent implements OnInit, AfterContentInit {
       this.giftsService.createPendingTransfer(tx);
     }
 
-    // update stats
+    // update stats for sender
     var sender_gifts_sent=(sender['giftsSent']==null ? 1 : sender['giftsSent']) + 1;
-    var recipient_gifts_received=(recipient['giftsReceived']==null ? 1 : recipient['giftsReceived']) + 1;
-
     var sender_value_sent=(sender['valueSent']==null ? this.gift_amount : sender['valueSent']) + this.gift_amount;
-    var recipient_value_received=(recipient['valueReceived']==null ? this.gift_amount : recipient['valueReceived']) + this.gift_amount;
-
     this.giftsService.updateUser(sender['uid'], {"cardValue":newSenderVal, "giftsSent":sender_gifts_sent, "valueSent":sender_value_sent});
-    this.giftsService.updateUser(recipient['uid'], {"giftsReceived":recipient_gifts_received, "valueReceived":recipient_value_received});
 
     return true;
   }
@@ -370,17 +369,18 @@ export class SendComponent implements OnInit, AfterContentInit {
 
       let url = 'https://us-central1-halo-ct.cloudfunctions.net/httpEmail'
       let params: URLSearchParams = new URLSearchParams();
+
       // let headers = new Headers({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
 
       var content_head=`<body style="font: 16px Assistant, sans-serif;">` +
                        `<center>` +
-                       `<h1 style="color:green">Hey!</h1>`;
+                       `<h1 style="color:green">Hey `+this.recipientName.substring(0,this.recipientName.search(" "))+`!</h1>`;
 
-      var content_tail=`<h4><a style="color:orange" href="halo-ct.firebaseapp.com" target="_blank">Check It Out</a></h4>` +
+      var content_tail=`<h4><a style="color:orange" href="https://halo-ct.firebaseapp.com/" target="_blank">Check It Out</a></h4>` +
                        `<p style="color:black">Remember, you can always decide to add the value of your gift to your Halo card instead.<br/>` +
                        `Either way, be sure to say thanks for the gift :)</p>` +
                        `<p style="color:black"><strong>Don’t know about Halo?</strong> Halo is an awesome gift giving platform that allows you to get gifts from multiple friends on a single virtual card. <a style="color:green" href="halo-ct.firebaseapp.com" target="_blank">Learn more here.</a></p>` +
-                       `<p style="color:black"><strong>Don’t have a Halo account?</strong> To redeem your gift, you’ll need to <a style="color:purple" href="halo-ct.firebaseapp.com" target="_blank">create an account</a> on Halo using this email address.</p>` +
+                       `<p style="color:black"><strong>Don’t have a Halo account?</strong> To redeem your gift, you’ll need to <a style="color:purple" href="https://halo-ct.firebaseapp.com/" target="_blank">create an account</a> on Halo using this email address.</p>` +
                        `</center>`;
 
       var content_title1=`<h3>Your day just got a little better.<br/><br/>` +
