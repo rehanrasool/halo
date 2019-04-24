@@ -200,6 +200,8 @@ html {
     width: 150px;
     height: 100%;
     min-height: 60px;
+    border-radius: 10px;
+    background-color: white;
 }
 
 .apple-pay-button {
@@ -210,6 +212,8 @@ html {
     width: 150px;
     height: 100%;
     min-height: 60px;
+    border-radius: 10px;
+    background-color: white;
 }
 
 .chrome-pay-button {
@@ -220,4 +224,10 @@ html {
     width: 150px;
     height: 100%;
     min-height: 60px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.active-tab {
+    background-color: #E5E5E5;
 }

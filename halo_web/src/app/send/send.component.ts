@@ -425,7 +425,7 @@ export class SendComponent implements OnInit, AfterContentInit {
       `<img src="https://media.giphy.com/media/arXSjaMhRnKV2/giphy.gif" alt="Halo Gif"></a></div>`;
 
       var content_titles=[content_title1,content_title2,content_title3];
-      var content_gifs=[content_gif1];
+      var content_gifs=[content_gif1,content_gif2,content_gif3];
 
       var random_title = content_titles[Math.floor(Math.random() * content_titles.length)];
       var random_gif = content_gifs[Math.floor(Math.random() * content_gifs.length)];

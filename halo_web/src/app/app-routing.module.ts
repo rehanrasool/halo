@@ -16,7 +16,8 @@ import { AccountComponent } from './account/account.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 
 const routes: Routes = [
-  { path: '', component: HomePageComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full'},
+  { path: 'home', component: HomePageComponent },
   { path: 'login', component: UserLoginComponent },
   { path: 'notes', component: NotesListComponent,  canActivate: [AuthGuard] },
   { path: 'uploads',  component: UploadPageComponent,  canActivate: [AuthGuard] },

@@ -22,19 +22,19 @@
     <ng-template #alreadyLoggedIn>
       <div class="navbar-menu" [ngClass]="{'is-active': show}">
           <div class="navbar-end">
-          <a class="navbar-item" routerLink="/">
+          <a class="navbar-item" routerLink="/home" [routerLinkActive]="['active-tab']">
             Home
           </a>
-          <a class="navbar-item" routerLink="/send">
+          <a class="navbar-item" routerLink="/send" [routerLinkActive]="['active-tab']">
             Send a Gift
           </a>
-          <a class="navbar-item" routerLink="/my-gifts">
+          <a class="navbar-item" routerLink="/my-gifts" [routerLinkActive]="['active-tab']">
             Received Gifts
           </a>
-          <a class="navbar-item" routerLink="/leaderboard">
+          <a class="navbar-item" routerLink="/leaderboard" [routerLinkActive]="['active-tab']">
             Leaderboard
           </a>
-          <a class="navbar-item" routerLink="/account">
+          <a class="navbar-item" routerLink="/account" [routerLinkActive]="['active-tab']">
             Account
           </a>
           </div>
