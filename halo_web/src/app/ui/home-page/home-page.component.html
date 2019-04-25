@@ -2,8 +2,9 @@
 
 <div *ngIf="!(auth.user | async); else alreadyLoggedIn">
   <div class="box">
-    <h2>Welcome to Halo!</h2>
+    <h2>Welcome to Halo Web Demo!</h2>
     <h4>The Digital Gift Card and Social Gifting Platform</h4>
+    <h5>😇 To learn more about Halo, go to <strong><a href="https://halo.landinglion.com/" target="_blank">halo.gift</a></strong></h5>
   </div>
 
   <div class="box">
@@ -40,8 +41,9 @@
 <ng-template #alreadyLoggedIn>
 
   <div class="box">
-    <h2>Welcome to Halo!</h2>
+    <h2>Welcome to Halo Web Demo!</h2>
     <h4>The Digital Gift Card and Social Gifting Platform</h4>
+    <h5>😇 To learn more about Halo, go to <strong><a href="https://halo.landinglion.com/" target="_blank">halo.gift</a></strong></h5>
   </div>
 
   <div class="box">
@@ -50,6 +52,22 @@
     <h5>📮 To see the gifts you have sent, <a [routerLink]="['/account']">click here</a></h5>
 
     <h5>💝 To see the gifts you have received, <a [routerLink]="['/my-gifts']">click here</a></h5>
+  </div>
+
+  <div class="box">
+    <h4>
+    Cornell Tech Gifting Contest!
+    </h4>
+
+    <p>We have opened up the demo to the Cornell Tech Community</p>
+    <ul style="list-style-type: none;">
+       <li>💵 Everyone who signs up gets $200 in Virtual Halo Money</li>
+       <li>🎁 Send your classmates virtual gifts with personalized messages</li>
+       <li>🏆 At the end of the contest, the best gifter gets a real world gift (to be revealed later)</li>
+    </ul>
+
+    <span style="font-style: italic;">This is a validation Demo. We are using it to test our value proposition.<br/>We appreciate your help by participating in it.</span>
+
   </div>
 
   <div class="box" >
@@ -71,3 +89,5 @@
   </div>
 
 </ng-template>
+
+<br/><br/><br/>
