@@ -408,24 +408,35 @@ export class SendComponent implements OnInit, AfterContentInit {
 
       // let headers = new Headers({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
 
-      var content_head=`<body style="font: 16px Assistant, sans-serif;">` +
-                       `<center>` +
-                       `<h1 style="color:green">Hey `+this.recipientName.substring(0,this.recipientName.search(" "))+`!</h1>`;
+      var content_head=`<center>` +
+                       `<h1 style="color:#4e61ff">Hey `+this.recipientName.substring(0,this.recipientName.search(" "))+`!</h1>`;
 
-      var content_tail=`<h4><a style="color:orange" href="https://halo-ct.firebaseapp.com/" target="_blank">Check It Out</a></h4>` +
-                       `<p style="color:black">Remember, you can always decide to add the value of your gift to your Halo card instead.<br/>` +
-                       `Either way, be sure to say thanks for the gift :)</p>` +
-                       `<p style="color:black"><strong>Don’t know about Halo?</strong> Halo is an awesome gift giving platform that allows you to get gifts from multiple friends on a single virtual card. <a style="color:green" href="halo-ct.firebaseapp.com" target="_blank">Learn more here.</a></p>` +
-                       `<p style="color:black"><strong>Don’t have a Halo account?</strong> To redeem your gift, you’ll need to <a style="color:purple" href="https://halo-ct.firebaseapp.com/" target="_blank">create an account</a> on Halo using this email address.</p>` +
-                       `</center>`;
+      var content_tail=`<h2><a style="color:#f2c94c" href="https://halo-ct.firebaseapp.com/" target="_blank">Check It Out</a></h2>` +
+                       `<br/>` +
+                       `<h4>Your Halo Gift Card comes with:</h4>` +
+                       `<ul style="list-style-type: none;">` +
+                       `<li>😊 A personalized video and text message by the gifter</li>` +
+                       `<li>🎁 A product or experience chosen specifically for you</li>` +
+                       `<li>💳 The flexibility to accept and receive the gift or spend the value anywhere</li>` +
+                       `</ul>` +
+                       `<br/>` +
+                       `<h4>You have received this virtual gift as part of the Cornell Tech Gifting Contest. This is how it works:</h4>`+
+                       `<ul style="list-style-type: none;">`+
+                       `<li>💵 Everyone who signs up gets $200 in Virtual Halo Money</li>`+
+                       `<li>🎁 Send your classmates virtual gifts with personalized messages</li>`+
+                       `<li>🏆 At the end of the contest, the best gifter gets a real world gift (to be revealed later)</li>`+
+                       `</ul>`+
+                       `<br/>` +
+                       `<h4>Check out our website at <a style="color:#f2c94c" href="http://halo.gift" target="_blank">halo.gift</h4>`+
+                       `<h5><span style="font-style: italic;">Disclaimer: The gift has no monetary value. It is for demonstrative purposes only.</span></h4>`;
 
       var content_title1=`<h3>Your day just got a little better.<br/><br/>` +
-      `<span style="color:teal">` + this.user.displayName + `</span> has just sent you a gift on Halo!</h3>`;
+      `<span style="color:#4e61ff">` + this.user.displayName + `</span> has just sent you a gift on Halo!</h3>`;
 
-      var content_title2=`<h3>Oh Snap! You just got a gift from <span style="color:teal">` + this.user.displayName + `</span> on Halo!`;
+      var content_title2=`<h3>Oh Snap! You just got a gift from <span style="color:#4e61ff">` + this.user.displayName + `</span> on Halo!`;
 
       var content_title3=`<h3>Today’s your lucky day.<br/><br/>` +
-      `<span style="color:teal">` + this.user.displayName + `</span> just sent you a gift on Halo!</h3>`;
+      `<span style="color:#4e61ff">` + this.user.displayName + `</span> just sent you a gift on Halo!</h3>`;
 
       var content_gif1=`<div align="center">` +
       `<img src="https://media.giphy.com/media/kKo2x2QSWMNfW/giphy.gif" alt="Halo Gif"></a></div>`;
@@ -434,7 +445,7 @@ export class SendComponent implements OnInit, AfterContentInit {
       `<img src="https://media.giphy.com/media/5Y2bU7FqLOuzK/giphy.gif" alt="Halo Gif"></a></div>`;
 
       var content_gif3=`<div align="center">` +
-      `<img src="https://media.giphy.com/media/arXSjaMhRnKV2/giphy.gif" alt="Halo Gif"></a></div>`;
+      `<img src="https://media.giphy.com/media/l4hLGvgARVqVFLlIc/giphy.gif" alt="Halo Gif"></a></div>`;
 
       var content_titles=[content_title1,content_title2,content_title3];
       var content_gifs=[content_gif1,content_gif2,content_gif3];
@@ -446,7 +457,7 @@ export class SendComponent implements OnInit, AfterContentInit {
 
       params.set('to', this.recipientEmail);
       params.set('from', "noreply@halo-ct.firebaseapp.com");
-      params.set('subject', "Halo! You got a gift from " + this.user.displayName);
+      params.set('subject', "You got a gift from " + this.user.displayName + " on Halo!");
       params.set('content', content);
 
       return this.http.post(url, params)
