@@ -10,4 +10,5 @@ export class Gifts {
   url: string;
   video: any;
   message: string;
+  accepted: string;
 }

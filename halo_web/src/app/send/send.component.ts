@@ -375,6 +375,7 @@ export class SendComponent implements OnInit, AfterContentInit {
       gift.url=this.gift_url;
       gift.video = self.video;
       gift.message = this.firepad.getHtml();
+      gift.accepted = "";
 
       // console.log(this.gifts);
 

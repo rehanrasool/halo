@@ -25,10 +25,11 @@ interface User {
   cardExpiration?: string;
   cardValue?: number;
   giftsSent?: number;
-  giftsAccepted?: number;
   valueSent?: number;
   giftsReceived?: number;
   valueReceived?: number;
+  giftsAccepted?: number;
+  valuesAccepted?: number;
 }
 
 @Injectable()
@@ -198,10 +199,11 @@ export class AuthService {
       cardValue: this.pending_value + 200,
       photoURL: user.photoURL || 'https://goo.gl/Fz9nrQ',
       giftsSent: 0,
-      giftsAccepted: 0,
       valueSent: 0,
       giftsReceived: this.pending_gifts,
-      valueReceived: this.pending_value
+      valueReceived: this.pending_value,
+      giftsAccepted: 0,
+      valuesAccepted: 0
     };
     return userRef.set(data);
   }

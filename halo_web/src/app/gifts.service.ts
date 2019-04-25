@@ -39,9 +39,9 @@ export class GiftsService {
     return this.firestore.collection('gifts').add(gifts);
   }
 
-  updateGifts(gifts: Gifts, giftsId: string){
+  updateGift(giftsId: string, value_map: any){
     // delete gifts.id;
-    this.firestore.doc('gifts/' + giftsId).update(gifts);
+    this.firestore.doc('gifts/' + giftsId).update(value_map);
   }
 
   deleteGifts(giftsId: string){
@@ -57,9 +57,8 @@ export class GiftsService {
     return this.firestore.collection('users', (ref) => ref.orderBy(orderby, "desc").limit(entries)).snapshotChanges();
   }
 
-  updateUserValue(uid: string, value: number){
-    console.log("update user val: " + uid);
-    this.firestore.doc('users/' + uid).update({"cardValue": value});
+  getUserById(id) {
+    return this.firestore.doc('users/' + id).get();
   }
 
   updateUser(uid: string, value_map: any){

@@ -26,12 +26,24 @@
     <h2>📁 Details</h2>
     <div class="panel panel-default">
       <div class="panel-body">
-        <p>Gift value: ${{gift.amount}}</p>
-        <p>Gift: <a href="{{gift.url}}" target="_blank">URL</a></p>
+        <p>🎁 <a href="{{gift.url}}" target="_blank">Gift</a></p>
+        <p>💸 <strong>${{gift.amount}}</strong></p>
       </div>
     </div>
   </div>
 
+  <div class="box">
+    <h2>🤔 Decide</h2>
+    <span style="font-style: italic;">Anonymous decision. Please answer.</span><br/><br/>
+
+    <h5>Would you like to accept this gift or take the value instead?</h5>
+
+    <input id="halo-decision-gift" type="button" class="btn halo-decision-none" value="🎁 Gift" (click)="giftAccepted()" [ngClass]="{ 'halo-purple-bg': gift.accepted == 'yes' }" [disabled]="decisionDisabled()">
+    &nbsp;
+    <input id="halo-decision-value" type="button" class="btn halo-decision-none" value="💸 Value" (click)="valueAccepted()" [ngClass]="{ 'halo-purple-bg': gift.accepted == 'no' }" [disabled]="decisionDisabled()">
+    
+
+  </div>
 
 </div>
 <!-- {{}} -->
