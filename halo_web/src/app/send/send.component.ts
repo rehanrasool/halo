@@ -167,14 +167,14 @@ export class SendComponent implements OnInit, AfterContentInit {
        videoElement.loop = !videoElement.loop;
 
        if(videoElement.loop) {
-        loopLabel.innerText = "Turn OFF"
+        loopLabel.innerText = "Loop OFF"
         // videoElement.srcObject = qq;
         // videoElement.src = cc;
         videoElement.src = cc;
         videoElement.loop = true;
 
       } else{
-        loopLabel.innerText = "Turn ON"
+        loopLabel.innerText = "Loop ON"
         videoElement.loop = false;
 
       }
@@ -252,7 +252,7 @@ export class SendComponent implements OnInit, AfterContentInit {
 
      // Create Firepad (with rich text toolbar and shortcuts enabled).
      this.firepad = Firepad.fromCodeMirror(firepadRef, codeMirror,
-      { richTextShortcuts: true, richTextToolbar: true, defaultText: 'Type a message for the recipient here' });
+      { richTextShortcuts: true, richTextToolbar: true);
      this.giftsService.getUsers().subscribe(data => {
       this.all_users = data.map(e => {
         return {
