@@ -11,9 +11,9 @@
 		<div class="box">
 		  <h3>Most Gifts Sent</h3>
 		  <table style="width:100%; border:none;">
-		    <tr *ngFor="let user of users_order_gifts_sent ; let idx = index">
-		       <td>{{idx+1}}&nbsp;&nbsp;<img style="border-radius:50%" class="card-img-top" [src]="'https://www.kwsme.com/wp-content/uploads/2016/06/login-user-icon.png'" width=30px>&nbsp;&nbsp;{{user.displayName}}
-		       <td>{{user.giftsSent}}</td>
+		    <tr *ngFor="let user of users_order_gifts_sent">
+		       <td *ngIf="user.email">{{user.index}}&nbsp;&nbsp;<img style="border-radius:50%" class="card-img-top" [src]="'https://www.kwsme.com/wp-content/uploads/2016/06/login-user-icon.png'" width=30px>&nbsp;&nbsp;{{user.displayName}}
+		       <td *ngIf="user.email">{{user.giftsSent}}</td>
 		    </tr>
 		  </table>
 		</div>
@@ -23,9 +23,9 @@
 		<div class="box">
 		  <h3>Most Gifts Received</h3>
 		  <table style="width:100%; border:none;">
-		    <tr *ngFor="let user of users_order_gifts_received ; let idx = index">
-		       <td>{{idx+1}}&nbsp;&nbsp;<img style="border-radius:50%" class="card-img-top" [src]="'https://www.kwsme.com/wp-content/uploads/2016/06/login-user-icon.png'" width=30px>&nbsp;&nbsp;{{user.displayName}}
-		       <td>{{user.giftsReceived}}</td>
+		    <tr *ngFor="let user of users_order_gifts_received">
+		       <td *ngIf="user.email">{{user.index}}&nbsp;&nbsp;<img style="border-radius:50%" class="card-img-top" [src]="'https://www.kwsme.com/wp-content/uploads/2016/06/login-user-icon.png'" width=30px>&nbsp;&nbsp;{{user.displayName}}
+		       <td *ngIf="user.email">{{user.giftsReceived}}</td>
 		    </tr>
 		  </table>
 		</div>
@@ -41,9 +41,9 @@
 		<div class="box">
 		  <h3>Most Value Sent</h3>
 		  <table style="width:100%; border:none;">
-		    <tr *ngFor="let user of users_order_value_sent ; let idx = index">
-		       <td>{{idx+1}}&nbsp;&nbsp;<img style="border-radius:50%" class="card-img-top" [src]="'https://www.kwsme.com/wp-content/uploads/2016/06/login-user-icon.png'" width=30px>&nbsp;&nbsp;{{user.displayName}}
-		       <td>${{user.valueSent}}</td>
+		    <tr *ngFor="let user of users_order_value_sent">
+		       <td *ngIf="user.email">{{user.index}}&nbsp;&nbsp;<img style="border-radius:50%" class="card-img-top" [src]="'https://www.kwsme.com/wp-content/uploads/2016/06/login-user-icon.png'" width=30px>&nbsp;&nbsp;{{user.displayName}}
+		       <td *ngIf="user.email">${{user.valueSent}}</td>
 		    </tr>
 		  </table>
 		</div>
@@ -53,9 +53,9 @@
 		<div class="box">
 		  <h3>Most Value Received</h3>
 		  <table style="width:100%; border:none;">
-		    <tr *ngFor="let user of users_order_value_received ; let idx = index">
-		       <td>{{idx+1}}&nbsp;&nbsp;<img style="border-radius:50%" class="card-img-top" [src]="'https://www.kwsme.com/wp-content/uploads/2016/06/login-user-icon.png'" width=30px>&nbsp;&nbsp;{{user.displayName}}
-		       <td>${{user.valueReceived}}</td>
+		    <tr *ngFor="let user of users_order_value_received">
+		       <td *ngIf="user.email">{{user.index}}&nbsp;&nbsp;<img style="border-radius:50%" class="card-img-top" [src]="'https://www.kwsme.com/wp-content/uploads/2016/06/login-user-icon.png'" width=30px>&nbsp;&nbsp;{{user.displayName}}
+		       <td *ngIf="user.email">${{user.valueReceived}}</td>
 		    </tr>
 		  </table>
 		</div>

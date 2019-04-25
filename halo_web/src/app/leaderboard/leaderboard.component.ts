@@ -24,6 +24,9 @@ export class LeaderboardComponent implements OnInit, AfterContentInit {
   users_order_value_sent;
   users_order_value_received;
 
+  // skip_users=["rr756@cornell.edu", "bf326@cornell.edu", "ip235@cornell.edu", "mv456@cornell.edu"];
+  skip_users=[];
+
   constructor(private afs: AngularFirestore, private giftsService: GiftsService) {
     this.user=JSON.parse(localStorage.getItem('user'));
   }
@@ -38,33 +41,65 @@ export class LeaderboardComponent implements OnInit, AfterContentInit {
     });
 
     this.giftsService.getUsersOrderBy("giftsSent").subscribe(data => {
+      var index=0;
       this.users_order_gifts_sent = data.map(e => {
-        return {
-          ...e.payload.doc.data()
+        if (this.skip_users.includes(e.payload.doc.data()['email'])) {
+          // console.log(e.payload.doc.data());
+          return {}
+        } else {
+            index++;
+            return {
+            index,
+            ...e.payload.doc.data()
+          }
         }
       })
     });
 
     this.giftsService.getUsersOrderBy("giftsReceived").subscribe(data => {
+      var index=0;
       this.users_order_gifts_received = data.map(e => {
-        return {
-          ...e.payload.doc.data()
+        if (this.skip_users.includes(e.payload.doc.data()['email'])) {
+          // console.log(e.payload.doc.data());
+          return {}
+        } else {
+            index++;
+            return {
+            index,
+            ...e.payload.doc.data()
+          }
         }
       })
     });
 
     this.giftsService.getUsersOrderBy("valueSent").subscribe(data => {
+      var index=0;
       this.users_order_value_sent = data.map(e => {
-        return {
-          ...e.payload.doc.data()
+        if (this.skip_users.includes(e.payload.doc.data()['email'])) {
+          // console.log(e.payload.doc.data());
+          return {}
+        } else {
+            index++;
+            return {
+            index,
+            ...e.payload.doc.data()
+          }
         }
       })
     });
 
     this.giftsService.getUsersOrderBy("valueReceived").subscribe(data => {
+      var index=0;
       this.users_order_value_received = data.map(e => {
-        return {
-          ...e.payload.doc.data()
+        if (this.skip_users.includes(e.payload.doc.data()['email'])) {
+          // console.log(e.payload.doc.data());
+          return {}
+        } else {
+            index++;
+            return {
+            index,
+            ...e.payload.doc.data()
+          }
         }
       })
     });
