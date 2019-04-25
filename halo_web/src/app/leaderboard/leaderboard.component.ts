@@ -15,6 +15,10 @@ export class LeaderboardComponent implements OnInit, AfterContentInit {
   user;
 
   all_users;
+  all_gifts;
+
+  // total_value;
+
   users_order_gifts_sent;
   users_order_gifts_received;
   users_order_value_sent;
@@ -25,9 +29,6 @@ export class LeaderboardComponent implements OnInit, AfterContentInit {
   }
 
   ngOnInit() {
-  }
-
-  ngAfterContentInit() {
     this.giftsService.getUsers().subscribe(data => {
       this.all_users = data.map(e => {
         return {
@@ -68,6 +69,16 @@ export class LeaderboardComponent implements OnInit, AfterContentInit {
       })
     });
 
+    this.giftsService.getGifts().subscribe(data => {
+      this.all_gifts = data.map(e => {
+        return {
+          ...e.payload.doc.data()
+        }
+      })
+    });
+  }
+
+  ngAfterContentInit() {
   }
 
 }

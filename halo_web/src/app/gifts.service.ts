@@ -53,7 +53,7 @@ export class GiftsService {
     return this.firestore.collection('users').snapshotChanges();
   }
 
-  getUsersOrderBy(orderby, entries=10) {
+  getUsersOrderBy(orderby, entries=5) {
     return this.firestore.collection('users', (ref) => ref.orderBy(orderby, "desc").limit(entries)).snapshotChanges();
   }
 
