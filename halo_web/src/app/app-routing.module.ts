@@ -25,6 +25,7 @@ const routes: Routes = [
   { path: 'ssr', component: SsrPageComponent },
 
   { path: 'send', component: SendComponent },
+  { path: 'send/:id', component: SendComponent },
   { path: 'my-gifts', component: MyGiftsComponent },
   { path: 'account', component: AccountComponent },
   { path: 'leaderboard', component: LeaderboardComponent },

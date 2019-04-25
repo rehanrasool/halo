@@ -2,6 +2,7 @@ import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { Http, Headers, Response, URLSearchParams } from '@angular/http';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 import { HttpClient } from '@angular/common/http';
 
@@ -30,6 +31,8 @@ export class SendComponent implements OnInit, AfterContentInit {
   options : string[];
   filteredOptions: Observable<string[]>;
 
+  prefilled_recipient;
+
   componentproperty;
   notPreview;
   user;
@@ -54,7 +57,7 @@ export class SendComponent implements OnInit, AfterContentInit {
 
   gifts: Gifts[];
   users_search;
-  constructor(private giftsService: GiftsService, private http: Http) {
+  constructor(private giftsService: GiftsService, private http: Http, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -192,6 +195,7 @@ export class SendComponent implements OnInit, AfterContentInit {
 
     let email_input = document.getElementById("email");
     email_input.addEventListener("focus", (e:Event) => this.updateOptions());
+    this.prefilled_recipient=this.route.snapshot.paramMap.get('id');
   }
 
   private _filter(value: string): string[] {

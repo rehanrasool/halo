@@ -18,7 +18,7 @@
                 <!-- <label for="exampleFormControlInput1">Name / Email: </label> -->
                 <!-- <form class="example-form"> -->
                   <mat-form-field class="example-full-width" style="width:100%">
-                    <input  type="email" name='email' id='email' placeholder="Name / netid@cornell.edu" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto" required ngModel>
+                    <input  type="email" name='email' id='email' placeholder="Name / netid@cornell.edu" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto" required [(ngModel)]="prefilled_recipient">
                     <mat-autocomplete #auto="matAutocomplete">
                       <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                         {{option}}
