@@ -17,6 +17,7 @@ export class GiftDetailsComponent implements OnInit {
 	giftCollection: Observable<any>;
 	gift: any;
 	gift_id;
+	user;
 	constructor(
 		private route: ActivatedRoute,
 		private router: Router,
@@ -26,7 +27,7 @@ export class GiftDetailsComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		
+		this.user=JSON.parse(localStorage.getItem('user'));
 		this.gift_id = this.route.snapshot.paramMap.get('id');
    		this.giftCollection=this.giftsService.getGiftById(this.gift_id);
 		this.giftCollection.subscribe(val => this.gift = val.data());

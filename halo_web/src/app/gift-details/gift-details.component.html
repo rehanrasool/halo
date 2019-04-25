@@ -32,24 +32,25 @@
     </div>
   </div>
 
-  <div class="box">
-    <h2>🤔 Decide</h2>
-    <span style="font-style: italic;">Anonymous decision. Please answer.</span><br/><br/>
+  <div [hidden]="gift.recipientEmail!=user.email">
+    <div class="box">
+      <h2>🤔 Decide</h2>
+      <span style="font-style: italic;">Anonymous decision. Please answer.</span><br/><br/>
 
-    <h5>Would you like to accept this gift or take the value instead?</h5>
+      <h5>Would you like to accept this gift or take the value instead?</h5>
 
-    <input id="halo-decision-gift" type="button" class="btn halo-decision-none" value="🎁 Gift" (click)="giftAccepted()" [ngClass]="{ 'halo-purple-bg': gift.accepted == 'yes' }" [disabled]="decisionDisabled()">
-    &nbsp;
-    <input id="halo-decision-value" type="button" class="btn halo-decision-none" value="💸 Value" (click)="valueAccepted()" [ngClass]="{ 'halo-purple-bg': gift.accepted == 'no' }" [disabled]="decisionDisabled()">
+      <input id="halo-decision-gift" type="button" class="btn halo-decision-none" value="🎁 Gift" (click)="giftAccepted()" [ngClass]="{ 'halo-purple-bg': gift.accepted == 'yes' }" [disabled]="decisionDisabled()">
+      &nbsp;
+      <input id="halo-decision-value" type="button" class="btn halo-decision-none" value="💸 Value" (click)="valueAccepted()" [ngClass]="{ 'halo-purple-bg': gift.accepted == 'no' }" [disabled]="decisionDisabled()">
+    </div>
 
-  </div>
+    <div class="box">
+      <h2>🙏 Gift back</h2>
 
-  <div class="box">
-    <h2>🙏 Gift back</h2>
+      <h5>Show your appreciation by gifting back!</h5>
 
-    <h5>Show your appreciation by gifting back!</h5>
-
-    <input id="halo-gift-back" type="button" class="btn halo-decision-none halo-yellow-bg" value="🎁 Gift back" [routerLink]="['/send', gift.senderEmail]">
+      <input id="halo-gift-back" type="button" class="btn halo-decision-none halo-yellow-bg" value="🎁 Gift back" [routerLink]="['/send', gift.senderEmail]">
+    </div>
   </div>
 
 </div>
