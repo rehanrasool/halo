@@ -220,7 +220,7 @@ export class SendComponent implements OnInit, AfterContentInit {
       // }
 
     // if (this.refreshed_options || !this.user.email.endsWith("@cornell.edu")) // external people shouldn't be able to see Cornell emails
-    if (this.refreshed_options)
+    if (this.refreshed_options || this.users_search==null)
       return;
 
       // console.log(this.users_search);
@@ -251,8 +251,7 @@ export class SendComponent implements OnInit, AfterContentInit {
      var codeMirror = CodeMirror(document.getElementById('firepad-container'), { lineWrapping: true });
 
      // Create Firepad (with rich text toolbar and shortcuts enabled).
-     this.firepad = Firepad.fromCodeMirror(firepadRef, codeMirror,
-      { richTextShortcuts: true, richTextToolbar: true});
+     this.firepad = Firepad.fromCodeMirror(firepadRef, codeMirror, { richTextShortcuts: true, richTextToolbar: true});
      this.giftsService.getUsers().subscribe(data => {
       this.all_users = data.map(e => {
         return {
