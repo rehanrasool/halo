@@ -38,9 +38,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {DemoMaterialModule} from './material-module';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { SafeHtmlPipe } from './safe-html.pipe';
 
 @NgModule({
-  declarations: [AppComponent, SendComponent, MyGiftsComponent, AccountComponent, GiftDetailsComponent, LeaderboardComponent],
+  declarations: [AppComponent, SendComponent, MyGiftsComponent, AccountComponent, GiftDetailsComponent, LeaderboardComponent, SafeHtmlPipe],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserTransferStateModule,
@@ -63,6 +64,9 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
     ServiceWorkerModule.register('/ngsw-worker.js', {
       enabled: environment.production
     })
+  ],
+  exports: [
+    SafeHtmlPipe
   ],
   bootstrap: [AppComponent]
 })
