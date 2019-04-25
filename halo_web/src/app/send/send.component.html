@@ -126,7 +126,7 @@
 
 
 <div [hidden]="!submitted">
-  <div class="box" style="width:70%">
+  <div class="box" style="width:70%; background-color: #ccffcc;">
   <strong>
     <h3>🎁 Gift Sent successfully!</h3>
   </strong>
@@ -134,7 +134,7 @@
 </div>
 
 <div [hidden]="!failed">
-  <div class="box" style="width:70%">
+  <div class="box" style="width:70%; background-color: #ffb3b3;">
   <strong>
     <h3>🚫 Gift Failed: Not enough funds in account.</h3>
   </strong>
@@ -143,9 +143,18 @@
 </div>
 
 <div [hidden]="!email_incorrect">
-  <div class="box" style="width:70%">
+  <div class="box" style="width:70%; background-color: #ffb3b3;">
   <strong>
     <h3>🚫 Gift Failed: Email format is incorrect.</h3>
+  </strong>
+  Email: <strong>{{recipientEmail}}</strong>
+  </div>
+</div>
+
+<div [hidden]="!email_to_yourself">
+  <div class="box" style="width:70%; background-color: #ffb3b3;">
+  <strong>
+    <h3>🚫 Gift Failed: Cannot send it to yourself! 🤦‍♀️</h3>
   </strong>
   Email: <strong>{{recipientEmail}}</strong>
   </div>

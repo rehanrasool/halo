@@ -44,6 +44,7 @@ export class SendComponent implements OnInit, AfterContentInit {
   submitted;
   failed;
   email_incorrect;
+  email_to_yourself;
   refreshed_options;
   formdata;
 
@@ -65,6 +66,7 @@ export class SendComponent implements OnInit, AfterContentInit {
     this.submitted=false;
     this.failed=false;
     this.email_incorrect=false;
+    this.email_to_yourself=false;
     this.refreshed_options=false;
 
     this.formdata = new FormGroup({
@@ -360,7 +362,13 @@ export class SendComponent implements OnInit, AfterContentInit {
         return;
       }
 
+      if (this.recipientEmail==this.user.email) {
+        this.email_to_yourself=true;
+        return;
+      }
+
       this.email_incorrect=false;
+      this.email_to_yourself=false;
 
       this.gift_amount = data.gift_amount;
       this.message = data.message;
