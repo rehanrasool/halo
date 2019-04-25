@@ -252,7 +252,7 @@ export class SendComponent implements OnInit, AfterContentInit {
 
      // Create Firepad (with rich text toolbar and shortcuts enabled).
      this.firepad = Firepad.fromCodeMirror(firepadRef, codeMirror,
-      { richTextShortcuts: true, richTextToolbar: true);
+      { richTextShortcuts: true, richTextToolbar: true});
      this.giftsService.getUsers().subscribe(data => {
       this.all_users = data.map(e => {
         return {
