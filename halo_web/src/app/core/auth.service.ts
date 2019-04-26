@@ -94,9 +94,11 @@ export class AuthService {
   private reviewPendingTransfers(user_email) {
     var i;
     for (i=0; i<this.pending_transfers.length; i++) {
-      this.pending_value+=parseFloat(this.pending_transfers[i]['amount']);
-      this.pending_gifts+=1;
-      this.giftsService.deletePendingTransfer(this.pending_transfers[i]['id']);
+      if (user_email==this.pending_transfers[i]['to']) {
+        this.pending_value+=parseFloat(this.pending_transfers[i]['amount']);
+        this.pending_gifts+=1;
+        this.giftsService.deletePendingTransfer(this.pending_transfers[i]['id']);
+      }
     }
   }
 
