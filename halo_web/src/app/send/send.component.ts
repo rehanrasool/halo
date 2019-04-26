@@ -420,7 +420,7 @@ export class SendComponent implements OnInit, AfterContentInit {
       var content_head=`<center>` +
                        `<h1 style="color:#4e61ff">Hey `+this.recipientName.substring(0,this.recipientName.search(" "))+`!</h1>`;
 
-      var content_tail=`<h2><a style="color:#f2c94c" href="https://halo-ct.firebaseapp.com/" target="_blank">Check It Out</a></h2>` +
+      var content_tail=`<h1><a style="color:#f2c94c" href="https://halo-ct.firebaseapp.com/" target="_blank">Check It Out</a></h1>` +
                        `<br/>` +
                        `<h4>Your Halo Gift Card comes with:</h4>` +
                        `<ul style="list-style-type: none;">` +
