@@ -15,6 +15,16 @@
        <td [ngClass]="{ 'halo-unopened-bg': !gift.opened }">📜<a [routerLink]="['/gift-details', gift.id]">Message</a></td>
        <td [ngClass]="{ 'halo-unopened-bg': !gift.opened }">{{gift.opened ? 'Opened' : 'Unopened'}}</td>
     </tr>
+    <!-- Halo signup value -->
+     <td>&nbsp;</td>
+     <!-- <td [ngClass]="{ 'halo-unopened-bg': !gift.opened }">{{gift.timestamp}}</td> -->
+     <td><img style="border-radius:50%" class="card-img-top" [src]="'../../assets/images/halo_icon.png'" width=30px>&nbsp;&nbsp;Halo (sign up bonus)
+     <td>💸$200</td>
+     <!-- <td [ngClass]="{ 'halo-unopened-bg': !gift.opened }">🎁<a href="" target="_blank">Gift</a></td> -->
+     <!-- <td [ngClass]="{ 'halo-unopened-bg': !gift.opened }">📜<a [routerLink]="['/gift-details', gift.id]">Message</a></td> -->
+     <td>&nbsp;</td>
+     <td>&nbsp;</td>
+     <td>&nbsp;</td>
   </table>
 </div>
 
