@@ -5,37 +5,15 @@
 
   <br/>
   <br/>
-<!--   <h3>Card Number: <strong>{{user.cardNumber}}</strong> <br/>Value: <strong>${{user.cardValue}}</strong></h3>
-  <h3></h3> -->
 
-  <!-- <h3>Received Gifts</h3> -->
   <table style="width:100%; border:none;">
-<!--     <tr>
-      <th>Timestamp</th>
-      <th>Sender Name</th>
-      <th>Sender Email</th>
-      <th>Recipient Name</th>
-      <th>Recipient Email</th>
-      <th>Value</th>
-      <th>Gift URL</th>
-      <th>Details</th>
-    </tr> -->
-<!--     <tr *ngFor="let gift of gifts | async" [routerLink]="['/gift-details', gift.id]">
-       <td>{{gift.timestamp}}</td>
-       <td>{{gift.senderName}}</td>
-       <td>{{gift.senderEmail}}</td>
-       <td>{{gift.recipientName}}</td>
-       <td>{{gift.recipientEmail}}</td>
-       <td>${{gift.amount}}</td>
-       <td><a href="{{gift.url}}" target="_blank">View Gift</a></td>
-       <td><a href="/my-gifts">View Details</a></td>
-    </tr> -->
     <tr *ngFor="let gift of gifts | async">
-       <td>{{gift.timestamp}}</td>
-       <td><img style="border-radius:50%" class="card-img-top" [src]="'https://www.kwsme.com/wp-content/uploads/2016/06/login-user-icon.png'" width=30px>&nbsp;&nbsp;{{gift.senderName}} ({{gift.senderEmail}})
-       <td>💸${{gift.amount}}</td>
-       <td>🎁<a href="{{gift.url}}" target="_blank">Gift</a></td>
-       <td>📜<a [routerLink]="['/gift-details', gift.id]">Message</a></td>
+       <td [ngClass]="{ 'halo-unopened-bg': !gift.opened }">{{gift.timestamp}}</td>
+       <td [ngClass]="{ 'halo-unopened-bg': !gift.opened }"><img style="border-radius:50%" class="card-img-top" [src]="'https://www.kwsme.com/wp-content/uploads/2016/06/login-user-icon.png'" width=30px>&nbsp;&nbsp;{{gift.senderName}} ({{gift.senderEmail}})
+       <td [ngClass]="{ 'halo-unopened-bg': !gift.opened }">💸${{gift.amount}}</td>
+       <td [ngClass]="{ 'halo-unopened-bg': !gift.opened }">🎁<a href="{{gift.url}}" target="_blank">Gift</a></td>
+       <td [ngClass]="{ 'halo-unopened-bg': !gift.opened }">📜<a [routerLink]="['/gift-details', gift.id]">Message</a></td>
+       <td [ngClass]="{ 'halo-unopened-bg': !gift.opened }">{{gift.opened ? 'Opened' : 'Unopened'}}</td>
     </tr>
   </table>
 </div>

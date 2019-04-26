@@ -251,11 +251,26 @@ body {
     /*color: white !important;*/
 }
 
+.halo-unopened-bg {
+    background-color: #FFFFCB !important;
+    font-weight: bold;
+}
+
 .halo-decision-none {
     background-color: rgba(230,230,230,1);
     width: 150px;
     opacity: 1 !important;
     font-weight: bold;
+}
+
+.halo-notification {
+  height: 25px;
+  width: 25px;
+  background-color: #4E61FF;
+  color: white;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
 }
 
 .input-icon {

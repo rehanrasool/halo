@@ -387,6 +387,7 @@ export class SendComponent implements OnInit, AfterContentInit {
       gift.video = self.video;
       gift.message = this.firepad.getHtml();
       gift.accepted = "";
+      gift.opened = false;
 
       // console.log(this.gifts);
 
@@ -457,6 +458,7 @@ export class SendComponent implements OnInit, AfterContentInit {
 
       params.set('to', this.recipientEmail);
       params.set('from', "noreply@halo-ct.firebaseapp.com");
+      params.set('fromname', "Halo");
       params.set('subject', "You got a gift from " + this.user.displayName + " on Halo!");
       params.set('content', content);
 

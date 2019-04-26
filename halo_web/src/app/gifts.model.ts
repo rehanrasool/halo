@@ -11,4 +11,5 @@ export class Gifts {
   video: any;
   message: string;
   accepted: string;
+  opened: boolean;
 }
