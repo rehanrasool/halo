@@ -160,6 +160,17 @@
   </div>
 </div>
 
+<div [hidden]="!invalid_url">
+  <div class="box" style="width:70%; background-color: #ffb3b3;">
+  <strong>
+    <h3>🚫 Gift Failed: Invalid URL!</h3>
+  </strong>
+  URL: <strong>{{formdata.value.gift_url}}</strong>
+  <br/><br/>
+  <span style="font-style: italic; font-size: 12px;">Should look something like:<br/>https://www.amazon.com/Unisex-Minimalist-Waterproof-Classic-Pointer/dp/B07GB1R4FY/</span>
+  </div>
+</div>
+
 <br/><br/><br/>
 
 <!-- <div class="box" style="width:70%"> -->
