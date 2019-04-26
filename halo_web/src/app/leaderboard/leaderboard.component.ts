@@ -24,8 +24,8 @@ export class LeaderboardComponent implements OnInit, AfterContentInit {
   users_order_value_sent;
   users_order_value_received;
 
-  // skip_users=["rr756@cornell.edu", "bf326@cornell.edu", "ip235@cornell.edu", "mv456@cornell.edu"];
-  skip_users=[];
+  skip_users=["rr756@cornell.edu", "bf326@cornell.edu", "ip235@cornell.edu", "mv456@cornell.edu"];
+  // skip_users=[];
 
   constructor(private afs: AngularFirestore, private giftsService: GiftsService) {
     this.user=JSON.parse(localStorage.getItem('user'));
